@@ -1,2 +1,2 @@
-class notifications.Views.PullRequest extends notifications.Views.Subject
+class app.Views.PullRequest extends app.Views.Subject
   template: JST['app/scripts/templates/issue.ejs']

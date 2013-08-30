@@ -1,2 +1,2 @@
-class notifications.Models.Comment extends Backbone.Model
+class app.Models.Comment extends Backbone.Model
 

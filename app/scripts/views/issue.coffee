@@ -1,2 +1,2 @@
-class notifications.Views.Issue extends notifications.Views.Subject
+class app.Views.Issue extends app.Views.Subject
   template: JST['app/scripts/templates/issue.ejs']

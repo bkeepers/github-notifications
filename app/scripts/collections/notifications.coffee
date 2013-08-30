@@ -1,3 +1,3 @@
-class notifications.Collections.Notifications extends Backbone.Collection
-  model: notifications.Models.Notification
+class app.Collections.Notifications extends Backbone.Collection
+  model: app.Models.Notification
   url: 'https://api.github.com/notifications'

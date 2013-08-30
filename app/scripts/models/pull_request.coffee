@@ -1,2 +1,2 @@
-class notifications.Models.PullRequest extends notifications.Models.Subject
+class app.Models.PullRequest extends app.Models.Subject
   octicon: 'git-pull-request'

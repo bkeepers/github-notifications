@@ -1,4 +1,4 @@
-class notifications.Views.Comment extends Backbone.View
+class app.Views.Comment extends Backbone.View
   template: JST['app/scripts/templates/comment.ejs']
 
   render: ->

@@ -1,6 +1,6 @@
-class notifications.Models.Subject extends Backbone.Model
+class app.Models.Subject extends Backbone.Model
   @for: (subject) ->
-    new notifications.Models[subject.type](subject)
+    new app.Models[subject.type](subject)
 
   initialize: ->
     @url = @get('url')

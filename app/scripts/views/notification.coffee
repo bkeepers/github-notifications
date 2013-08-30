@@ -1,4 +1,4 @@
-class notifications.Views.Notification extends Backbone.View
+class app.Views.Notification extends Backbone.View
   tagName: 'li'
   template: JST['app/scripts/templates/notification.ejs']
 

@@ -1,4 +1,4 @@
-window.notifications =
+window.app =
   Models: {}
   Collections: {}
   Views: {}
@@ -14,7 +14,7 @@ window.notifications =
 
 $ ->
   'use strict'
-  notifications.init()
+  app.init()
 
 # GitHub authentication token
 token = ""

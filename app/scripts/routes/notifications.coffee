@@ -1,4 +1,4 @@
-class notifications.Routers.Notifications extends Backbone.Router
+class app.Routers.Notifications extends Backbone.Router
   initialize: (options) =>
     @collection = options.collection
 
@@ -8,4 +8,4 @@ class notifications.Routers.Notifications extends Backbone.Router
   notification: (id) ->
     model = @collection.get(id)
     return unless model
-    new notifications.Views.NotificationDetailsView(model: model)
+    new app.Views.NotificationDetailsView(model: model)
