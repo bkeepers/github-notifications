@@ -5,6 +5,7 @@ class notifications.Models.SubjectModel extends Backbone.Model
   constructor: ->
     super
     @url = @get('url')
+    @view = new notifications.Views[@get('type')](model: @)
 
   toJSON: ->
     _.extend super, octicon: @octicon
