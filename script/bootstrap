@@ -1,6 +1,5 @@
 #!/bin/sh
 
 
-npm install -g yeoman
-npm install -g bower
+npm install
 bower install
