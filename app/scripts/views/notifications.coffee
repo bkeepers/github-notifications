@@ -13,7 +13,6 @@ class notifications.Views.NotificationsView extends Backbone.View
     @
 
   add: (notification) ->
-    console.log 'adding', notification
     view = new notifications.Views.NotificationView(model: notification)
     @$('ul').append(view.render().el)
 

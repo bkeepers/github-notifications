@@ -1,0 +1,13 @@
+@import "normalize-scss/normalize";
+@import "layout";
+@import "sidebar";
+@import "compass";
+@import "octicons/octicons/sprockets-octicons";
+
+* {
+  @include box-sizing(border-box);
+}
+
+body {
+  font-size: 13px;
+}

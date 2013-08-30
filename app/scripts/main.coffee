@@ -5,8 +5,12 @@ window.notifications =
   Routers: {}
   init: ->
     'use strict'
-    new this.Views.NotificationsView
-      collection: new this.Collections.NotificationsCollection()
+
+    @collection = new this.Collections.NotificationsCollection()
+    @router = new this.Routers.NotificationsRouter(collection: @collection)
+    new this.Views.NotificationsView(collection: @collection)
+
+    Backbone.history.start()
 
 $ ->
   'use strict'
