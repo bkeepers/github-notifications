@@ -12,5 +12,5 @@ class notifications.Views.NotificationDetailsView extends Backbone.View
     @
 
   renderSubject: (subject) ->
-    console.log 'rendering subject', subject.view
-    @$('.subject').html(subject.view.render().el)
+    view = new notifications.Views[subject.get('type')](model: subject)
+    @$('.subject').html(view.render().el)
