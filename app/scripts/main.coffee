@@ -6,9 +6,9 @@ window.notifications =
   init: ->
     'use strict'
 
-    @collection = new this.Collections.NotificationsCollection()
-    @router = new this.Routers.NotificationsRouter(collection: @collection)
-    new this.Views.NotificationsView(collection: @collection)
+    @collection = new this.Collections.Notifications()
+    @router = new this.Routers.Notifications(collection: @collection)
+    new this.Views.Notifications(collection: @collection)
 
     Backbone.history.start()
 

@@ -1,4 +1,4 @@
-class notifications.Views.NotificationsView extends Backbone.View
+class notifications.Views.Notifications extends Backbone.View
   el: '#notifications'
   template: JST['app/scripts/templates/notifications.ejs']
 
@@ -13,7 +13,7 @@ class notifications.Views.NotificationsView extends Backbone.View
     @
 
   add: (notification) ->
-    view = new notifications.Views.NotificationView(model: notification)
+    view = new notifications.Views.Notification(model: notification)
     @$('ul').append(view.render().el)
 
   addAll: ->

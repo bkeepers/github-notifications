@@ -1,4 +1,4 @@
-class notifications.Routers.NotificationsRouter extends Backbone.Router
+class notifications.Routers.Notifications extends Backbone.Router
   initialize: (options) =>
     @collection = options.collection
 

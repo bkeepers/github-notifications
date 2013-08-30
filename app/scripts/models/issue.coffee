@@ -1,2 +1,2 @@
-class notifications.Models.IssueModel extends notifications.Models.SubjectModel
+class notifications.Models.Issue extends notifications.Models.Subject
   octicon: 'issue-opened'
