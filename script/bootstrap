@@ -1,5 +1,5 @@
 #!/bin/sh
 
-
+bundle install
 npm install
-bower install
+./node_modules/.bin/bower install
