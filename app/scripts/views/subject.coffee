@@ -1,10 +1,11 @@
 class app.Views.Subject extends Backbone.View
   initialize: ->
-    @comments = new app.Collections.Comments([], url: @model.get('comments_url'))
-    @listenTo @comments, 'add', @addComment
-    @listenTo @comments, 'reset', @addAllComments
+    if url = @model.get('comments_url')
+      @comments = new app.Collections.Comments([], url: url)
+      @listenTo @comments, 'add', @addComment
+      @listenTo @comments, 'reset', @addAllComments
 
-    @comments.fetch()
+      @comments.fetch()
 
   render: ->
     @$el.html(@template(@model.toJSON()))
