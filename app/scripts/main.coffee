@@ -12,7 +12,10 @@ window.app =
     @collection = new this.Collections.Notifications()
     @router = new this.Routers.Notifications(collection: @collection)
     new this.Views.Notifications(collection: @collection)
-    Backbone.history.start()
+
+    @collection.once 'add reset', =>
+      # wait until notifications are loaded to start routing.
+      Backbone.history.start()
 
 $ ->
   'use strict'
