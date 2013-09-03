@@ -10,6 +10,8 @@
 
   .notification {
     border-bottom: 1px solid #ede8ea;
+    position: relative;
+    line-height: 18px;
 
     a {
       display: block;
@@ -25,19 +27,31 @@
   }
 
   .octicon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    margin-top: -12px;
+  }
+
+  .repository, time {
+    color: #818189;
+    font-size: 0.9em;
+  }
+
+  .repository {
     float: left;
-    margin-left: -36px;
+  }
+
+  time {
+    float: right;
   }
 
   .title {
+    clear: both;
     display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  time {
-    color: #aaa;
-    font-size: 0.85em;
-  }
 }
