@@ -1,6 +1,7 @@
 @import "normalize-scss/normalize";
 @import "layout";
 @import "sidebar";
+@import "details";
 @import "compass";
 
 * {
@@ -10,3 +11,18 @@
 body {
   font-size: 13px;
 }
+
+.octicon {
+  color: #fff;
+  background: #000;
+  border-radius: 30px;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.octicon-git-pull-request { background-color: #9e157c; }
+.octicon-issue-opened { background-color: #489d00; }
+.octicon-git-commit { background-color: #156f9e; }
