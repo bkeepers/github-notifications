@@ -1,6 +1,11 @@
-<a href="<%= user.html_url %>">
-  <img class="avatar" src="<%= user.avatar_url %>">
-  <%= user.login %>
-</a>
+<div class="discussion-meta">
+  <a href="<%= user.html_url %>">
+    <img class="discussion-avatar" src="<%= user.avatar_url %>">
+    <%= user.login %>
+  </a>
+  commented
 
-<%= body %>
+  <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
+</div>
+
+<div class="discussion-content"><%= body %></div>

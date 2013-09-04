@@ -4,12 +4,15 @@
 @import "details";
 @import "compass";
 
+@import "details/pull_request";
+
 * {
   @include box-sizing(border-box);
 }
 
 body {
   font-size: 13px;
+  line-height: 18px;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 

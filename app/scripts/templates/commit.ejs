@@ -1,9 +1,14 @@
-<a href="<%= author.html_url %>">
-  <img class="avatar" src="<%= author.avatar_url %>">
-  <%= author.login %>
-</a>
+<div class="discussion-comment">
+  <div class="discussion-meta">
+    <a href="<%= author.html_url %>">
+      <img class="discussion-avatar" src="<%= author.avatar_url %>">
+      <%= author.login %>
+    </a>
+    committed
+  </div>
 
-<a href="<%= html_url %>"><%= sha %></a>
+  <div class="discussion-content"><a href="<%= html_url %>"><%= sha %></a></div>
+</div>
 
 <div class="comments">
 </div>

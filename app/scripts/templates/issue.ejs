@@ -1,12 +1,14 @@
-<a href="<%= html_url %>">#<%= number %></a>
+<div class="discussion-comment">
+  <div class="discussion-meta">
+    <a href="<%= user.html_url %>">
+      <img class="discussion-avatar" src="<%= user.avatar_url %>">
+      <%= user.login %>
+    </a>
+    opened this pull request
+    <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
+  </div>
 
-<a href="<%= user.html_url %>">
-  <img class="avatar" src="<%= user.avatar_url %>">
-  <%= user.login %>
-</a>
-
-<div class="body">
-  <%= body %>
+  <div class="discussion-content"><%= body %></div>
 </div>
 
 <div class="comments">
