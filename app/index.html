@@ -20,7 +20,11 @@
         <div id="authenticate">
         </div>
         <div id="app" class="container" style="display:none;">
-            <div id="notifications" class="sidebar">
+            <div class="sidebar">
+              <div id="repositories">
+              </div>
+              <div id="notifications">
+              </div>
             </div>
             <div id="details">
             </div>
@@ -54,8 +58,10 @@
         <script src="scripts/models/pull_request.js"></script>
         <script src="scripts/models/commit.js"></script>
         <script src="scripts/models/comment.js"></script>
+        <script src="scripts/models/repository.js"></script>
         <script src="scripts/collections/notifications.js"></script>
         <script src="scripts/collections/comments.js"></script>
+        <script src="scripts/collections/repositories.js"></script>
         <script src="scripts/views/authenticate.js"></script>
         <script src="scripts/views/notifications.js"></script>
         <script src="scripts/views/notification.js"></script>
@@ -65,7 +71,9 @@
         <script src="scripts/views/pull_request.js"></script>
         <script src="scripts/views/commit.js"></script>
         <script src="scripts/views/comment.js"></script>
+        <script src="scripts/views/repositories.js"></script>
         <script src="scripts/routes/notifications.js"></script>
+        <script src="scripts/routes/repositories.js"></script>
 
         <script src="scripts/behaviors/relative-time.js"></script>
         <!-- endbuild -->

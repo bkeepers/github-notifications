@@ -1,11 +1,11 @@
-#notifications, #details {
+.sidebar, #details {
   position: absolute;
   top: 0;
   bottom: 0;
   overflow: auto;
 }
 
-#notifications {
+.sidebar {
   left: 0;
   width: 300px;
 }

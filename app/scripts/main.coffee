@@ -9,13 +9,15 @@ window.app = _.extend {}, Backbone.Events,
 
   ready: ->
     $('#app').show()
-    @collection = new this.Collections.Notifications()
-    @router = new this.Routers.Notifications(collection: @collection)
-    new this.Views.Notifications(collection: @collection)
+    @notifications = new this.Collections.Notifications()
+    new this.Routers.Notifications(collection: @notifications)
 
-    @collection.once 'add reset', =>
-      # wait until notifications are loaded to start routing.
-      Backbone.history.start()
+    @repositories = new this.Collections.Repositories()
+    new this.Routers.Repositories(collection: @repositories)
+    new this.Views.Repositories(collection: @repositories)
+
+    Backbone.history.start()
+    Backbone.history.navigate '', trigger: true
 
 $ ->
   'use strict'

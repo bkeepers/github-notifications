@@ -3,7 +3,11 @@ class app.Routers.Notifications extends Backbone.Router
     @collection = options.collection
 
   routes:
-    'n/:id': 'notification'
+    '': 'index'
+    'n/:id': 'show'
+
+  index: ->
+    new app.Views.Notifications(collection: @collection)
 
   notification: (id) ->
     model = @collection.get(id)

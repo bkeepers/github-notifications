@@ -10,6 +10,7 @@ class app.Views.Notifications extends Backbone.View
 
   render: ->
     @$el.html @template()
+    @addAll()
     app.trigger 'render', @
     @
 
