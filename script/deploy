@@ -1,0 +1,6 @@
+#!/bin/sh
+
+git rm -qr dist/*
+./node_modules/.bin/grunt clean build
+git add dist && git commit -m "Deploy `date -u`"
+git subtree push --prefix dist origin gh-pages
