@@ -9,7 +9,8 @@ class app.Views.Notifications extends Backbone.View
     @listenTo @collection, 'reset', @addAll
 
   render: ->
-    @$el.html(@template())
+    @$el.html @template()
+    app.trigger 'render', @
     @
 
   add: (notification) ->

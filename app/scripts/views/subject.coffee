@@ -8,7 +8,8 @@ class app.Views.Subject extends Backbone.View
       @comments.fetch()
 
   render: ->
-    @$el.html(@template(@model.toJSON()))
+    @$el.html @template(@model.toJSON())
+    app.trigger 'render', @
     @
 
   addComment: (comment) ->

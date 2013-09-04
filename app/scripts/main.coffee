@@ -1,4 +1,4 @@
-window.app =
+window.app = _.extend {}, Backbone.Events,
   Models: {}
   Collections: {}
   Views: {}
