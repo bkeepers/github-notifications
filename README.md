@@ -11,10 +11,6 @@ GitHub.com. The current status is nowhere near this.
 
 ![](http://cl.ly/1W3H1u3k2K1a0g2a102V/content)
 
-This project is built using [Yeoman](http://yeoman.io/), a simple tool for
-building static webapps in node.js. There is no server component. The [app](app)
-gets compiled into static HTML, CSS, and JavaScript that uses the GitHub API.
-
 ## Getting Started
 
 To run the app locally, make sure you have a working Node.js and Ruby (for
@@ -25,6 +21,10 @@ Sass/Compass) environment, and then from the terminal run:
 
 This will install all the needed dependencies, start up a server, and open
 [localhost:9000](http://localhost:9000) in your browser.
+
+This project is built using [Yeoman](http://yeoman.io/), a simple tool for
+building static webapps in node.js. There is no server component. The [app](app)
+gets compiled into static HTML, CSS, and JavaScript that uses the GitHub API.
 
 The app is mostly CoffeeScript and uses [Backbone](http://backbonejs.org).
 [app/scripts/main.coffee](app/scripts/main.coffee) is the starting point.
