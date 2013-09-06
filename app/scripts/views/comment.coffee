@@ -6,7 +6,7 @@ class app.Views.Comment extends Backbone.View
     'click': 'toggle'
 
   initialize: (options) ->
-    @last_read_at = options.last_read_at
+    @notification = options.notification
 
   render: ->
     @$el.html @template(@model.toJSON())
@@ -15,7 +15,8 @@ class app.Views.Comment extends Backbone.View
     @
 
   unread: ->
-    !@last_read_at || moment(@last_read_at) < moment(@model.get('created_at'))
+    last_read_at = @notification.get('last_read_at')
+    !last_read_at || moment(last_read_at) < moment(@model.get('created_at'))
 
   toggle: ->
     @$el.toggleClass('collapsed expaneded')

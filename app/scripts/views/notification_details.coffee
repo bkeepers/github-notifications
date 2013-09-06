@@ -7,6 +7,10 @@ class app.Views.NotificationDetailsView extends Backbone.View
     @listenTo @model.subject, 'change', @renderSubject
     @model.subject.fetch()
 
+    @comments = new app.Collections.Comments
+    @listenTo @comments, 'add', @addComment
+    @listenTo @comments, 'reset', @addAllComments
+
   render: ->
     @model.trigger 'selected'
     @$el.html @template(@model.toJSON())
@@ -14,5 +18,13 @@ class app.Views.NotificationDetailsView extends Backbone.View
     @
 
   renderSubject: (subject) ->
-    view = new app.Views[subject.get('type')](model: @model)
-    @$('.subject').html(view.render().el)
+    view = new app.Views[subject.get('type')](model: subject, notification: @model)
+    @$('.comments').empty().append(view.render().el)
+    @comments.fetch(url: url) if url = subject.get('comments_url')
+
+  addComment: (comment) ->
+    view = new app.Views.Comment(model: comment, notification: @model)
+    @$('.comments').append(view.render().el)
+
+  addAllComments: ->
+    @collection.each(@add, @)
