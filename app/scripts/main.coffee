@@ -24,5 +24,6 @@ $ ->
   'use strict'
   app.init()
 
-jQuery.ajaxPrefilter (options, originalOptions, xhr) ->
-  xhr.setRequestHeader 'Accept', 'application/vnd.github+json'
+$.ajaxSetup
+  headers:
+    'Accept': 'application/vnd.github.v3.html+json'
