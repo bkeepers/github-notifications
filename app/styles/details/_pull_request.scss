@@ -2,7 +2,7 @@
   overflow: hidden;
   background-color: #f7f7f7;
   border: 1px solid #d9d9d9;
-  margin-left: 70px;
+  margin: 0 18px 0 60px;
   margin-bottom: 18px;
   padding: 6px;
   border-radius: 2px;
@@ -30,26 +30,36 @@
 
 .discussion-comment {
   position: relative;
-  margin-left: 70px;
-  margin-bottom: 36px;
+  padding: 9px 18px 9px 60px;
+  border-bottom: 1px solid #ede8ea;
+
+  &.collapsed {
+    .discussion-content { display: none; }
+  }
 }
 
 .discussion-avatar {
-  width: 48px;
-  height: 48px;
+  width: 24px;
+  height: 24px;
   position: absolute;
-  left: -70px;
+  left: 18px;
+  top: 15px;
   border-radius: 2px;
 }
 
 .discussion-meta {
-  margin-bottom: 6px;
+  line-height: 36px;
+  vertical-align: middle;
 
   time {
     float: right;
     color: #818189;
     font-size: 0.9em;
   }
+}
+
+.discussion-content {
+  margin-top: 9px;
 }
 
 .state-indicator {
