@@ -20,7 +20,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
   renderSubject: (subject) ->
     view = new app.Views[subject.get('type')](model: subject, notification: @model)
     @$('.comments').empty().append(view.render().el)
-    @comments.fetch(url: url) if url = subject.get('comments_url')
+    @comments.fetch(url: url).then(@scroll) if url = subject.get('comments_url')
 
   addComment: (comment) ->
     view = new app.Views.Comment(model: comment, notification: @model)
@@ -28,3 +28,6 @@ class app.Views.NotificationDetailsView extends Backbone.View
 
   addAllComments: ->
     @collection.each(@add, @)
+
+  scroll: =>
+    @$('.subject').prop 'scrollTop', @$('.discussion-comment.expanded:first').position().top
