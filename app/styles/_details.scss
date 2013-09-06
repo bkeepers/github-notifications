@@ -1,3 +1,27 @@
 #details {
-  padding: 24px;
+  overflow: hidden;
+
+  h1 {
+    padding: 18px;
+    margin: 0;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #ede8ea;
+    font-size: 18px;
+    line-height: 36px;
+  }
+
+  .subject {
+    position: absolute;
+    overflow: auto;
+    top: 72px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding-top: 18px;
+  }
 }
