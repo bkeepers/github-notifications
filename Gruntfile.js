@@ -163,7 +163,8 @@ module.exports = function (grunt) {
                     debugInfo: true
                 }
             }
-        },uglify: {
+        },
+        uglify: {
             dist: {
                 files: {
                     '<%= yeoman.dist %>/scripts/main.js': [
