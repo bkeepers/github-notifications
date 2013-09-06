@@ -3,14 +3,11 @@ class app.Views.Notifications extends Backbone.View
   template: JST['app/scripts/templates/notifications.ejs']
 
   initialize: =>
-    @collection.fetch()
-    @render()
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
 
   render: ->
     @$el.html @template()
-    @addAll()
     app.trigger 'render', @
     @
 
@@ -19,4 +16,5 @@ class app.Views.Notifications extends Backbone.View
     @$('ul').append(view.render().el)
 
   addAll: ->
+    @$('ul').empty()
     @collection.each(@add, @)
