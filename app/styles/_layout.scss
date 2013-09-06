@@ -1,16 +1,21 @@
-.sidebar, #details {
+#lists, #threads, #details {
   position: absolute;
   top: 0;
   bottom: 0;
   overflow: auto;
 }
 
-.sidebar {
+#lists {
   left: 0;
-  width: 300px;
+  width: 200px;
+}
+
+#threads {
+  left: 200px;
+  right: 55%;
 }
 
 #details {
-  left: 300px;
+  left: 45%;
   right: 0;
 }

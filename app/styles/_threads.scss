@@ -1,0 +1,44 @@
+#threads {
+  border-right: 1px solid #d9d9d9;
+
+  .notification {
+    border-bottom: 1px solid #ede8ea;
+    position: relative;
+    line-height: 18px;
+
+    a {
+      padding: 18px;
+      padding-left: 54px;
+    }
+
+    &.selected {
+      background-color: #f7f7f7;
+    }
+  }
+
+  .octicon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    margin-top: -12px;
+  }
+
+  .repository, time {
+    color: #818189;
+    font-size: 0.9em;
+  }
+
+  .repository {
+    float: left;
+  }
+
+  time {
+    float: right;
+  }
+
+  .title {
+    clear: both;
+    display: block;
+    @extend .nowrap;
+  }
+}

@@ -12,5 +12,5 @@ class app.Views.Notification extends Backbone.View
     @
 
   select: =>
-    $('#notifications .selected').removeClass('selected')
+    @$el.siblings('.selected').removeClass('selected')
     @$el.addClass('selected');

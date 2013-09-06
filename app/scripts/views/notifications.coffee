@@ -1,5 +1,5 @@
 class app.Views.Notifications extends Backbone.View
-  el: '#notifications'
+  el: '#threads'
   template: JST['app/scripts/templates/notifications.ejs']
 
   initialize: =>

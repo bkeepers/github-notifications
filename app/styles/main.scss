@@ -3,6 +3,8 @@
 @import "layout";
 @import "sidebar";
 @import "repositories";
+@import "lists";
+@import "threads";
 @import "details";
 @import "compass";
 
@@ -32,3 +34,9 @@ body {
 .octicon-git-pull-request { background-color: #9e157c; }
 .octicon-issue-opened { background-color: #489d00; }
 .octicon-git-commit { background-color: #156f9e; }
+
+.nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

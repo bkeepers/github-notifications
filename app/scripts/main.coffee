@@ -10,11 +10,12 @@ window.app = _.extend {}, Backbone.Events,
   ready: ->
     $('#app').show()
     @notifications = new this.Collections.Notifications()
-    new this.Routers.Notifications(collection: @notifications)
-
     @repositories = new this.Collections.Repositories()
+
+    new this.Views.Lists(repositories: @repositories)
+
+    new this.Routers.Notifications(collection: @notifications)
     new this.Routers.Repositories(collection: @repositories)
-    new this.Views.Repositories(collection: @repositories)
 
     Backbone.history.start()
     Backbone.history.navigate '', trigger: true

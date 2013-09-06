@@ -1,57 +1,14 @@
 .sidebar {
-  border-right: 1px solid #d9d9d9;
-
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    width: 100%;
-  }
-
-  .notification {
-    border-bottom: 1px solid #ede8ea;
-    position: relative;
-    line-height: 18px;
 
     a {
       display: block;
       text-decoration: none;
       color: inherit;
-      padding: 18px;
-      padding-left: 54px;
-    }
-
-    &.selected {
-      background-color: #f7f7f7;
+      @extend .nowrap;
     }
   }
-
-  .octicon {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    margin-top: -12px;
-  }
-
-  .repository, time {
-    color: #818189;
-    font-size: 0.9em;
-  }
-
-  .repository {
-    float: left;
-  }
-
-  time {
-    float: right;
-  }
-
-  .title {
-    clear: both;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
 }
