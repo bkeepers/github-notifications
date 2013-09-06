@@ -153,7 +153,6 @@ module.exports = function (grunt) {
                 cssDir: '.tmp/styles',
                 imagesDir: '<%= yeoman.app %>/images',
                 javascriptsDir: '<%= yeoman.app %>/scripts',
-                fontsDir: '<%= yeoman.app %>/styles/fonts',
                 importPath: '<%= yeoman.app %>/bower_components',
                 relativeAssets: true,
                 bundleExec: true
@@ -228,6 +227,17 @@ module.exports = function (grunt) {
             }
         },
         copy: {
+            all: {
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>/bower_components/octicons/octicons',
+                        dest: '.tmp/styles/fonts',
+                        src: ['*.{eot,svg,ttf,woff}']
+                    }
+                ]
+            },
             dist: {
                 files: [
                     {
@@ -253,6 +263,13 @@ module.exports = function (grunt) {
                             }
                             return path.join(dest, src);
                         }
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>/bower_components/octicons/octicons',
+                        dest: '<%= yeoman.dist %>/styles/fonts',
+                        src: ['*.{eot,svg,ttf,woff}']
                     }
                 ]
             }
@@ -294,6 +311,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'copy',
             'coffee:dist',
             'createDefaultTemplate',
             'jst',
