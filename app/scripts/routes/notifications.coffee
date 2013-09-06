@@ -9,7 +9,7 @@ class app.Routers.Notifications extends Backbone.Router
   index: ->
     new app.Views.Notifications(collection: @collection)
 
-  notification: (id) ->
+  show: (id) ->
     model = @collection.get(id)
     return unless model
     new app.Views.NotificationDetailsView(model: model)
