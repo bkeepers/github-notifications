@@ -15,7 +15,7 @@ window.app = _.extend {}, Backbone.Events,
     new this.Routers.Notifications(repositories: @repositories)
 
     Backbone.history.start()
-    Backbone.history.navigate '', trigger: true
+    Backbone.history.navigate 'unread', trigger: true
 
 $ ->
   'use strict'

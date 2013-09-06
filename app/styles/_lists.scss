@@ -15,6 +15,11 @@
       transition: color .3s ease;
 
       &:hover {
+        color: #ccc;
+        background: #2a2a2a;
+      }
+
+      &.selected {
         color: #fff;
         background: #333;
       }
