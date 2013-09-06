@@ -9,6 +9,11 @@
     a {
       padding: 18px;
       padding-left: 54px;
+      transition: background .3s ease;
+
+      &:hover {
+        background: #f7f7f7;
+      }
     }
 
     &.selected {
