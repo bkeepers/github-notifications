@@ -1,14 +1,39 @@
 class app.Views.Shortcuts extends Backbone.View
-  el: document.body
+  el: document.body # otherwise it won't capture all the shortcuts
+  template: JST['app/scripts/templates/shortcuts.ejs']
 
-  keyboardEvents:
-    'j': 'next'
-    'down': 'next'
-    'k': 'prev'
-    'up': 'prev'
-    'g u': -> Backbone.history.navigate 'unread', trigger: true
-    'g p': -> Backbone.history.navigate 'participating', trigger: true
-    'g a': -> Backbone.history.navigate 'all', trigger: true
+  shortcuts:
+    'Next Notification':
+      keys: ['j', 'down']
+      action: 'next'
+
+    'Previous Notification':
+      keys: ['k', 'up']
+      action: 'prev'
+
+    'Go to Unread notifications':
+      key: 'g u'
+      action: -> Backbone.history.navigate 'unread', trigger: true
+
+    'Go to Participating notifications':
+      key: 'g p'
+      action: -> Backbone.history.navigate 'participating', trigger: true
+
+    'Go to All notifications':
+      key: 'g a'
+      action: -> Backbone.history.navigate 'all', trigger: true
+
+    'Open help for keyboard shortcuts':
+      key: '?'
+      action: 'help'
+
+  initialize: ->
+    @keyboardEvents = {}
+    for description, options of @shortcuts
+      options.keys ||= [options.key]
+      @keyboardEvents[key] = options.action for key in options.keys
+
+    @render()
 
   next: (e) ->
     e.preventDefault()
@@ -20,3 +45,10 @@ class app.Views.Shortcuts extends Backbone.View
 
   select: (notification) ->
     Backbone.history.navigate "#n/#{notification.id}", trigger: true
+
+  render: ->
+    @$('#shortcuts').html(@template(@))
+    @
+
+  help: ->
+    @$('#shortcuts').toggle()
