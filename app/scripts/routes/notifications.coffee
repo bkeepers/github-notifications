@@ -7,11 +7,11 @@ class app.Routers.Notifications extends Backbone.Router
     'n/:id': 'show'
 
   initialize: (options)->
+    @collection = options.notifications
     @repositories = options.repositories
 
     @on 'route', @selectItem
 
-    @collection = new app.Collections.Notifications()
     @view = new app.Views.Notifications(collection: @collection)
     @view.render()
 

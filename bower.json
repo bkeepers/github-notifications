@@ -8,7 +8,9 @@
     "modernizr": "~2.6.2",
     "normalize-scss": "~2.1.2",
     "octicons": "git@github.com:github/octicons.git",
-    "moment": "~2.1.0"
+    "moment": "~2.1.0",
+    "mousetrap": "~1.4.5",
+    "backbone.mousetrap": "https://github.com/elasticsales/backbone.mousetrap.git"
   },
   "devDependencies": {}
 }

@@ -32,4 +32,5 @@ class app.Views.NotificationDetailsView extends Backbone.View
     @collection.each(@add, @)
 
   scroll: =>
-    @$('.subject').prop 'scrollTop', @$('.discussion-comment.expanded:first').position().top
+    if position = @$('.discussion-comment.expanded:first').position()
+      @$('.subject').prop 'scrollTop', position.top

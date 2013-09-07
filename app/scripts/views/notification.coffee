@@ -17,3 +17,14 @@ class app.Views.Notification extends Backbone.View
 
   select: ->
     @$el.addClass('selected')
+    @scrollIntoView()
+
+  scrollIntoView: =>
+    scroller = @$el.closest('#threads') # FIXME: replace with .scrollable class
+
+    change = if (topOffset = @$el.offset().top) < 0
+      topOffset
+    else if (bottomOffset = topOffset + @$el.height() - scroller.height()) > 0
+      bottomOffset
+
+    scroller.scrollTop scroller.scrollTop() + change if change
