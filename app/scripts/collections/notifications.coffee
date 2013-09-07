@@ -6,8 +6,10 @@ class app.Collections.Notifications extends Backbone.Collection
     @on 'reset', -> @select(undefined)
 
   select: (model) ->
+    previous = @selected
     @selected = model
-    @trigger 'selected', model
+    previous.trigger 'unselected' if previous
+    @trigger 'selected', model, previous
 
   next: ->
     index = @indexOf(@selected)

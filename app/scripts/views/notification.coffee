@@ -4,6 +4,7 @@ class app.Views.Notification extends Backbone.View
   template: JST['app/scripts/templates/notification.ejs']
 
   initialize: ->
+    @listenTo @model, 'unselected', @unselect
     @listenTo @model, 'selected', @select
 
   render: ->
@@ -11,6 +12,8 @@ class app.Views.Notification extends Backbone.View
     app.trigger 'render', @
     @
 
-  select: =>
-    @$el.siblings('.selected').removeClass('selected')
-    @$el.addClass('selected');
+  unselect: ->
+    @$el.removeClass('selected')
+
+  select: ->
+    @$el.addClass('selected')
