@@ -4,3 +4,4 @@ test/temp
 app/bower_components
 .tmp
 test/bower_components/
+dist/styles/fonts/octicons.*
