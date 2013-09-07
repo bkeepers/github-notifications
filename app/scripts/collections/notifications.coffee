@@ -9,6 +9,7 @@ class app.Collections.Notifications extends Backbone.Collection
     previous = @selected
     @selected = model
     previous.trigger 'unselected' if previous
+    model.trigger 'selected' if model
     @trigger 'selected', model, previous
 
   next: ->

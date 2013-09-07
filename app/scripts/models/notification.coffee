@@ -10,6 +10,4 @@ class app.Models.Notification extends Backbone.Model
     @sync 'patch', @, data: '' # prevent it from sending attributes
 
   select: ->
-    if @collection
-      @collection.select(@)
-      @trigger 'selected'
+    @collection.select(@) if @collection
