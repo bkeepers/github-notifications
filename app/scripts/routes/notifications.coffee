@@ -36,5 +36,6 @@ class app.Routers.Notifications extends Backbone.Router
 
   # FIXME: total hack, but can't think of a better way to do it
   selectItem: ->
-    $('#lists').find('.selected').removeClass('selected')
-    $('#lists').find("a[href='#{window.location.hash}']").addClass('selected')
+    if (item = $('#lists').find("a[href='#{window.location.hash}']")).length
+      $('#lists').find('.selected').removeClass('selected')
+      item.addClass('selected')
