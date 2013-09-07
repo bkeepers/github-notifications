@@ -27,8 +27,11 @@ class app.Views.Shortcuts extends Backbone.View
       key: '?'
       action: 'help'
 
+  # Put undocumented shortcuts here
+  keyboardEvents:
+    'ctrl+`': 'toggleDevelopmentMode'
+
   initialize: ->
-    @keyboardEvents = {}
     for description, options of @shortcuts
       options.keys ||= [options.key]
       @keyboardEvents[key] = options.action for key in options.keys
@@ -52,3 +55,11 @@ class app.Views.Shortcuts extends Backbone.View
 
   help: ->
     @$('#shortcuts').toggle()
+
+  toggleDevelopmentMode: ->
+    if localStorage['dev']
+      localStorage.removeItem('dev')
+      console.log 'Development mode disabled'
+    else
+      localStorage['dev'] = true
+      console.log 'Development mode enabled'

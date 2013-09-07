@@ -23,6 +23,9 @@ window.app = _.extend {}, Backbone.Events,
     Backbone.history.start()
     Backbone.history.navigate 'unread', trigger: true
 
+  isDevelopment: ->
+    localStorage['dev']?
+
 $ ->
   'use strict'
   app.init()

@@ -11,7 +11,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
     @listenTo @comments, 'add', @addComment
     @listenTo @comments, 'reset', @addAllComments
 
-    @model.read()
+    @model.read() unless app.isDevelopment()
 
   render: ->
     @model.select()
