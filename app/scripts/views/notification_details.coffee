@@ -14,7 +14,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
     @model.read()
 
   render: ->
-    @model.trigger 'selected'
+    @model.select()
     @$el.html @template(@model.toJSON())
     app.trigger 'render', @
     @

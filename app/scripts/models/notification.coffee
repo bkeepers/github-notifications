@@ -8,3 +8,8 @@ class app.Models.Notification extends Backbone.Model
 
   read: ->
     @sync 'patch', @, data: '' # prevent it from sending attributes
+
+  select: ->
+    if @collection
+      @collection.select(@)
+      @trigger 'selected'
