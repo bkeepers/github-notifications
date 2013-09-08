@@ -6,6 +6,7 @@ class app.Views.Notification extends Backbone.View
   initialize: ->
     @listenTo @model, 'unselected', @unselect
     @listenTo @model, 'selected', @select
+    @listenTo @model, 'change', @render
 
   render: ->
     @$el.html @template(@model.toJSON())

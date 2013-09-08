@@ -7,7 +7,7 @@ class app.Models.Notification extends Backbone.Model
     _.extend super, subject: @subject.toJSON()
 
   read: ->
-    @sync 'patch', @, data: '' # prevent it from sending attributes
+    @save {unread: false}, {patch: true}
 
   select: ->
     @collection.select(@) if @collection

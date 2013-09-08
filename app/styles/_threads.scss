@@ -45,6 +45,20 @@
   .title {
     clear: both;
     display: block;
+<<<<<<< HEAD
+=======
+    font-size: 14px;
+    line-height: 16px;
+>>>>>>> d089369... Change visual style for read/unread
     @extend .nowrap;
+  }
+
+  .unread {
+    .title {
+      font-weight: bold;
+    }
+  }
+  .read {
+    color: #818189;
   }
 }
