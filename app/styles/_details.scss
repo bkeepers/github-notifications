@@ -1,8 +1,9 @@
 #details {
   overflow: hidden;
 
-  h1 {
-    padding: 18px;
+  header {
+    line-height: 32px;
+    padding: 16px 18px;
     margin: 0;
     position: absolute;
     z-index: 100;
@@ -11,8 +12,19 @@
     top: 0;
     background-color: #fff;
     border-bottom: 1px solid #ede8ea;
+  }
+
+  h1 {
+    @extend .nowrap;
     font-size: 18px;
-    line-height: 36px;
+    margin: 0 72px 0 0;
+    padding: 0;
+  }
+
+  nav {
+    position: absolute;
+    top: 16px;
+    right: 18px;
   }
 
   .subject {

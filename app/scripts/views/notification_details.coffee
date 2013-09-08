@@ -17,6 +17,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
     @model.select()
     @$el.html @template(@model.toJSON())
     app.trigger 'render', @
+    new app.Views.Subscription(model: @model.subscription, el: @$('.subscription'))
     @
 
   renderSubject: (subject) ->

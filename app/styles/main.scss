@@ -37,3 +37,21 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+button {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #fff;
+  color: #999;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  padding: 0;
+
+  &:hover {
+    border-color: darken(#60b044, 5%);
+    background: #60b044;
+    color: #fff;
+  }
+}
