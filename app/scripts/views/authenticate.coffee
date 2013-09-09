@@ -32,7 +32,7 @@ class app.Views.Authenticate extends Backbone.View
     jQuery.ajaxPrefilter (options, originalOptions, xhr) =>
       xhr.setRequestHeader 'Authorization', "token #{@token}"
     app.ready()
-    @el.remove()
+    @remove()
 
   success: (user) =>
     localStorage['token'] = @token
