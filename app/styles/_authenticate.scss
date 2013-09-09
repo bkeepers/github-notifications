@@ -38,6 +38,7 @@
     box-shadow: inset 0 0 2px rgba(#fff, .4);
     margin-bottom: 10px;
     transition: background .3s ease;
+    height: auto;
 
     &:hover {
       background: lighten(#8abc57, 5%);
