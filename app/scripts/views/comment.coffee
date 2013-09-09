@@ -3,7 +3,7 @@ class app.Views.Comment extends Backbone.View
   className: 'discussion-comment'
 
   events:
-    'click': 'toggle'
+    'click .discussion-meta': 'toggle'
 
   initialize: (options) ->
     @notification = options.notification
