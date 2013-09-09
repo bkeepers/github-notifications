@@ -4,6 +4,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
 
   keyboardEvents:
     'm': -> @model.subscription.toggle()
+    'o': -> window.open @model.subject.get('html_url'), '_blank'
 
   initialize: ->
     @render()
@@ -20,7 +21,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
     @model.select()
     @$el.html @template(@model.toJSON())
     app.trigger 'render', @
-    new app.Views.Subscription(model: @model.subscription, el: @$('.subscription'))
+    new app.Views.NotificationHeader(model: @model, el: @$('header'))
     @
 
   renderSubject: (subject) ->

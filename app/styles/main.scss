@@ -25,7 +25,6 @@ body {
 
 .octicon {
   text-align: center;
-  vertical-align: middle;
 }
 
 .octicon-git-pull-request { color: #9e157c; }
@@ -38,20 +37,26 @@ body {
   text-overflow: ellipsis;
 }
 
-button {
+button, .button {
   display: inline-block;
+  white-space: no-wrap;
   border: 1px solid #ccc;
   border-radius: 3px;
   background: #fff;
   color: #999;
-  width: 32px;
   height: 32px;
   text-align: center;
-  padding: 0;
+  padding: 0 9px;
+  text-decoration: none;
 
   &:hover {
     border-color: darken(#60b044, 5%);
     background: #60b044;
     color: #fff;
+  }
+
+  .octicon {
+    padding: 0;
+    width: 32px;
   }
 }
