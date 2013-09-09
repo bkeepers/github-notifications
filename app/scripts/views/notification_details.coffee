@@ -2,6 +2,9 @@ class app.Views.NotificationDetailsView extends Backbone.View
   el: '#details'
   template: JST['app/scripts/templates/notification_details.ejs']
 
+  keyboardEvents:
+    'm': -> @model.subscription.toggle()
+
   initialize: ->
     @render()
     @listenTo @model.subject, 'change', @renderSubject

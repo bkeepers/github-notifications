@@ -10,3 +10,6 @@ class app.Models.Subscription extends Backbone.Model
 
   unmute: ->
     @save ignored: false
+
+  toggle: ->
+    if @get('ignored') then @unmute() else @mute()
