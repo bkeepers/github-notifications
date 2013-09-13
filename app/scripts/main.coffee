@@ -11,7 +11,6 @@ window.app = _.extend {}, Backbone.Events,
     $('#app').show()
     @repositories = new this.Collections.Repositories()
     @notifications = new app.Collections.Notifications()
-    @starred = new app.Collections.Starred()
 
     new this.Views.Lists(repositories: @repositories)
     new this.Routers.Notifications(
