@@ -1,5 +1,6 @@
 <h1><span class="octicon octicon-<%= subject.octicon %>"></span> <%= subject.title %></h1>
 <nav>
   <span class="subscription"></span>
+  <button class="star octicon octicon-star<% if(starred) { %> starred<% } %>"></button>
   <a target="_blank" class="button" href="<%= subject.html_url %>">View on GitHub</a>
 </nav>

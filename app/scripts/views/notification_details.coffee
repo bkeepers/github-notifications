@@ -4,6 +4,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
 
   keyboardEvents:
     'm': -> @model.subscription.toggle()
+    's': -> @model.toggleStar()
     'o': -> window.open @model.subject.get('html_url'), '_blank'
 
   initialize: ->
