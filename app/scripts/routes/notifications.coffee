@@ -2,6 +2,7 @@ class app.Routers.Notifications extends Backbone.Router
   routes:
     'unread': 'index'
     'participating': 'participating'
+    'starred': 'starred'
     'all': 'all'
     'r/:id': 'repository'
     'n/:id': 'show'
@@ -20,6 +21,9 @@ class app.Routers.Notifications extends Backbone.Router
 
   participating: ->
     @collection.fetch reset: true, data: {participating: true, all: false}
+
+  starred: ->
+    @collection.reset(@collection.starred.toJSON())
 
   all: ->
     @collection.fetch reset: true, data: {all: true}
