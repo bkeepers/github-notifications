@@ -8,6 +8,8 @@ class app.Models.Notification extends Backbone.Model
     _.extend super, subject: @subject.toJSON(), starred: @isStarred()
 
   read: ->
+    # Don't mark unsupported notifications as read
+    return unless @subject.get('url')
     @save {unread: false}, {patch: true}
 
   star: ->
