@@ -28,32 +28,50 @@
 }
 
 .discussion-comment {
-  position: relative;
-  padding: 9px 18px 9px 60px;
-  border-bottom: 1px solid #ede8ea;
+  background: #fff;
+  margin: 9px;
+  @include border-radius(2px);
+  @include box-shadow(0 0 2px rgba(#000, 0.2));
+  overflow: hidden;
 
   &.collapsed {
     .discussion-content { display: none; }
+    .discussion-meta { border-bottom: none; }
   }
+}
+
+.discussion-user {
+  font-weight: bold;
 }
 
 .discussion-avatar {
   width: 24px;
   height: 24px;
   position: absolute;
-  left: 18px;
-  top: 15px;
+  left: 6px;
+  top: 50%;
+  margin-top: -12px;
   border-radius: 2px;
+}
+
+.discussion-meta, .discussion-content {
+  padding: 0 9px 0 36px;
 }
 
 .discussion-meta {
   line-height: 36px;
   vertical-align: middle;
+  position: relative;
 
   time {
     float: right;
     color: #818189;
     font-size: 0.9em;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }
 
