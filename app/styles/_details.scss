@@ -10,7 +10,7 @@
     left: 0;
     right: 0;
     top: 0;
-    background-color: #fff;
+    @include background-image(linear-gradient(top, #fff, rgba(#fff, 0.95)));
     box-shadow: 0 0 1px rgba(#000, 0.3), 0 0 5px rgba(#000, 0.2);
 
     a {
@@ -35,7 +35,8 @@
   .subject {
     position: absolute;
     overflow: auto;
-    top: 64px;
+    top: 0;
+    padding-top: 64px;
     bottom: 0;
     right: 0;
     left: 0;
