@@ -3,7 +3,7 @@
 
   header {
     line-height: 32px;
-    padding: 16px 18px;
+    padding: 16px 18px 16px 60px;
     margin: 0;
     position: absolute;
     z-index: 100;
@@ -11,13 +11,18 @@
     right: 0;
     top: 0;
     background-color: #fff;
-    border-bottom: 1px solid #ede8ea;
+    box-shadow: 0 0 1px rgba(#000, 0.3), 0 0 5px rgba(#000, 0.2);
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 
   h1 {
     @extend .nowrap;
     font-size: 18px;
-    margin: 0 198px 0 0;
+    margin: 0 90px 0 0;
     padding: 0;
   }
 
@@ -40,4 +45,14 @@
     background-color: #F6ECB9;
     border-color: rgba(#A1882B, 0.5);
   }
+}
+
+.notification-type-octicon {
+  position: absolute;
+  left: 18px;
+  font-size: 24px;
+  top: 50%;
+  margin-top: -12px;
+  width: 24px;
+  text-align: center;
 }
