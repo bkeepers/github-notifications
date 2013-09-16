@@ -7,6 +7,9 @@ class app.Views.NotificationDetailsView extends Backbone.View
     's': -> @model.toggleStar()
     'o': -> window.open @model.subject.get('html_url'), '_blank'
 
+  events:
+    'click a': 'clickLink'
+
   initialize: ->
     @render()
     @listenTo @model.subject, 'change', @renderSubject
@@ -40,3 +43,8 @@ class app.Views.NotificationDetailsView extends Backbone.View
   scroll: =>
     if position = @$('.discussion-comment.expanded:first').position()
       @$('.subject').prop 'scrollTop', position.top
+
+  # Set target=_blank if it is an external link
+  clickLink: (e) ->
+    href = e.target.getAttribute('href')
+    e.target.target = '_blank' if href && href.hostname != window.location.hostname
