@@ -1,16 +1,17 @@
+@import "compass";
+@import "compass/css3";
 @import "normalize-scss/normalize";
 @import "octicons/octicons/sprockets-octicons";
 @import "layout";
+@import "buttons";
+@import "segmented-control";
 @import "sidebar";
 @import "repositories";
 @import "lists";
 @import "threads";
 @import "details";
 @import "shortcuts";
-@import "compass";
-@import "compass/css3";
 @import "authenticate";
-
 @import "details/pull_request";
 
 * {
@@ -35,28 +36,4 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-button, .button {
-  display: inline-block;
-  white-space: no-wrap;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  background: #fff;
-  color: #999;
-  height: 32px;
-  text-align: center;
-  padding: 0 9px;
-  text-decoration: none;
-
-  &:hover {
-    border-color: darken(#60b044, 5%);
-    background: #60b044;
-    color: #fff;
-  }
-
-  .octicon {
-    padding: 0;
-    width: 32px;
-  }
 }

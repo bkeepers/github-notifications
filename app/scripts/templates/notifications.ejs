@@ -1,8 +1,11 @@
 <header>
-  <ul class="segmented-control">
-    <li><label><input type="radio" name="notifications-state" value="unread" checked> Unread</label></li>
-    <li><label><input type="radio" name="notifications-state" value="all"> All</label></li>
-  </ul>
+  <nav class="segmented-control">
+    <input id="notification-state-unread" type="radio" name="notifications-state" value="unread" checked>
+    <label for="notification-state-unread">Unread</label>
+
+    <input id="notification-state-all" type="radio" name="notifications-state" value="all">
+    <label for="notification-state-all">All</label>
+  </nav>
 </header>
 <ul class="notification-list">
 </ul>
