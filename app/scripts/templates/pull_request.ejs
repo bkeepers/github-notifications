@@ -1,7 +1,7 @@
 <div class="discussion-meta">
   <a href="<%= user.html_url %>" class="discussion-user">
     <img class="discussion-avatar" src="<%= user.avatar_url %>">
-    <%= user.login %>
+    <%- user.login %>
   </a>
   opened this pull request
   <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
@@ -16,9 +16,9 @@
     <p class="pull-summary">
       <a href="<%= user.html_url %>" class="pull-header-username"><%= user.login %></a>
       wants to merge <%= commits %> commits into
-      <span class="commit-ref"><%= base.ref %></span>
+      <span class="commit-ref"><%- base.ref %></span>
       from
-      <span class="commit-ref"><%= head.ref %></span>
+      <span class="commit-ref"><%- head.ref %></span>
     </p>
 
     <div class="pull-head-meta">

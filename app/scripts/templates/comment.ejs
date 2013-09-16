@@ -1,7 +1,7 @@
 <div class="discussion-meta">
   <a href="<%= user.html_url %>" class="discussion-user">
     <img class="discussion-avatar" src="<%= user.avatar_url %>">
-    <%= user.login %>
+    <%- user.login %>
   </a>
 
   <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
