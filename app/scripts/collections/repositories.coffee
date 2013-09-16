@@ -1,3 +1,12 @@
 class app.Collections.Repositories extends Backbone.Collection
   model: app.Models.Repository
-  url: 'https://api.github.com/user/subscriptions'
+  url: 'https://api.github.com/notifications/repositories'
+
+  parse: (response, options) ->
+    for item in response
+      item.repository.unread_count = item.unread_count
+      item.repository
+
+  fetch: (options = {}) ->
+    options.headers = {'Accept': 'application/vnd.github.preview+json'}
+    super(options)

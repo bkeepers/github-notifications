@@ -46,3 +46,14 @@
     padding: 0 18px;
   }
 }
+
+
+.list-name {
+  @extend .nowrap;
+  display: inline-block;
+  max-width: 85%;
+}
+
+.list-unread-count {
+  float: right;
+}
