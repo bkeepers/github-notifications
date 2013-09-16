@@ -11,9 +11,9 @@ class app.Views.Shortcuts extends Backbone.View
       keys: ['k', 'up']
       action: 'prev'
 
-    'Go to Unread notifications':
-      key: 'g u'
-      action: -> Backbone.history.navigate 'unread', trigger: true
+    'Go to All notifications':
+      key: 'g a'
+      action: -> Backbone.history.navigate 'all', trigger: true
 
     'Go to Participating notifications':
       key: 'g p'
@@ -22,10 +22,6 @@ class app.Views.Shortcuts extends Backbone.View
     'Go to Starred notifications':
       key: 'g s'
       action: -> Backbone.history.navigate 'starred', trigger: true
-
-    'Go to All notifications':
-      key: 'g a'
-      action: -> Backbone.history.navigate 'all', trigger: true
 
     'Open help for keyboard shortcuts':
       key: '?'

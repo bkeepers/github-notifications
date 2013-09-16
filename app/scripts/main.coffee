@@ -21,7 +21,7 @@ window.app = _.extend {}, Backbone.Events,
     new this.Views.Shortcuts(collection: @notifications)
 
     Backbone.history.start()
-    Backbone.history.navigate 'unread', trigger: true
+    Backbone.history.navigate 'all', trigger: true
 
   isDevelopment: ->
     localStorage['dev']?

@@ -1,6 +1,5 @@
 class app.Routers.Notifications extends Backbone.Router
   routes:
-    'unread': 'index'
     'participating': 'participating'
     'starred': 'starred'
     'all': 'all'
@@ -16,27 +15,24 @@ class app.Routers.Notifications extends Backbone.Router
     @view = new app.Views.Notifications(collection: @collection)
     @view.render()
 
-  index: ->
-    @collection.fetch reset: true
-
   participating: ->
-    @collection.fetch reset: true, data: {participating: true, all: false}
+    @view.load(data: {participating: true})
 
   starred: ->
     @collection.reset(@collection.starred.toJSON())
 
   all: ->
-    @collection.fetch reset: true, data: {all: true}
+    @view.load()
+
+  repository: (id) ->
+    model = @repositories.get(id)
+    return unless model
+    @view.load(url: model.notifications_url())
 
   show: (id) ->
     model = @collection.get(id)
     return unless model
     new app.Views.NotificationDetailsView(model: model)
-
-  repository: (id) ->
-    model = @repositories.get(id)
-    return unless model
-    @collection.fetch reset: true, url: model.notifications_url()
 
   # FIXME: total hack, but can't think of a better way to do it
   selectItem: ->
