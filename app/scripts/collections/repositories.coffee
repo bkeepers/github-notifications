@@ -6,7 +6,3 @@ class app.Collections.Repositories extends Backbone.Collection
     for item in response
       item.repository.unread_count = item.unread_count
       item.repository
-
-  fetch: (options = {}) ->
-    options.headers = {'Accept': 'application/vnd.github.preview+json'}
-    super(options)
