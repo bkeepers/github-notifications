@@ -42,9 +42,17 @@
     background-color: #f7f7f7;
   }
 
-  .star.starred {
-    background-color: #F6ECB9;
-    border-color: rgba(#A1882B, 0.5);
+  .octicon-mute:hover {
+    color: $brand-red;
+  }
+
+  .octicon-unmute {
+    color: $brand-red;
+    &:hover { color: $brand-green; }
+  }
+
+  .octicon-star {
+    &.starred, &:hover { color: $brand-yellow; }
   }
 }
 
