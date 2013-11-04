@@ -7,6 +7,9 @@ class app.Models.Notification extends Backbone.Model
   toJSON: ->
     _.extend super, subject: @subject.toJSON(), starred: @isStarred()
 
+  select: ->
+    @collection.select(@) if @collection
+
   read: ->
     # Don't mark unsupported notifications as read
     return unless @subject.get('url')
@@ -26,6 +29,3 @@ class app.Models.Notification extends Backbone.Model
 
   isStarred: ->
     @collection.starred.get(@id)?
-
-  select: ->
-    @collection.select(@) if @collection

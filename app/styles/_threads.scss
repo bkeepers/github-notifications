@@ -6,31 +6,26 @@
   }
 
   .notification {
-    border-bottom: 1px solid #ede8ea;
     position: relative;
-    line-height: 18px;
+    box-shadow: inset 0 1px 0 #ede8ea, 0 1px 0 #ede8ea;
     transition: background .3s ease;
 
-    a {
-      padding: 18px;
-      padding-left: 54px;
-      transition: background .3s ease;
-
-      &:hover {
-        background: #f7f7f7;
-      }
+    &:hover {
+      background: #f7f7f7;
     }
 
     &.selected {
-      background-color: #f7f7f7;
+      background: #ececec;
+    }
+
+    a {
+      padding: 15px 15px 15px 34px;
     }
   }
 
   .octicon {
     position: absolute;
-    left: 18px;
-    top: 50%;
-    margin-top: -12px;
+    left: 12px;
   }
 
   .repository, time {
@@ -40,6 +35,7 @@
 
   .repository {
     float: left;
+    clear: both;
   }
 
   time {
@@ -47,13 +43,9 @@
   }
 
   .title {
-    clear: both;
     display: block;
-<<<<<<< HEAD
-=======
     font-size: 14px;
     line-height: 16px;
->>>>>>> d089369... Change visual style for read/unread
     @extend .nowrap;
   }
 
