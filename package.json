@@ -2,7 +2,7 @@
   "name": "notifications",
   "repository": {
     "type": "git",
-    "url": "git://github.com/bkeepers/neui.git"
+    "url": "git://github.com/bkeepers/github-notifications.git"
   },
   "version": "0.0.0",
   "dependencies": {},
