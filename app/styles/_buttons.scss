@@ -9,6 +9,7 @@ button, .button {
   text-align: center;
   padding: 0 9px;
   text-decoration: none;
+  outline: 0;
 
   &:hover {
     color: $brand-green;

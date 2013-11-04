@@ -11,8 +11,7 @@
     "moment": "~2.1.0",
     "mousetrap": "~1.4.5",
     "backbone.mousetrap": "https://github.com/elasticsales/backbone.mousetrap.git",
-    "backbone.localStorage": "~1.1.6",
-    "primer": "https://github.com/github/primer.git#~0.2.13"
+    "backbone.localStorage": "~1.1.6"
   },
   "devDependencies": {}
 }
