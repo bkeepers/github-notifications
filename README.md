@@ -1,6 +1,6 @@
 # GitHub Notifications
 
-This is an experiment with creating a more rich interface for consuming [GitHub Notifications](https://github.com/notifications).
+This is an experiment with creating a more rich interface for consuming [GitHub Notifications](https://github.com/notifications). Check it out here: https://gh-notifications.herokuapp.com/
 
 ## Local Development
 
