@@ -13,7 +13,13 @@
         <span class="state-indicator <%= state %>"><%= state %></span>
     </span>
 
-    <p class="pull-summary">
+    <div class="pull-head-meta">
+      <span class="pull-number">
+        <a href="<%= html_url %>">#<%= number %></a>
+      </span>
+    </div>
+
+    <p class="pull-summary css-overflow">
       <a href="<%= user.html_url %>" class="pull-header-username"><%= user.login %></a>
       wants to merge <%= commits %> commits into
       <span class="commit-ref"><%- base.ref %></span>
@@ -21,11 +27,6 @@
       <span class="commit-ref"><%- head.ref %></span>
     </p>
 
-    <div class="pull-head-meta">
-      <span class="pull-number">
-        <a href="<%= html_url %>">#<%= number %></a>
-      </span>
-    </div>
   </div>
 
   <%= body_html %>
