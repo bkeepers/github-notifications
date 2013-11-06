@@ -27,11 +27,22 @@ class app.Views.Shortcuts extends Backbone.View
       key: '?'
       action: 'help'
 
+    'Next Repository':
+      key: 'J'
+      action: 'nextRepo'
+
+    'Previous Repository':
+      key: 'K'
+      action: 'prevRepo'
+
   # Put undocumented shortcuts here
   keyboardEvents:
     'ctrl+`': 'toggleDevelopmentMode'
 
-  initialize: ->
+  initialize: (options) ->
+    @repositories = options.repositories
+    @notifications = options.notifications
+
     for description, options of @shortcuts
       options.keys ||= [options.key]
       @keyboardEvents[key] = options.action for key in options.keys
@@ -40,11 +51,21 @@ class app.Views.Shortcuts extends Backbone.View
 
   next: (e) ->
     e.preventDefault()
-    @select @collection.next() || @collection.first()
+    @select @notifications.next() || @notifications.first()
 
   prev: (e) ->
     e.preventDefault()
-    @select @collection.prev() || @collection.last()
+    @select @notifications.prev() || @notifications.last()
+
+  nextRepo: (e) ->
+    e.preventDefault()
+    repo = @repositories.next() || @repositories.first()
+    Backbone.history.navigate "#r/#{repo.id}", trigger: true
+
+  prevRepo: (e) ->
+    e.preventDefault()
+    repo = @repositories.prev() || @repositories.last()
+    Backbone.history.navigate "#r/#{repo.id}", trigger: true
 
   select: (notification) ->
     Backbone.history.navigate "#n/#{notification.id}", trigger: true

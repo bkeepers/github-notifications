@@ -18,7 +18,10 @@ window.app = _.extend {}, Backbone.Events,
       repositories: @repositories
     )
 
-    new this.Views.Shortcuts(collection: @notifications)
+    new this.Views.Shortcuts(
+      repositories: @repositories,
+      notifications: @notifications
+    )
 
     Backbone.history.start()
     Backbone.history.navigate 'all', trigger: true
