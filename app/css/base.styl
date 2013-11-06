@@ -1,0 +1,22 @@
+.pane {
+  & > header {
+    background-color: header-color;
+    padding: 16px 18px;
+    line-height: 18px;
+    box-shadow: 0 0 1px #000, 0 0 5px rgba(#000, 0.5),
+      inset 1px 0 0 0 rgba(#fff, 0.1), inset -1px 0 0 0 rgba(#000, 0.1);
+    color: #fff;
+
+    nav {
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+
+    .actions {
+      float: right;
+      display: inline-block;
+    }
+  }
+}

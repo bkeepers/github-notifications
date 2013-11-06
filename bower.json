@@ -1,0 +1,17 @@
+{
+  "name": "notifications",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "~1.9.0",
+    "underscore": "~1.4.3",
+    "backbone": "~1.0.0",
+    "modernizr": "~2.6.2",
+    "normalize-scss": "~2.1.2",
+    "octicons": "git@github.com:github/octicons.git",
+    "moment": "~2.1.0",
+    "mousetrap": "~1.4.5",
+    "backbone.mousetrap": "https://github.com/elasticsales/backbone.mousetrap.git",
+    "backbone.localStorage": "~1.1.6"
+  },
+  "devDependencies": {}
+}
