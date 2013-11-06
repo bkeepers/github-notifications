@@ -1,12 +1,25 @@
 #lists {
   background-color: #212121;
   color: #eee;
-  padding: 18px 0;
   font-size: 13px;
   box-shadow: inset -1px 0 0 #000, inset -2px 0 0 #333, 1px 0 2px rgba(#000, .25);
   z-index: 3;
   position: absolute;
   -webkit-font-smoothing: antialiased;
+
+  h1 {
+    background: url(../images/mark.png) no-repeat;
+    background-size: 100%;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 182px;
+    height: 18px;
+    margin: 0;
+  }
+
+  ul {
+    margin: 18px 0;
+  }
 
   .list {
     a {
