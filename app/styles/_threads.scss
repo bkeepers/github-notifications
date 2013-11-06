@@ -1,17 +1,19 @@
 #threads {
-  border-right: 1px solid #d9d9d9;
+  .content {
+    border-right: 1px solid #d9d9d9
+  }
 
   .notification {
     position: relative;
     box-shadow: inset 0 1px 0 #ede8ea, 0 1px 0 #ede8ea;
-    transition: background .3s ease;
+    transition: background .2s ease;
 
     &:hover {
-      background: #f7f7f7;
+      background-color: desaturate(lighten($header-color, 52%), 35%);
     }
 
     &.selected {
-      background: #ececec;
+      background-color: desaturate(lighten($header-color, 48%), 35%);
     }
 
     a {

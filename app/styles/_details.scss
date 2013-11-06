@@ -1,17 +1,5 @@
 #details {
-  overflow: hidden;
-
   header {
-    padding: 16px 18px 16px 45px;
-    margin: 0;
-    position: absolute;
-    z-index: 100;
-    left: 0;
-    right: 0;
-    top: 0;
-    background-color: #fff;
-    box-shadow: 0 0 1px rgba(#000, 0.3), 0 0 5px rgba(#000, 0.2);
-
     a {
       text-decoration: none;
       color: inherit;
@@ -20,9 +8,10 @@
 
   h1 {
     @extend .nowrap;
-    font-size: 18px;
+    font-size: 16px;
     margin: 0 90px 0 0;
     padding: 0;
+    font-weight: normal;
   }
 
   nav {
@@ -32,12 +21,6 @@
   }
 
   .subject {
-    position: absolute;
-    overflow: auto;
-    top: 64px;
-    bottom: 0;
-    right: 0;
-    left: 0;
     background-color: #f7f7f7;
   }
 
@@ -59,11 +42,8 @@
 }
 
 .notification-type-octicon {
-  position: absolute;
-  left: 15px;
-  font-size: 24px;
-  top: 50%;
-  margin-top: -12px;
-  width: 24px;
-  text-align: center;
+  width: 22px;
+  display: inline-block;
+  color: inherit !important;
+  opacity: 0.6;
 }

@@ -3,16 +3,17 @@ button, .button {
   white-space: nowrap;
   border: none;
   background: transparent;
-  color: #999;
-  line-height: 32px;
-  height: 32px;
+  color: inherit;
+  line-height: 18px;
+  height: 18px;
   text-align: center;
   padding: 0 9px;
   text-decoration: none;
   outline: 0;
+  @include opacity(0.8);
 
   &:hover {
-    color: $brand-green;
+    @include opacity(1);
   }
 
   .octicon {
