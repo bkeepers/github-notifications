@@ -46,6 +46,13 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
     generatedApp: "generated/css/app.styl.css"
   },
 
+  css: {
+    vendor: [
+      "vendor/bower/normalize-css/normalize.css",
+      "vendor/css/**/*.css"
+    ]
+  },
+
   less: {
     compile: {
       options: {
