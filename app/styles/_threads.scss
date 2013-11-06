@@ -1,10 +1,6 @@
 #threads {
   border-right: 1px solid #d9d9d9;
 
-  header {
-    padding: 16px 18px;
-  }
-
   .notification {
     position: relative;
     box-shadow: inset 0 1px 0 #ede8ea, 0 1px 0 #ede8ea;
@@ -21,11 +17,11 @@
     a {
       padding: 15px 15px 15px 34px;
     }
-  }
 
-  .octicon {
-    position: absolute;
-    left: 12px;
+    .octicon {
+      position: absolute;
+      left: 12px;
+    }
   }
 
   .repository, time {

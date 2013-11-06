@@ -21,3 +21,8 @@ class app.Collections.Notifications extends Backbone.Collection
   prev: ->
     index = @indexOf(@selected)
     @at index - 1
+
+  read: (options = {}) ->
+    options.data = '{}'
+    @sync 'update', @, options unless app.isDevelopment()
+    @each (notification) -> notification.set 'unread', false
