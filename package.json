@@ -12,10 +12,10 @@
     "npm": "~>1.2.18"
   },
   "dependencies": {
-    "lineman" : "~>0.11.6",
+    "lineman" : "~>0.15.1",
     "grunt-concat-sourcemap": "~0.3.0",
     "grunt-contrib-stylus": "~0.9.0",
     "bower": "~1.1.0",
-    "nib": "",
+    "nib": ""
   }
 }
