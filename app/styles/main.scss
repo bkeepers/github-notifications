@@ -30,9 +30,9 @@ body {
   text-align: center;
 }
 
-.octicon-git-pull-request { color: #9e157c; }
-.octicon-issue-opened { color: #489d00; }
-.octicon-git-commit { color: #156f9e; }
+.octicon-git-pull-request { color: $pull-request-color; }
+.octicon-issue-opened { color: $issue-opened-color; }
+.octicon-git-commit { color: $git-commit-color; }
 
 .nowrap {
   white-space: nowrap;

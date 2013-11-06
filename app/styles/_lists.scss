@@ -1,5 +1,5 @@
 #lists {
-  background-color: #212121;
+  background-color: desaturate(darken($header-color, 30%), 40%);
   color: #eee;
   font-size: 13px;
   box-shadow: inset -1px 0 0 #000, inset -2px 0 0 #333, 1px 0 2px rgba(#000, .25);
@@ -26,16 +26,15 @@
       color: #999;
       padding: 0 18px;
       line-height: 26px;
-      transition: color .3s ease;
+      transition: color .2s ease;
 
       &:hover {
         color: #ccc;
-        background: #2a2a2a;
       }
 
       &.selected {
         color: #fff;
-        background: #333;
+        background: rgba(#fff, 0.05);
       }
     }
   }
@@ -63,7 +62,6 @@
 
 .list-name {
   @extend .nowrap;
-  display: inline-block;
   max-width: 85%;
 }
 
