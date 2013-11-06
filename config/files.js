@@ -14,10 +14,14 @@
 module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
   js: {
     vendor: [
-      "vendor/js/jquery.js",
-      "vendor/js/underscore.js",
-      "vendor/js/backbone.js",
-      "vendor/js/**/*.js"
+      "vendor/bower/jquery/jquery.js",
+      "vendor/bower/underscore/underscore.js",
+      "vendor/bower/backbone/backbone.js",
+      "vendor/bower/moment/moment.js",
+      "vendor/bower/mousetrap/mousetrap.js",
+      "vendor/bower/backbone.mousetrap/backbone.mousetrap.js",
+      "vendor/bower/backbone.localStorage/backbone.localStorage.js",
+      "vendor/js/**/*.js",
     ],
     app: [
       "app/js/app.js",
