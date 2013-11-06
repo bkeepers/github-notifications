@@ -13,7 +13,7 @@ class app.Models.Notification extends Backbone.Model
   read: ->
     # Don't mark unsupported notifications as read
     return unless @subject.get('url')
-    @save {unread: false}, {patch: true}
+    @save {unread: false}, {patch: true} unless app.isDevelopment()
 
   star: ->
     @collection.starred.create(@toJSON())

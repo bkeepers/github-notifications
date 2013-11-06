@@ -4,6 +4,7 @@ class app.Views.Notifications extends Backbone.View
 
   events:
     'change input[name=notifications-state]': -> @load(@options)
+    'click #mark-all-read': 'read'
 
   initialize: =>
     @options = {}
@@ -31,3 +32,7 @@ class app.Views.Notifications extends Backbone.View
   addAll: ->
     @$('.notification-list').empty()
     @collection.each(@add, @)
+
+  read: (e) ->
+    e.preventDefault()
+    @collection.read(@options)
