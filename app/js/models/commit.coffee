@@ -1,2 +1,2 @@
-# class app.Models.Commit extends app.Models.Subject
-#   octicon: 'git-commit'
+class app.Models.Commit extends app.Models.Subject
+  octicon: 'git-commit'
