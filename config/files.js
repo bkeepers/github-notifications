@@ -12,6 +12,15 @@
  */
 
 module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
+  coffee: {
+    app: [
+      "app/js/app.coffee",
+      "app/js/models/subject.coffee",
+      "app/js/models/**/*.coffee",
+      "app/js/**/*.coffee"
+    ]
+  },
+
   js: {
     vendor: [
       "vendor/bower/jquery/jquery.js",
@@ -24,11 +33,7 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
       "vendor/js/**/*.js",
     ],
     app: [
-      "app/js/app.js",
-      "app/js/models/**/*.js",
-      "app/js/services/**/*.js",
-      "app/js/views/**/*.js",
-      "app/js/router.js"
+      "app/js/**/*.js",
     ]
   },
 

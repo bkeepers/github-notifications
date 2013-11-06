@@ -41,6 +41,7 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
 
   stylus: {
     compile: {
+      use: [require('nib')],
       src: 'app/css/app.styl',
       dest: "<%= files.stylus.generatedApp %>"
     }

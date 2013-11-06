@@ -1,0 +1,14 @@
+<header>
+  <nav class="segmented-control">
+    <input id="notification-state-unread" type="radio" name="notifications-state" value="unread" checked>
+    <label for="notification-state-unread">Unread</label>
+
+    <input id="notification-state-all" type="radio" name="notifications-state" value="all">
+    <label for="notification-state-all">All</label>
+  </nav>
+  <nav class="actions">
+    <a id="mark-all-read" class="button octicon octicon-check" href="#" title="Mark all as read"></a>
+  </nav>
+</header>
+<ul class="notification-list content">
+</ul>
