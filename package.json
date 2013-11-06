@@ -1,0 +1,18 @@
+{
+  "name": "lineman-backbone-template",
+  "title": "An HTML/JS/CSS app using Backbone.JS",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "David Mosher",
+    "company": "DAVEMO Consulting"
+  },
+  "engines": {
+    "node": "~>0.10.5",
+    "npm": "~>1.2.18"
+  },
+  "dependencies": {
+    "lineman" : "~>0.11.6",
+    "grunt-concat-sourcemap": "~0.3.0"
+  }
+}
