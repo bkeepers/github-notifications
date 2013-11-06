@@ -24,15 +24,26 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
   // }
 
   loadNpmTasks: [
-    "grunt-concat-sourcemap"
+    "grunt-concat-sourcemap", "grunt-contrib-stylus"
   ],
 
   removeTasks: {
-    common: ["concat"]
+    common: ["concat", "less"]
   },
 
   appendTasks: {
     common: ["concat_sourcemap"]
+  },
+
+  prependTasks: {
+    common: ["stylus"]
+  },
+
+  stylus: {
+    compile: {
+      src: 'app/css/app.styl',
+      dest: "<%= files.stylus.generatedApp %>"
+    }
   },
 
   concat_sourcemap: {
@@ -48,7 +59,7 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
       dest: "<%= files.js.concatenatedSpec %>"
     },
     css: {
-      src: ["<%= files.less.generatedVendor %>", "<%= files.sass.generatedVendor %>", "<%= files.css.vendor %>", "<%= files.less.generatedApp %>", "<%= files.sass.generatedApp %>", "<%= files.css.app %>"],
+      src: ["<%= files.stylus.generatedVendor %>", "<%= files.css.vendor %>", "<%= files.stylus.generatedApp %>", "<%= files.css.app %>"],
       dest: "<%= files.css.concatenated %>"
     }
   },
@@ -74,13 +85,9 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
       files: ["<%= files.css.vendor %>", "<%= files.css.app %>"],
       tasks: ["concat_sourcemap:css"]
     },
-    less: {
-      files: ["<%= files.less.vendor %>", "<%= files.less.app %>"],
-      tasks: ["less", "concat_sourcemap:css"]
-    },
-    sass: {
-      files: ["<%= files.sass.vendor %>", "<%= files.sass.app %>"],
-      tasks: ["sass", "concat_sourcemap:css"]
+    stylus: {
+      files: ["<%= files.stylus.vendor %>", "<%= files.stylus.app %>"],
+      tasks: ["stylus", "concat_sourcemap:css"]
     },
     handlebars: {
       tasks: ["handlebars", "concat_sourcemap:js"]

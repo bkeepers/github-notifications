@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "lineman" : "~>0.11.6",
-    "grunt-concat-sourcemap": "~0.3.0"
+    "grunt-concat-sourcemap": "~0.3.0",
+    "grunt-contrib-stylus": "~0.9.0"
   }
 }

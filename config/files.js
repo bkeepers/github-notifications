@@ -28,6 +28,15 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
     ]
   },
 
+  stylus: {
+    main: "app/css/main.styl",
+    vendor: "vendor/css/**/*.styl",
+    app: "app/css/**/*.styl",
+    import: "app/css",
+    generatedVendor: "generated/css/vendor.styl.css",
+    generatedApp: "generated/css/app.styl.css"
+  },
+
   less: {
     compile: {
       options: {
