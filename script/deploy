@@ -1,9 +1,0 @@
-#!/bin/sh
-
-set -e
-
-git rm -qr dist/*
-./node_modules/.bin/grunt clean build
-git add dist && git commit -m "Deploy `date -u`"
-git remote show | grep heroku || git remote add heroku git@heroku.com:gh-notifications.git
-git push heroku `git subtree split --prefix dist`:master --force
