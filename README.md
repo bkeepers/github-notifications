@@ -1,28 +1,38 @@
-# A Lineman JS Template using Backbone
+# GitHub Notifications
 
-This is a project template for Backbone JS applications using [Lineman](http://www.linemanjs.com).
+This is an experiment with creating a more rich interface for consuming [GitHub Notifications](https://github.com/notifications). Check it out here: https://gh-notifications.herokuapp.com/
 
-It includes the following features:
+## Local Development
 
-1. Template Precompilation into the `JST` namespace using `grunt-contrib-jst`
-2. A basic login, logout service bound to sample routes inside `config/server.js`
-3. A router, and 2 views `home_page` and `login_page`, and 1 model `home_page`
-4. A model `change` event binding that shows a message on mouseover
-5. A simple scheme for rendering views into a single dom element, `#view`
-6. A working, bound login form (username/password don't matter, but are required)
-7. Auto generated [sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) with inlined sources via [grunt-concat-sourcemap](https://github.com/kozy4324/grunt-concat-sourcemap) (you'll need to [enable sourcemaps](http://cl.ly/image/1d0X2z2u1E3b) in Firefox/Chrome to see this)
+To run the app locally, make sure you have a working Node.js and Ruby (for
+Sass/Compass) environment, and then from the terminal run:
 
-# Instructions
+    $ script/bootstrap
+    $ script/server
 
-1. `git clone https://github.com/davemo/lineman-backbone-template.git my-lineman-app`
-2. `cd my-lineman-app`
-3. `npm install`
-4. `lineman run`
-5. open your web browser to localhost:8000
+This will install all the needed dependencies, start up a server, and open
+[localhost:9000](http://localhost:9000) in your browser.
 
-# Running Tests
+This project is built using [Yeoman](http://yeoman.io/), a simple tool for
+building static webapps in node.js. There is no server component. The [app](app)
+gets compiled into static HTML, CSS, and JavaScript that uses the GitHub API.
 
-1. `lineman run` from 1 terminal window
-2. `lineman spec` from another terminal window
+The app is mostly CoffeeScript and uses [Backbone](http://backbonejs.org).
+[app/scripts/main.coffee](app/scripts/main.coffee) is the starting point.
 
-Hopefully this helps you get up and running with BackboneJS!
+The styles use Sass and Compass. [app/styles/main.scss](app/styles/main.scss) is
+the starting point.
+
+## Contributing
+
+If you find what looks like a bug:
+
+1. Check out the [issues on GitHub](http://github.com/bkeepers/github-notifications/issues/) to see if anyone else has reported the same issue.
+3. If you don't see anything, create an issue with information on how to reproduce it.
+
+If you want to contribute an enhancement or a fix:
+
+1. Fork the project on GitHub.
+2. Make your changes.
+3. Commit the changes without making changes to any other files that aren't related to your enhancement or fix.
+4. Send a pull request.
