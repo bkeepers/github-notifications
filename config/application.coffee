@@ -6,7 +6,7 @@
 module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "application",
   # Override application configuration here. Common examples follow in the comments.
 
-  loadNpmTasks: ["grunt-concat-sourcemap", "grunt-contrib-stylus"]
+  loadNpmTasks: ["grunt-concat-sourcemap", "grunt-contrib-stylus", "grunt-bower-task"]
 
   removeTasks:
     common: ["concat", "less"]
@@ -16,6 +16,7 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "application
 
   prependTasks:
     common: ["stylus"]
+    dist: ["bower:install"]
 
   stylus:
     compile:
@@ -90,3 +91,6 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "application
       expand: true, cwd: '<%= files.webfonts.cwd %>', src: "<%= files.webfonts.src %>", dest: "generated/<%= files.webfonts.dest %>"
     dist:
       expand: true, cwd: '<%= files.webfonts.cwd %>', src: "webfonts/**/*.*", dest: "dist/<%= files.webfonts.dest %>"
+
+  bower:
+    install: {}
