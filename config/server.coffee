@@ -10,8 +10,14 @@
 #
 
 module.exports = drawRoutes: (app) ->
-  app.post "/login", (req, res) ->
-    res.json message: "logging in!"
+  app.use(requireHTTPS) if process.env.NODE_ENV == 'production'
 
-  app.post "/logout", (req, res) ->
-    res.json message: "logging out!"
+requireHTTPS = (req, res, next) ->
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000')
+  isSecure = req.secure || req.headers['x-forwarded-proto'] == 'https'
+
+  if isSecure
+    next()
+  else
+    res.redirect "https://#{req.get('host')}#{req.url}"
+
