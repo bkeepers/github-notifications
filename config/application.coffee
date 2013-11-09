@@ -15,8 +15,7 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "application
     common: ["concat_sourcemap"]
 
   prependTasks:
-    common: ["stylus"]
-    dist: ["bower:install"]
+    common: ["bower:install", "stylus"]
 
   stylus:
     compile:
@@ -93,4 +92,4 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "application
       expand: true, cwd: '<%= files.webfonts.cwd %>', src: "webfonts/**/*.*", dest: "dist/<%= files.webfonts.dest %>"
 
   bower:
-    install: {}
+    install: {  }
