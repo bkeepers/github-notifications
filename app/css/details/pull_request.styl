@@ -1,0 +1,92 @@
+.pull-head {
+  overflow: hidden;
+  background-color: #f7f7f7;
+  border: 1px solid #d9d9d9;
+  margin-bottom: 18px;
+  padding: 6px;
+  border-radius: 2px;
+
+  .pull-state {
+    float: left;
+    margin-right: 18px;
+  }
+
+  .pull-head-meta {
+    float: right;
+    margin-left: 18px;
+
+    a {
+      font-weight: bold;
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .pull-summary {
+    margin: 0;
+  }
+}
+
+.discussion-comment {
+  background: #fff;
+  margin: 9px;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgba(#000, 0.2);
+  overflow: hidden;
+
+  &.collapsed {
+    .discussion-content { display: none; }
+    .discussion-meta { border-bottom: none; }
+  }
+}
+
+.discussion-user {
+  font-weight: bold;
+}
+
+.discussion-avatar {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  margin-top: -12px;
+  border-radius: 2px;
+}
+
+.discussion-meta, .discussion-content {
+  padding: 0 9px 0 36px;
+}
+
+.discussion-meta {
+  line-height: 36px;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
+
+  time {
+    float: right;
+    color: #818189;
+    font-size: 0.9em;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.discussion-content {
+  margin-top: 9px;
+}
+
+.state-indicator {
+  display: inline-block;
+  height: 20px;
+  padding: 0 5px;
+  color: #fff;
+  border-radius: 2px;
+
+  &.open { background-color: #6cc644; }
+  &.closed { background-color: #bd2c00; }
+}

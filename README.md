@@ -11,16 +11,16 @@ Sass/Compass) environment, and then from the terminal run:
     $ script/server
 
 This will install all the needed dependencies, start up a server, and open
-[localhost:9000](http://localhost:9000) in your browser.
+[localhost:8000](http://localhost:8000) in your browser.
 
-This project is built using [Yeoman](http://yeoman.io/), a simple tool for
-building static webapps in node.js. There is no server component. The [app](app)
+This project is built using [lineman](http://www.linemanjs.com/), a simple tool for
+building JavaScript web applications. There is no server component. The [app](app)
 gets compiled into static HTML, CSS, and JavaScript that uses the GitHub API.
 
 The app is mostly CoffeeScript and uses [Backbone](http://backbonejs.org).
-[app/scripts/main.coffee](app/scripts/main.coffee) is the starting point.
+[app/js/main.coffee](app/js/main.coffee) is the starting point.
 
-The styles use Sass and Compass. [app/styles/main.scss](app/styles/main.scss) is
+The styles use [Stylus](http://learnboost.github.io/stylus/). [app/css/app.styl](app/css/app.styl) is
 the starting point.
 
 ## Contributing
