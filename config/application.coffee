@@ -89,7 +89,7 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "application
     dev:
       expand: true, cwd: '<%= files.webfonts.cwd %>', src: "<%= files.webfonts.src %>", dest: "generated/<%= files.webfonts.dest %>"
     dist:
-      expand: true, cwd: '<%= files.webfonts.cwd %>', src: "webfonts/**/*.*", dest: "dist/<%= files.webfonts.dest %>"
+      expand: true, cwd: '<%= files.webfonts.cwd %>', src: "<%= files.webfonts.src %>", dest: "dist/<%= files.webfonts.dest %>"
 
   bower:
     install: {  }
