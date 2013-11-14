@@ -3,6 +3,17 @@ module.exports = {
     if(process.env.NODE_ENV == 'production') {
       app.use(requireHTTPS);
     }
+
+    app.get('/authenticate', function(req, res) {
+      res.json({client_id: config.oauth_client_id, scope: config.oauth_scope});
+    });
+
+    app.post('/authenticate/:code', function(req, res) {
+      authenticate(req.params.code, function(err, token) {
+        var result = err || !token ? {"error": "bad_code"} : {"token": token};
+        res.json(result);
+      });
+    });
   }
 }
 
@@ -16,4 +27,49 @@ function requireHTTPS(req, res, next) {
   } else {
     return res.redirect("https://" + req.get('host') + req.url);
   }
+}
+
+var url = require('url'),
+    https = require('https'),
+    qs = require('querystring');
+
+// Load config defaults from JSON file.
+// Environment variables override defaults.
+function loadConfig() {
+  var config = JSON.parse(require('fs').readFileSync(__dirname + '/defaults.json', 'utf-8'));
+  for (var i in config) {
+    config[i] = process.env[i.toUpperCase()] || config[i];
+  }
+  return config;
+}
+
+var config = loadConfig();
+
+function authenticate(code, cb) {
+  var data = qs.stringify({
+    client_id: config.oauth_client_id,
+    client_secret: config.oauth_client_secret,
+    code: code
+  });
+
+  var reqOptions = {
+    host: config.oauth_host,
+    port: config.oauth_port,
+    path: config.oauth_path,
+    method: config.oauth_method,
+    headers: {
+      'content-length': data.length
+    }
+  };
+
+  var body = "";
+  var req = https.request(reqOptions, function(res) {
+    res.setEncoding('utf8');
+    res.on('data', function(chunk) { body += chunk; });
+    res.on('end', function() { cb(null, qs.parse(body).access_token); });
+  });
+
+  req.write(data);
+  req.end();
+  req.on('error', function(e) { cb(e.message); });
 }

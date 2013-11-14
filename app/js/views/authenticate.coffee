@@ -1,42 +1,32 @@
 class app.Views.Authenticate extends Backbone.View
   scope: 'repo,user'
-  el: '#authenticate'
-  template: JST['app/templates/authenticate.us']
-
-  events:
-    'submit form': 'submit'
 
   initialize: =>
-    if @token = localStorage['token']
-      @done()
+    if token = localStorage['token']
+      @done(token: token)
+    else if code = @oauthCode()
+      @getToken(code)
     else
-      @render()
+      $.getJSON "/authenticate", (data) ->
+        window.location = "https://github.com/login/oauth/authorize?client_id=#{data.client_id}&scope=#{data.scope}"
 
-  render: ->
-    @$el.html(@template())
-    @
-
-  submit: (e) =>
-    e.preventDefault()
-
-    @token = @$('input[name=token]').val()
-
+  getToken: (code) ->
     $.ajax
-       url: "https://api.github.com/user"
-       headers:
-         'Authorization': "token #{@token}"
-       success: @success
-       error: @error
+      dataType: "json",
+      type: 'POST'
+      url: "/authenticate/#{code}",
+      success: @storeToken
 
-  done: ->
+  oauthCode: ->
+    match = window.location.href.match(/\?code=(.*)/)
+    match[1] if match
+
+  storeToken: (data) ->
+    localStorage['token'] = data.token
+    # Redirect to get code out of URL
+    window.location = window.location.pathname
+
+  done: (data) ->
     jQuery.ajaxPrefilter (options, originalOptions, xhr) =>
-      xhr.setRequestHeader 'Authorization', "token #{@token}"
+      xhr.setRequestHeader 'Authorization', "token #{data.token}"
     app.ready()
-    @remove()
-
-  success: (user) =>
-    localStorage['token'] = @token
-    @done()
-
-  error: =>
-    alert('Nope!')
