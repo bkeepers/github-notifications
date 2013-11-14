@@ -5,5 +5,5 @@
   "oauth_port": 443,
   "oauth_path": "/login/oauth/access_token",
   "oauth_method": "POST",
-  "oauth_scope": "notifications"
+  "oauth_scope": "notifications,repo"
 }
