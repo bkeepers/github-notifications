@@ -24,4 +24,4 @@ class app.Views.Comments extends Backbone.View
 
   scroll: =>
     if position = @$('.conversation-comment.expanded:first').position()
-      @$('.subject').prop 'scrollTop', position.top
+      @$el.closest('.subject').prop 'scrollTop', position.top
