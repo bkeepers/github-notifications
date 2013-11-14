@@ -16,12 +16,14 @@
     "npm": "~>1.2.18"
   },
   "dependencies": {
+    "express": "~3.4.4"
+  },
+  "devDependencies": {
     "lineman": "~>0.15.1",
     "grunt-concat-sourcemap": "~0.3.0",
     "grunt-contrib-stylus": "~0.9.0",
     "bower": "~1.1.0",
     "nib": "~1.0.1",
-    "grunt-bower-task": "~0.3.3",
-    "express": "~3.4.4"
+    "grunt-bower-task": "~0.3.3"
   }
 }
