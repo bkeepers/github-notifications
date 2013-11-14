@@ -1,13 +1,13 @@
-<div class="discussion-meta">
-  <a href="<%= user.html_url %>" class="discussion-user">
-    <img class="discussion-avatar" src="<%= user.avatar_url %>">
+<div class="conversation-meta">
+  <a href="<%= user.html_url %>" class="conversation-user">
+    <img class="conversation-avatar" src="<%= user.avatar_url %>">
     <%- user.login %>
   </a>
   opened this pull request
   <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
 </div>
 
-<div class="discussion-content">
+<div class="conversation-content">
   <div class="pull-head">
     <span class="pull-state">
         <span class="state-indicator <%= state %>"><%= state %></span>

@@ -1,9 +1,9 @@
 class app.Views.Comment extends Backbone.View
   template: JST['app/templates/comment.us']
-  className: 'discussion-comment'
+  className: 'conversation-comment'
 
   events:
-    'click .discussion-meta': 'toggle'
+    'click .conversation-meta': 'toggle'
 
   initialize: (options) ->
     @notification = options.notification

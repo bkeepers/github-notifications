@@ -1,6 +1,6 @@
-class app.Views.Notifications extends Backbone.View
+class app.Views.Threads extends Backbone.View
   el: '#threads'
-  template: JST['app/templates/notifications.us']
+  template: JST['app/templates/threads.us']
 
   events:
     'change input[name=notifications-state]': -> @load(@options)

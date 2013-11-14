@@ -1,10 +1,10 @@
-<div class="discussion-meta">
+<div class="conversation-meta">
   <a href="<%= user.html_url %>">
-    <img class="discussion-avatar" src="<%= user.avatar_url %>">
+    <img class="conversation-avatar" src="<%= user.avatar_url %>">
     <%- user.login %>
   </a>
   created this issue
   <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
 </div>
 
-<div class="discussion-content"><%= body_html %></div>
+<div class="conversation-content"><%= body_html %></div>

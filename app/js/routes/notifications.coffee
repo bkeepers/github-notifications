@@ -12,7 +12,7 @@ class app.Routers.Notifications extends Backbone.Router
 
     @on 'route', @selectItem
 
-    @view = new app.Views.Notifications(collection: @collection)
+    @view = new app.Views.Threads(collection: @collection)
     @view.render()
 
   participating: ->
