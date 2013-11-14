@@ -14,6 +14,6 @@ function requireHTTPS(req, res, next) {
   if(isSecure) {
     return next();
   } else {
-    return res.redirect("https://#{req.get('host')}#{req.url}");
+    return res.redirect("https://" + req.get('host') + req.url);
   }
 }
