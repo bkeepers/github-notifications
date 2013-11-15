@@ -6,10 +6,10 @@ class app.Models.Subscription extends Backbone.Model
     @url = @get('url')
 
   mute: ->
-    @save ignored: true
+    @save 'ignored', true, {attrs: {'ignored': true}}
 
   unmute: ->
-    @save ignored: false
+    @save 'ignored', false, {attrs: {'ignored': false}}
 
   toggle: ->
     if @get('ignored') then @unmute() else @mute()
