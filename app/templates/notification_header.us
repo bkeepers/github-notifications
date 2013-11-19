@@ -1,5 +1,5 @@
+<a rel="back" class="mega-octicon octicon-arrow-left responsive-toggle"></a>
 <h1>
-  <a rel="back" class="octicon octicon-arrow-left"></a>
   <a href="<%= subject.html_url %>">
     <span class="notification-type-octicon octicon octicon-<%= subject.octicon %>"></span>
     <%- subject.title %>
