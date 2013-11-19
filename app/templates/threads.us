@@ -1,4 +1,7 @@
 <header>
+  <label for="toggle-lists" class="responsive-toggle">
+    <span class="octicon octicon-three-bars"></span>
+  </label>
   <nav class="segmented-control">
     <input id="notification-state-unread" type="radio" name="notifications-state" value="unread" checked>
     <label for="notification-state-unread">Unread</label>
