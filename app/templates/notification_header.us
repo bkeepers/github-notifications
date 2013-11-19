@@ -5,7 +5,7 @@
     <%- subject.title %>
   </a>
 </h1>
-<nav>
+<nav class="actions">
   <span class="subscription"></span>
   <button class="star octicon octicon-star<% if(starred) { %> starred<% } %>"></button>
 </nav>

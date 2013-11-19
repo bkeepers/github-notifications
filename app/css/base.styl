@@ -33,7 +33,8 @@ body {
 
     & > * {
       vertical-align: middle;
-      display: inline-block;
+      display: table-cell;
+      white-space: nowrap;
     }
 
     .mega-octicon {
@@ -47,9 +48,8 @@ body {
       }
     }
 
-    .actions {
-      float: right;
-      display: inline-block;
+    .actions, .responsive-toggle {
+      width: 1%; // make it as small as possible since it is display:table-cell
     }
 
     @media only screen and (max-width: 768px) {
