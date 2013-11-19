@@ -1,5 +1,4 @@
 class app.Views.Shortcuts extends Backbone.View
-  el: document.body # otherwise it won't capture all the shortcuts
   template: JST['app/templates/shortcuts.us']
 
   shortcuts:
@@ -40,6 +39,8 @@ class app.Views.Shortcuts extends Backbone.View
     'ctrl+`': 'toggleDevelopmentMode'
 
   initialize: (options) ->
+    @setElement document.body # otherwise it won't capture all the shortcuts
+
     @repositories = options.repositories
     @notifications = options.notifications
 
