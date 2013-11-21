@@ -17,18 +17,23 @@ class app.Views.NotificationDetailsView extends Backbone.View
     @model.read()
     @render()
 
+  loaded: =>
+    @subjectView.render()
+    @$('.content').removeClass('loading')
+
   render: ->
     @model.select()
     @$el.html @template(@model.toJSON())
+    @$('.content').addClass('loading')
     @$('.comments').append @subjectView.el
     app.trigger 'render', @
     new app.Views.NotificationHeader(model: @model, el: @$('header'))
     @
 
   renderSubject: (subject) ->
-    @subjectView.render()
     if url = subject.get('comments_url')
       @comments = new app.Views.Comments(model: @model, url: url, el: @$('.comments'))
+      @comments.collection.on 'sync', @loaded
 
   # Set target=_blank if it is an external link
   clickLink: (e) ->
