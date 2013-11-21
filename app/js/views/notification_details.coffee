@@ -11,22 +11,22 @@ class app.Views.NotificationDetailsView extends Backbone.View
     'click a': 'clickLink'
 
   initialize: ->
-    @render()
     @listenTo @model.subject, 'change', @renderSubject
+    @subjectView = new app.Views[@model.subject.get('type')](model: @model.subject, notification: @model)
     @model.subject.fetch()
-
     @model.read()
+    @render()
 
   render: ->
     @model.select()
     @$el.html @template(@model.toJSON())
+    @$('.comments').append @subjectView.el
     app.trigger 'render', @
     new app.Views.NotificationHeader(model: @model, el: @$('header'))
     @
 
   renderSubject: (subject) ->
-    view = new app.Views[subject.get('type')](model: subject, notification: @model)
-    @$('.comments').empty().append(view.render().el)
+    @subjectView.render()
     if url = subject.get('comments_url')
       @comments = new app.Views.Comments(model: @model, url: url, el: @$('.comments'))
 
