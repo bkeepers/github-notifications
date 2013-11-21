@@ -4,11 +4,17 @@ class app.Views.NotificationDetailsView extends Backbone.View
 
   keyboardEvents:
     'm': -> @model.subscription.toggle()
+    'M': 'muteAndNext'
     's': -> @model.toggleStar()
     'o': -> window.open @model.subject.get('html_url'), '_blank'
 
   events:
     'click a': 'clickLink'
+
+  muteAndNext: ->
+    @model.subscription.toggle()
+    if notification = @model.collection.next()
+      Backbone.history.navigate "#n/#{notification.id}", trigger: true
 
   initialize: ->
     @listenTo @model.subject, 'change', @renderSubject
