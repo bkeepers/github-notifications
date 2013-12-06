@@ -31,14 +31,6 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "files",
     ]
     app: ["app/js/**/*.js"]
 
-  stylus:
-    main: "app/css/main.styl"
-    vendor: "vendor/css/**/*.styl"
-    app: "app/css/**/*.styl"
-    import: "app/css"
-    generatedVendor: "generated/css/vendor.styl.css"
-    generatedApp: "generated/css/app.styl.css"
-
   css:
     vendor: [
       "vendor/bower/normalize-css/normalize.css",
@@ -46,6 +38,4 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "files",
     ]
 
   webfonts:
-    cwd: "vendor/webfonts"
-    src: "*.*"
     root: "css"

@@ -23,6 +23,6 @@
     "grunt-concat-sourcemap": "~0.3.0",
     "grunt-contrib-stylus": "~0.9.0",
     "nib": "~1.0.1",
-    "grunt-bower-task": "~0.3.3"
+    "lineman-bower": "0.0.1"
   }
 }
