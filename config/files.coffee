@@ -48,4 +48,4 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "files",
   webfonts:
     cwd: "vendor/webfonts"
     src: "*.*"
-    dest: "css"
+    root: "css"
