@@ -85,6 +85,10 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "application
     underscore:
       tasks: ["jst", "concat_sourcemap:js"]
 
+  clean:
+    bower:
+      src: "vendor/bower"
+
   bower:
     install:
       options:
