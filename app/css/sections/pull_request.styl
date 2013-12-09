@@ -27,7 +27,13 @@
   }
 }
 
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 .conversation-comment {
+  animation: fadein 0.3s;
   background: #fff;
   overflow: hidden;
 
