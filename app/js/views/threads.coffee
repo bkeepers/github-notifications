@@ -17,6 +17,9 @@ class app.Views.Threads extends Backbone.View
 
     @collection.fetch _.extend({reset: true}, @options)
 
+    # Collapse the menu on mobile
+    $('#toggle-lists').attr('checked', false) # FIXME: this belongs somewhere else
+
   shouldShowAll: ->
     @$('input[name=notifications-state]:checked').val() == 'all'
 

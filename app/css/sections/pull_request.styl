@@ -35,14 +35,20 @@
 .conversation-comment {
   animation: fadein 0.3s;
   background: #fff;
-  margin: 9px;
-  border-radius: 2px;
-  box-shadow: 0 0 2px rgba(#000, 0.2);
   overflow: hidden;
+
+  @media only screen and (min-width: 768px) {
+    margin: 9px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(#000, 0.2);
+  }
+
+  @media only screen and (max-width: 767px) {
+    border-bottom: 1px solid #f1f1f1;
+  }
 
   &.collapsed {
     .conversation-content { display: none; }
-    .conversation-meta { border-bottom: none; }
   }
 }
 

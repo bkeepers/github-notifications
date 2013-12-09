@@ -8,17 +8,18 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>GitHub Notifications</title>
       <meta name="description" content="">
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
       <link rel="stylesheet" type="text/css" href="css/app.css" media="all" />
       <script type="text/javascript" src="js/app.js"></script>
   </head>
   <body>
     <div id="app" class="container" style="display:none;">
+      <input id="toggle-lists" type="checkbox" class="responsive-toggle">
       <div id="lists" class="sidebar pane">
         <header></header>
       </div>
-      <div id="threads" class="sidebar pane">
+      <div id="threads" class="responsive-content sidebar pane">
         <header></header>
       </div>
       <div id="details" class="pane">

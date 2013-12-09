@@ -10,6 +10,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
 
   events:
     'click a': 'clickLink'
+    'click *[rel=back]': 'unfocus'
 
   muteAndNext: ->
     @model.subscription.toggle()
@@ -33,6 +34,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
     @$('.content').addClass('loading')
     @$('.comments').append @subjectView.el
     app.trigger 'render', @
+    @$el.addClass('focused')
     new app.Views.NotificationHeader(model: @model, el: @$('header'))
     @
 
@@ -45,3 +47,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
   clickLink: (e) ->
     href = e.target.getAttribute('href')
     e.target.target = '_blank' if href && href.hostname != window.location.hostname
+
+  unfocus: (e) ->
+    e.preventDefault()
+    @$el.removeClass('focused')

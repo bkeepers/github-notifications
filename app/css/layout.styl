@@ -1,39 +1,83 @@
+.container {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
 .pane {
   position: absolute;
   overflow: hidden;
   top: 0;
   bottom: 0;
 
-  .content {
-    overflow: auto;
-    position: absolute;
-    top: 48px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
   & > header {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
     height: 48px;
+    z-index: 4;
+  }
+
+  .content {
+    position: absolute;
+    top: 48px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
   }
 }
 
-#lists {
-  left: 0;
-  width: 216px;
+@media screen and (min-width: 768px) {
+  #lists {
+    left: 0;
+    width: 216px;
+  }
+
+  #threads {
+    left: 216px;
+    width: 300px;
+  }
+
+  #details {
+    left: 516px;
+    right: 0;
+  }
 }
 
-#threads {
-  left: 216px;
-  width: 300px;
-}
+@media screen and (max-width: 767px) {
+  .pane {
+    left: 0;
+    right: 0;
 
-#details {
-  left: 516px;
-  right: 0;
+    & > header {
+      position: fixed;
+    }
+
+    & > .content {
+      -webkit-overflow-scrolling : touch;
+    }
+  }
+
+  #lists {
+    z-index: 1;
+  }
+
+  #threads {
+    z-index: 2;
+  }
+
+  #details {
+    z-index: 3;
+    transition: transform 250ms ease;
+    transform: translateX(105%); // 105 to push the shadow of the screen
+
+    &.focused {
+      transform: translateX(0);
+    }
+  }
 }

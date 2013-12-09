@@ -1,0 +1,23 @@
+// http://valdelama.com/css-responsive-navigation
+
+@media screen and (min-width: 768px) {
+  .responsive-toggle { display: none !important; }
+}
+
+@media screen and (max-width: 767px) {
+  $toggle-percent = 80%;
+
+  input.responsive-toggle {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .responsive-content {
+    transition: transform 250ms ease;
+  }
+
+  .responsive-toggle:checked ~ .responsive-content {
+    transform: translateX($toggle-percent);
+  }
+}
