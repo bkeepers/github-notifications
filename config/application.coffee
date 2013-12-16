@@ -99,7 +99,6 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "application
     generate:
       options:
         basePath: './dist'
-        preferOnline: true
         hash: true
         verbose: false
         timestamp: false
