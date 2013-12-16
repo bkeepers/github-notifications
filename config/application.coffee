@@ -6,13 +6,14 @@
 module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "application",
   # Override application configuration here. Common examples follow in the comments.
 
-  loadNpmTasks: ["grunt-concat-sourcemap", "grunt-contrib-stylus", "grunt-bower-task"]
+  loadNpmTasks: ["grunt-concat-sourcemap", "grunt-contrib-stylus", "grunt-bower-task", "grunt-manifest"]
 
   removeTasks:
     common: ["concat", "less"]
 
   appendTasks:
     common: ["concat_sourcemap"]
+    dist: ["manifest"]
 
   prependTasks:
     common: ["bower:install", "stylus"]
@@ -93,3 +94,15 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "application
 
   bower:
     install: {  }
+
+  manifest:
+    generate:
+      options:
+        basePath: './dist'
+        preferOnline: true
+        hash: true
+        verbose: false
+        timestamp: false
+        master: ['index.html']
+      src: ["**/*.*"]
+      dest: 'dist/manifest.appcache'
