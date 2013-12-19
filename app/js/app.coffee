@@ -5,6 +5,10 @@ window.app = _.extend {}, Backbone.Events,
   Routers: {}
 
   init: ->
+    Backbone.history.start()
+    @auth()
+
+  auth: ->
     new this.Views.Authenticate()
 
   ready: ->
@@ -23,7 +27,6 @@ window.app = _.extend {}, Backbone.Events,
       notifications: @notifications
     )
 
-    Backbone.history.start()
     Backbone.history.navigate 'all', trigger: true
 
   isDevelopment: ->
@@ -40,3 +43,9 @@ $.ajaxSetup
   # determining what to respond with. This disables any HTTP caching until
   # proper local caching is implemented.
   cache: false
+
+$(window).ajaxError (ev, xhr) ->
+  # unset the token if the API responds with a 401, and try to re-authenticate.
+  if xhr.status is 401
+    localStorage['token'] = ""
+    window.app.auth()
