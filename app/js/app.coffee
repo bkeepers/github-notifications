@@ -29,6 +29,9 @@ window.app = _.extend {}, Backbone.Events,
   isDevelopment: ->
     localStorage['dev']?
 
+  update: ->
+    window.applicationCache.update()
+
 $ ->
   app.init()
 
@@ -40,3 +43,5 @@ $.ajaxSetup
   # determining what to respond with. This disables any HTTP caching until
   # proper local caching is implemented.
   cache: false
+
+$(window).on 'beforeunload', app.update
