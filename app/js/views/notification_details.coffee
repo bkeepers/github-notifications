@@ -19,17 +19,19 @@ class app.Views.NotificationDetailsView extends Backbone.View
 
   initialize: ->
     @listenTo @model.subject, 'change', @renderSubject
-    @subjectView = new app.Views[@model.subject.get('type')](model: @model.subject, notification: @model)
-    @model.subject.fetch()
-    @model.read()
-    @render()
+    if view = app.Views[@model.subject.get('type')]
+      @subjectView = new view(model: @model.subject, notification: @model)
+      @model.subject.fetch()
+      @model.read()
+      @render()
+
+    @model.select()
 
   loaded: =>
     @subjectView.render()
     @$('.content').removeClass('loading')
 
   render: ->
-    @model.select()
     @$el.html @template(@model.toJSON())
     @$('.content').addClass('loading')
     @$('.comments').append @subjectView.el
