@@ -2,7 +2,9 @@ class app.Views.Authenticate extends Backbone.View
   scope: 'repo,user'
 
   initialize: =>
-    if token = localStorage['token']
+    token = localStorage['token']
+
+    if token? and token isnt ''
       @done(token: token)
     else if code = @oauthCode()
       @getToken(code)
