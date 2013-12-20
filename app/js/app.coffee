@@ -30,7 +30,7 @@ window.app = _.extend {}, Backbone.Events,
     localStorage['dev']?
 
   update: ->
-    window.applicationCache.update()
+    applicationCache.update() unless applicationCache.status == applicationCache.UNCACHED
 
 $ ->
   app.init()
