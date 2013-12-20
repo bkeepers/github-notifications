@@ -18,7 +18,7 @@ building JavaScript web applications. There is no server component. The [app](ap
 gets compiled into static HTML, CSS, and JavaScript that uses the GitHub API.
 
 The app is mostly CoffeeScript and uses [Backbone](http://backbonejs.org).
-[app/js/main.coffee](app/js/main.coffee) is the starting point.
+[app/js/app.coffee](app/js/app.coffee) is the starting point.
 
 The styles use [Stylus](http://learnboost.github.io/stylus/). [app/css/app.styl](app/css/app.styl) is
 the starting point.
