@@ -26,7 +26,7 @@ window.app = _.extend {}, Backbone.Events,
       notifications: @notifications
     )
 
-    Backbone.history.start() unless History.started
+    Backbone.history.start() unless Backbone.History.started
 
     Backbone.history.navigate 'all', trigger: true
 
