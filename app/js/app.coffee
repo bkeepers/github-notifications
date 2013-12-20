@@ -3,12 +3,13 @@ window.app = _.extend {}, Backbone.Events,
   Collections: {}
   Views: {}
   Routers: {}
+  ajax: $.ajax
 
   init: ->
     @auth()
 
   auth: ->
-    new this.Views.Authenticate()
+    new this.Models.Authentication()
 
   ready: ->
     $('#app').show()
@@ -36,8 +37,8 @@ window.app = _.extend {}, Backbone.Events,
   update: ->
     applicationCache.update() unless applicationCache.status == applicationCache.UNCACHED
 
-$ ->
-  app.init()
+# Initialize the app
+$ -> app.init() unless window.jasmine?
 
 $.ajaxSetup
   headers:
@@ -51,9 +52,3 @@ $.ajaxSetup
 # Update app cache every 60 seconds and when leaving the page
 setInterval app.update, 60 * 1000
 $(window).on 'beforeunload', app.update
-
-$(window).ajaxError (ev, xhr) ->
-  # unset the token if the API responds with a 401, and try to re-authenticate.
-  if xhr.status is 401
-    localStorage['token'] = ""
-    window.app.auth()
