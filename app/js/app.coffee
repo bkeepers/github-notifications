@@ -44,4 +44,6 @@ $.ajaxSetup
   # proper local caching is implemented.
   cache: false
 
+# Update app cache every 60 seconds and when leaving the page
+setInterval app.update, 60 * 1000
 $(window).on 'beforeunload', app.update
