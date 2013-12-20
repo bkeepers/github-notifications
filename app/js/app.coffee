@@ -29,6 +29,9 @@ window.app = _.extend {}, Backbone.Events,
   isDevelopment: ->
     localStorage['dev']?
 
+  update: ->
+    applicationCache.update() unless applicationCache.status == applicationCache.UNCACHED
+
 $ ->
   app.init()
 
@@ -40,3 +43,7 @@ $.ajaxSetup
   # determining what to respond with. This disables any HTTP caching until
   # proper local caching is implemented.
   cache: false
+
+# Update app cache every 60 seconds and when leaving the page
+setInterval app.update, 60 * 1000
+$(window).on 'beforeunload', app.update
