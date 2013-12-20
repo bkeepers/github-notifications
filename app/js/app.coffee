@@ -5,7 +5,6 @@ window.app = _.extend {}, Backbone.Events,
   Routers: {}
 
   init: ->
-    Backbone.history.start()
     @auth()
 
   auth: ->
@@ -26,6 +25,8 @@ window.app = _.extend {}, Backbone.Events,
       repositories: @repositories,
       notifications: @notifications
     )
+
+    Backbone.history.start() unless History.started
 
     Backbone.history.navigate 'all', trigger: true
 
