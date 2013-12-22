@@ -4,6 +4,8 @@ window.app = _.extend {}, Backbone.Events,
   Views: {}
   Routers: {}
   ajax: $.ajax
+  api_endpoint: 'https://api.github.com/'
+  web_endpoint: 'https://github.com/'
 
   init: ->
     @auth()
