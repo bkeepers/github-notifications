@@ -8,7 +8,7 @@ class app.Views.Comment extends Backbone.View
   initialize: (options) ->
     @notification = options.notification
 
-  render: ->
+  render: =>
     @$el.html @template(@model.toJSON())
     @$el.addClass if @unread() then 'expanded' else 'collapsed'
     app.trigger 'render', @

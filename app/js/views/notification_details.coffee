@@ -1,6 +1,5 @@
 class app.Views.NotificationDetailsView extends Backbone.View
   el: '#details'
-  template: JST['app/templates/notification_details.us']
 
   keyboardEvents:
     'm': -> @model.subscription.toggle()
@@ -18,31 +17,18 @@ class app.Views.NotificationDetailsView extends Backbone.View
       Backbone.history.navigate "#n/#{notification.id}", trigger: true
 
   initialize: ->
-    @listenTo @model.subject, 'change', @renderSubject
-    if view = app.Views[@model.subject.get('type')]
-      @subjectView = new view(model: @model.subject, notification: @model)
-      @model.subject.fetch()
-      @render()
-
+    view = app.Views.Subject.for(@model.subject.get('type'))
+    @subject = new view(model: @model.subject, notification: @model)
+    @header = new app.Views.NotificationHeader(model: @model)
     @model.select()
-
-  loaded: =>
-    @subjectView.render()
-    @$('.content').removeClass('loading')
+    @render()
 
   render: ->
-    @$el.html @template(@model.toJSON())
-    @$('.content').addClass('loading')
-    @$('.comments').append @subjectView.el
-    app.trigger 'render', @
+    @$el.empty()
+    @$el.append @header.el
+    @$el.append @subject.el
     @$el.addClass('focused')
-    new app.Views.NotificationHeader(model: @model, el: @$('header'))
     @
-
-  renderSubject: (subject) ->
-    if url = subject.get('comments_url')
-      @comments = new app.Views.Comments(model: @model, url: url, el: @$('.comments'))
-      @comments.collection.on 'sync', @loaded
 
   # Set target=_blank if it is an external link
   clickLink: (e) ->
