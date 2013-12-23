@@ -1,6 +1,6 @@
 class app.Collections.Notifications extends Backbone.Collection
   model: app.Models.Notification
-  url: app.api_endpoint + 'notifications'
+  url: app.endpoints.api + 'notifications'
 
   initialize: ->
     @on 'reset', -> @select(undefined)
