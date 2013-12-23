@@ -3,6 +3,7 @@ class app.Models.Notification extends Backbone.Model
     @url = @get('url')
     @subject = new app.Models.Subject.for(@get('subject'))
     @subscription = new app.Models.Subscription(id: @id, url: @url + '/subscription')
+    @on 'selected', @read
 
   toJSON: ->
     _.extend super, subject: @subject.toJSON(), starred: @isStarred()

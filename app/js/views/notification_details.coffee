@@ -22,7 +22,6 @@ class app.Views.NotificationDetailsView extends Backbone.View
     if view = app.Views[@model.subject.get('type')]
       @subjectView = new view(model: @model.subject, notification: @model)
       @model.subject.fetch()
-      @model.read()
       @render()
 
     @model.select()
