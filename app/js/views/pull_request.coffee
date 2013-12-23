@@ -1,2 +1,2 @@
 class app.Views.PullRequest extends app.Views.Subject
-  template: JST['app/templates/pull_request.us']
+  banner: JST['app/templates/pull_request.us']

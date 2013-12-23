@@ -17,7 +17,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
       Backbone.history.navigate "#n/#{notification.id}", trigger: true
 
   initialize: ->
-    view = app.Views.Subject.for(@model.subject.get('type'))
+    view = app.Views.Subject.for(@model.subject)
     @subject = new view(model: @model.subject, notification: @model)
     @header = new app.Views.NotificationHeader(model: @model)
     @model.select()

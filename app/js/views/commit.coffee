@@ -1,2 +1,3 @@
 class app.Views.Commit extends app.Views.Subject
-  template: JST['app/templates/commit.us']
+  banner: JST['app/templates/commit.us']
+  isInitialComment: false
