@@ -6,6 +6,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
     'M': 'muteAndNext'
     's': -> @model.toggleStar()
     'o': -> window.open @model.subject.get('html_url'), '_blank'
+    'r': (e) -> e.preventDefault(); @$('textarea').focus()
 
   events:
     'click a': 'clickLink'
