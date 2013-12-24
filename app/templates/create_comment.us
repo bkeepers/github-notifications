@@ -1,5 +1,7 @@
 <form>
   <div class="error-message">There was an error creating your comment.</div>
   <textarea name="body" placeholder="Leave a comment"></textarea>
-  <button class="button">Comment</button>
+  <div class="form-actions">
+    <button class="button primary">Comment</button>
+  </div>
 </form>
