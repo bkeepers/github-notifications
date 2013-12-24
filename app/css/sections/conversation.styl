@@ -101,3 +101,27 @@
   &.open { background-color: #6cc644; }
   &.closed { background-color: #bd2c00; }
 }
+
+.write-content {
+  padding: 9px;
+
+  textarea {
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 2px
+  }
+}
+
+.error-message {
+  font-weight: bold;
+  padding: 4px 8px;
+  color: #900;
+  border: 1px solid #ECC;
+  background: #FFEAEA;
+  border-radius: 2px;
+  margin-bottom: 9px;
+  display: none;
+
+  .error & { display: block; }
+}
