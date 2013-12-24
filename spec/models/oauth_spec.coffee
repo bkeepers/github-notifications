@@ -6,7 +6,7 @@ describe 'app.Models.OAuth', ->
     @location =
       assign: jasmine.createSpy('assign')
       href: '/foobar'
-      pathnae: '/foobar'
+      pathname: '/foobar'
 
     app.Models.OAuth.prototype.location = @location
 

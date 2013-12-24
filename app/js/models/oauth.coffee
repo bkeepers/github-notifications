@@ -9,7 +9,7 @@
 # Uses the code to complete OAuth and return a JSON object with a token
 class app.Models.OAuth
   location: window.location
-  url: "https://github.com/login/oauth/authorize"
+  url: app.endpoints.web + "login/oauth/authorize"
 
   # Finish OAuth if there is a code in the parameters, otherwise initate OAuth
   authorize: ->
