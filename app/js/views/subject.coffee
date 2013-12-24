@@ -21,8 +21,9 @@ class app.Views.Subject extends Backbone.View
       @listenTo @model, 'change', @initialCommentView.render
 
     @listenTo @model, 'change', @loadComments
-    @model.fetch()
     @render()
+
+    @model.fetch() if @model.url
 
   render: ->
     @$el.html @template()

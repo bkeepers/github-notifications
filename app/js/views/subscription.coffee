@@ -1,5 +1,7 @@
 class app.Views.Subscription extends Backbone.View
   template: JST['app/templates/subscription.us']
+  tagName: 'span'
+  className: 'subscription'
 
   events:
     'click .mute':   -> @model.mute()
@@ -13,3 +15,4 @@ class app.Views.Subscription extends Backbone.View
 
   render: ->
     @$el.html @template(@model.toJSON())
+    @
