@@ -2,6 +2,9 @@ class app.Views.CreateComment extends Backbone.View
   template: JST['app/templates/create_comment.us']
   className: 'write-content conversation-comment conversation-content'
 
+  keyboardEvents:
+    'meta+enter': 'create'
+
   events:
     'submit form': 'create'
 
