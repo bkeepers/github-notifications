@@ -8,7 +8,7 @@ class app.Views.Comments extends Backbone.View
 
   paginate: (data, options, xhr) =>
     if link = @nextLink(xhr.getResponseHeader("Link"))
-      new app.Views.Comments(url: link.href, model: @model, el: @el)
+      @collection.fetch(url: link)
 
   nextLink: (header) =>
     return unless header
