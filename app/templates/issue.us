@@ -1,10 +1,14 @@
-<div class="conversation-meta">
-  <a href="<%= user.html_url %>">
-    <img class="conversation-avatar" src="<%= user.avatar_url %>">
-    <%- user.login %>
-  </a>
-  created this issue
-  <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
-</div>
+<div class="conversation-banner">
+  <span class="conversation-state">
+      <span class="state-indicator <%= state %>"><%= state %></span>
+  </span>
 
-<div class="conversation-content"><%= body_html %></div>
+  <div class="conversation-banner-meta">
+    <a href="<%= html_url %>">#<%= number %></a>
+  </div>
+
+  <p class="conversation-summary nowrap">
+    <a href="<%= user.html_url %>" class="conversation-user"><%= user.login %></a>
+    opened this issue
+  </p>
+</div>

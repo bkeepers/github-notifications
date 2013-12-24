@@ -15,6 +15,9 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "files",
       "app/js/app.coffee",
       "app/js/models/subject.coffee",
       "app/js/models/**/*.coffee",
+      # FIXME: should be able to remove this next line before merging this branch
+      "app/js/views/comment.coffee",
+      "app/js/views/subject.coffee",
       "app/js/**/*.coffee"
     ]
 
