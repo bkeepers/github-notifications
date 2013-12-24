@@ -42,11 +42,8 @@
   border-radius: 2px;
 }
 
-.conversation-meta, .conversation-content {
-  padding: 0 9px 0 36px;
-}
-
 .conversation-meta {
+  padding: 0 18px 0 36px;
   line-height: 36px;
   vertical-align: middle;
   position: relative;
@@ -64,12 +61,13 @@
 }
 
 .conversation-content {
-  margin-top: 9px;
+  padding: 9px 18px 18px 36px;
 }
+
 
 .conversation-banner {
   overflow: hidden;
-  padding: 6px 6px 6px 36px;
+  padding: 6px 18px 6px 36px;
 
   .conversation-state {
     float: left;
@@ -79,6 +77,7 @@
   .conversation-banner-meta {
     float: right;
     margin-left: 18px;
+
 
     a {
       font-weight: bold;
@@ -107,9 +106,13 @@
 
   textarea {
     width: 100%;
-    font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 2px
+    min-height: 100px;
+    max-height: 500px;
+    padding: 10px;
+    resize: vertical;
+    outline: none;
   }
 }
 

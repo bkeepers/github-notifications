@@ -7,5 +7,5 @@
 </h1>
 <nav class="actions">
   <span class="subscription"></span>
-  <button class="star octicon octicon-star<% if(starred) { %> starred<% } %>"></button>
+  <button class="menubutton star octicon octicon-star<% if(starred) { %> starred<% } %>"></button>
 </nav>
