@@ -42,11 +42,8 @@
   border-radius: 2px;
 }
 
-.conversation-meta, .conversation-content {
-  padding: 0 9px 0 36px;
-}
-
 .conversation-meta {
+  padding: 0 18px 0 36px;
   line-height: 36px;
   vertical-align: middle;
   position: relative;
@@ -64,21 +61,23 @@
 }
 
 .conversation-content {
-  margin-top: 9px;
+  padding: 9px 18px 18px 36px;
 }
+
 
 .conversation-banner {
   overflow: hidden;
-  padding: 6px;
+  padding: 6px 18px 6px 36px;
 
   .conversation-state {
     float: left;
-    margin-right: 18px;
+    margin-right: 9px;
   }
 
   .conversation-banner-meta {
     float: right;
     margin-left: 18px;
+
 
     a {
       font-weight: bold;
@@ -100,4 +99,21 @@
 
   &.open { background-color: #6cc644; }
   &.closed { background-color: #bd2c00; }
+}
+
+.write-content {
+  padding: 9px 9px 9px 36px;
+}
+
+.error-message {
+  font-weight: bold;
+  padding: 4px 8px;
+  color: #900;
+  border: 1px solid #ECC;
+  background: #FFEAEA;
+  border-radius: 2px;
+  margin-bottom: 9px;
+  display: none;
+
+  .error & { display: block; }
 }

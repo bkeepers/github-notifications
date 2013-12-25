@@ -35,6 +35,7 @@ class app.Views.Subject extends Backbone.View
     if url = @model.get('comments_url')
       @comments = new app.Views.Comments(model: @notification, url: url, el: @$('.comments'))
       @comments.collection.on 'sync', @loaded
+      @$el.append new app.Views.CreateComment(collection: @comments.collection).el
 
   loaded: =>
     @$el.removeClass('loading')
