@@ -36,7 +36,13 @@ class app.Views.Subject extends Backbone.View
     @$el.removeClass('loading')
 
   selectNext: ->
-    @comments.select @comments.next() || @comments.first() if @comments
+    comment = if @model.comments.selected
+      @model.comments.next()
+    else
+      @model.comments.first()
+
+    @model.comments.select comment if comment
 
   selectPrevious: ->
-    @comments.select @comments.prev() || @comments.last() if @comments
+    if comment = @model.comments.prev()
+      @model.comments.select comment
