@@ -2,11 +2,13 @@ class app.Views.Comments extends Backbone.View
   initialize: ->
     @listenTo @collection, 'add', @addComment
     @listenTo @collection, 'reset', @addAllComments
-    @collection.fetch().done(@scroll).done(@paginate)
+    @fetch()
+
+  fetch: (url = @collection.url) ->
+    @collection.fetch(reset: false, remove: false).done(@scroll).done(@paginate)
 
   paginate: (data, options, xhr) =>
-    if link = @nextLink(xhr.getResponseHeader("Link"))
-      @collection.fetch(url: link)
+    @fetch(link) if link = @nextLink(xhr.getResponseHeader("Link"))
 
   nextLink: (header) =>
     return unless header
