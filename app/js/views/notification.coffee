@@ -21,11 +21,4 @@ class app.Views.Notification extends Backbone.View
     @scrollIntoView()
 
   scrollIntoView: =>
-    scroller = @$el.closest('.content')
-
-    change = if (topOffset = @$el.position().top) < 0
-      topOffset
-    else if (bottomOffset = topOffset + @$el.height() - scroller.height()) > 0
-      bottomOffset
-
-    scroller.scrollTop scroller.scrollTop() + change if change
+    @$el.scrollIntoView(100)
