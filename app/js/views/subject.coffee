@@ -36,11 +36,10 @@ class app.Views.Subject extends Backbone.View
     @$('.comments').append(@initialCommentView.el) if @isInitialComment
 
   loadComments: ->
-    if url = @model.get('comments_url')
-      commentsView = new app.Views.Comments(model: @notification, url: url, el: @$('.comments'))
-      @comments = commentsView.collection
+    if url = @model.comments.url
+      view = new app.Views.Comments(collection: @model.comments, model: @notification, el: @$('.comments'))
+      @comments = @model.comments
       @comments.on 'sync', @loaded
-      @comments.on 'selected', @selected
       @$el.append new app.Views.CreateComment(collection: @comments).el
 
   loaded: =>

@@ -1,6 +1,5 @@
 class app.Views.Comments extends Backbone.View
-  initialize: (options) ->
-    @collection = new app.Collections.Comments(url: options.url)
+  initialize: ->
     @listenTo @collection, 'add', @addComment
     @listenTo @collection, 'reset', @addAllComments
     @collection.fetch().done(@scroll).done(@paginate)
