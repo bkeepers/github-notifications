@@ -6,6 +6,10 @@ class app.Views.Subject extends Backbone.View
   # PullRequests, but not for Commits
   isInitialComment: true
 
+  keyboardEvents:
+    'n': 'selectNext'
+    'p': 'selectPrevious'
+
   @for: (model) ->
     app.Views[model.constructor.name] || app.Views.Subject
 
@@ -33,9 +37,17 @@ class app.Views.Subject extends Backbone.View
 
   loadComments: ->
     if url = @model.get('comments_url')
-      @comments = new app.Views.Comments(model: @notification, url: url, el: @$('.comments'))
-      @comments.collection.on 'sync', @loaded
-      @$el.append new app.Views.CreateComment(collection: @comments.collection).el
+      commentsView = new app.Views.Comments(model: @notification, url: url, el: @$('.comments'))
+      @comments = commentsView.collection
+      @comments.on 'sync', @loaded
+      @comments.on 'selected', @selected
+      @$el.append new app.Views.CreateComment(collection: @comments).el
 
   loaded: =>
     @$el.removeClass('loading')
+
+  selectNext: ->
+    @comments.select @comments.next() || @comments.first() if @comments
+
+  selectPrevious: ->
+    @comments.select @comments.prev() || @comments.last() if @comments
