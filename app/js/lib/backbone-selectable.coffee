@@ -18,3 +18,6 @@ _.extend Backbone.Collection.prototype,
 _.extend Backbone.Model.prototype,
   select: ->
     @collection.select(@) if @collection
+
+  isSelected: ->
+    @collection && @collection.selected == @
