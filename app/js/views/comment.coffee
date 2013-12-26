@@ -35,7 +35,7 @@ class app.Views.Comment extends Backbone.View
   # Toggle the expanded or collapsed state of the comment
   toggle: (e) ->
     e.preventDefault()
-    @$el.toggleClass('collapsed expanded')
+    @$el.toggleClass('collapsed expanded').scrollIntoView(20)
 
   # Select this comment
   select: ->
