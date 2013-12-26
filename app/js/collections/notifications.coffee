@@ -7,7 +7,9 @@ class app.Collections.Notifications extends Backbone.Collection
     @starred = new app.Collections.Starred()
     @starred.fetch()
 
+  # Mark all notifications as read
   read: (options = {}) ->
     options.data = '{}'
     @sync 'update', @, options unless app.isDevelopment()
+    # Update the internal state of each notification
     @each (notification) -> notification.set 'unread', false

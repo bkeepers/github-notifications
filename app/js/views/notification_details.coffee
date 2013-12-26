@@ -1,3 +1,4 @@
+# Root view for all the details of a notification
 class app.Views.NotificationDetailsView extends Backbone.View
   el: '#details'
 
@@ -5,18 +6,15 @@ class app.Views.NotificationDetailsView extends Backbone.View
     'm': -> @model.subscription.toggle()
     'M': 'muteAndNext'
     's': -> @model.toggleStar()
-    'o': -> window.open @model.subject.get('html_url'), '_blank'
-    'r': (e) -> e.preventDefault(); @$('textarea').focus()
+    'o': 'open'
+    'r': 'reply'
 
   events:
     'click a': 'clickLink'
     'click *[rel=back]': 'unfocus'
 
-  muteAndNext: ->
-    @model.subscription.toggle()
-    if notification = @model.collection.next()
-      Backbone.history.navigate "#n/#{notification.id}", trigger: true
-
+  # Required options:
+  # model - a notification object
   initialize: ->
     view = app.Views.Subject.for(@model.subject)
     @subject = new view(model: @model.subject, notification: @model)
@@ -39,3 +37,17 @@ class app.Views.NotificationDetailsView extends Backbone.View
   unfocus: (e) ->
     e.preventDefault()
     @$el.removeClass('focused')
+
+  muteAndNext: ->
+    @model.subscription.toggle()
+    if notification = @model.collection.next()
+      Backbone.history.navigate "#n/#{notification.id}", trigger: true
+
+  # Go to the page on GitHub for this notification
+  open: (e) ->
+    window.open @model.subject.get('html_url'), '_blank'
+
+  # Focus the reply textarea
+  reply:(e) ->
+    e.preventDefault()
+    @$('textarea').focus()

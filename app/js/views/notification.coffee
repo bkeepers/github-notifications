@@ -1,11 +1,14 @@
+# The view for a single notification in the list
 class app.Views.Notification extends Backbone.View
   tagName: 'li'
   className: 'notification'
   template: JST['app/templates/notification.us']
 
+  # Required options:
+  # model - a notification object
   initialize: ->
-    @listenTo @model, 'unselected', @unselect
-    @listenTo @model, 'selected', @select
+    @listenTo @model, 'unselected', @unselected
+    @listenTo @model, 'selected', @selected
     @listenTo @model, 'change', @render
 
   render: ->
@@ -13,12 +16,8 @@ class app.Views.Notification extends Backbone.View
     app.trigger 'render', @
     @
 
-  unselect: ->
+  unselected: ->
     @$el.removeClass('selected')
 
-  select: ->
-    @$el.addClass('selected')
-    @scrollIntoView()
-
-  scrollIntoView: =>
-    @$el.scrollIntoView(100)
+  selected: ->
+    @$el.addClass('selected').scrollIntoView(100)

@@ -1,9 +1,9 @@
-  # The `Link` header includes pagination, like:
-  # <https://url?page=1>; rel="first", <https://url?page=2>; rel="prev"
-  class app.Models.Link
-    regex: /<([^>]*)>; ?rel="([^"]*)"/
+# The `Link` header includes pagination, like:
+# <https://url?page=1>; rel="first", <https://url?page=2>; rel="prev"
+class app.Models.Link
+  regex: /<([^>]*)>; ?rel="([^"]*)"/
 
-    constructor: (text) ->
-      match = text.match(@regex)
-      @href = match[1]
-      @rel = match[2]
+  constructor: (text) ->
+    match = text.match(@regex)
+    @href = match[1]
+    @rel = match[2]

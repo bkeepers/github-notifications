@@ -1,3 +1,4 @@
+# An access token acquired via OAuth
 class app.Models.Token
   @localStorage: window.localStorage
 

@@ -1,3 +1,4 @@
+# Form to create a new comment
 class app.Views.CreateComment extends Backbone.View
   template: JST['app/templates/create_comment.us']
   className: 'write-content conversation-comment conversation-content'
@@ -8,6 +9,10 @@ class app.Views.CreateComment extends Backbone.View
   events:
     'submit form': 'create'
 
+  # Initialize the comment form
+  #
+  # Required options:
+  # collection: The collection to create the new comment on.
   initialize: ->
     @render()
 

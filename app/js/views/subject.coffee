@@ -1,3 +1,8 @@
+# Renders the subject of a notification.
+#
+# This view is responsible for showing most of the relevant details of the
+# thing that the notification is for, which should be an Issue, PullRequest,
+# or Commit.
 class app.Views.Subject extends Backbone.View
   template: JST['app/templates/subject.us']
   className: 'subject content loading'
@@ -6,9 +11,13 @@ class app.Views.Subject extends Backbone.View
     'n': 'selectNext'
     'p': 'selectPrevious'
 
+  # Chose the appropriate view class for the given subject
   @for: (model) ->
     app.Views[model.constructor.name] || app.Views.Subject
 
+  # Required options:
+  # notification - a Notification model
+  # model - a Subject model
   initialize: (options) ->
     @notification = options.notification
 
