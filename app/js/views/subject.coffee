@@ -13,7 +13,7 @@ class app.Views.Subject extends Backbone.View
 
   # Chose the appropriate view class for the given subject
   @for: (model) ->
-    app.Views[model.constructor.name] || app.Views.Subject
+    app.Views[model.get('type')] || app.Views.Subject
 
   # Required options:
   # notification - a Notification model
