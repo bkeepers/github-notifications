@@ -8,7 +8,7 @@ class app.Views.Comments extends Backbone.View
 
   # Fetch comments for the given url without reseting existing comments.
   fetch: (url = @collection.url) ->
-    @collection.fetch(reset: false, remove: false).done(@scroll).done(@paginate)
+    @collection.fetch(url: url, reset: false, remove: false).done(@scroll).done(@paginate)
 
   # Ajax callback to fetch next page of comments if the link exists.
   paginate: (data, options, xhr) =>
