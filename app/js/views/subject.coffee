@@ -22,7 +22,7 @@ class app.Views.Subject extends Backbone.View
     @notification = options.notification
 
     if @banner
-      @bannerView = new app.Views.Banner(model: @model, notification: @notification, template: @banner)
+      @bannerView = new app.Views.Banner(model: @model, template: @banner)
       @listenTo @model, 'change', @bannerView.render
 
     @listenTo @model, 'change', @loadComments
