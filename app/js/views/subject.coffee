@@ -21,9 +21,7 @@ class app.Views.Subject extends Backbone.View
   initialize: (options) ->
     @notification = options.notification
 
-    if @banner
-      @bannerView = new app.Views.Banner(model: @model, template: @banner)
-      @listenTo @model, 'change', @bannerView.render
+    @bannerView = new app.Views.Banner(model: @model, template: @banner) if @banner
 
     @listenTo @model, 'change', @loadComments
     @render()
@@ -37,7 +35,7 @@ class app.Views.Subject extends Backbone.View
 
   loadComments: ->
     if url = @model.comments.url
-      @comments = new app.Views.Comments(collection: @model.comments, model: @notification, el: @$('.comments'))
+      @comments = new app.Views.Comments(collection: @model.comments, el: @$('.comments'))
       @model.comments.on 'sync', @loaded
       @$el.append new app.Views.CreateComment(collection: @model.comments).el
 
