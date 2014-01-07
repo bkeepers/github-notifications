@@ -3,7 +3,7 @@ _.extend Backbone.Collection.prototype,
     previous = @selected
     @selected = model
     previous.trigger 'unselected' if previous
-    model.trigger 'selected' if model
+    model.trigger 'selected', previous if model
     @trigger 'selected', model, previous
 
   next: ->

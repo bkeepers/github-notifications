@@ -39,17 +39,23 @@ class app.Views.Comment extends Backbone.View
 
   # Select this comment
   select: ->
-    @model.collection.select @model
+    @model.select()
 
   # Unselect this comment
   unselect: ->
     @model.collection.select null
 
   # This comment was selected
-  selected: ->
+  selected: (previous) ->
     @bindKeyboardEvents()
     @$el.addClass('selected')
-    @$el.scrollIntoView(20)
+
+    if previous
+      # Scroll into view if a previous comment was already selected
+      @$el.scrollIntoView(20)
+    else if @$el.isOutOfView()
+      # Scroll to top if no previous comment was selected
+      @$el.closest('.subject').prop 'scrollTop', @$el.position().top
 
   # This comment was unselected
   unselected: ->
