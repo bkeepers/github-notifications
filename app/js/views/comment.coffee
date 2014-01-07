@@ -8,8 +8,8 @@ class app.Views.Comment extends Backbone.View
 
   events:
     'click .conversation-meta': 'toggle'
-    'focusin': 'select'
-    'focusout': 'unselect'
+    'focusin':  -> @model.select()
+    'focusout': -> @model.unselect()
 
   # Initialize the view
   #
@@ -29,27 +29,13 @@ class app.Views.Comment extends Backbone.View
   # Toggle the expanded or collapsed state of the comment
   toggle: (e) ->
     e.preventDefault()
-    @$el.toggleClass('collapsed expanded').scrollIntoView(20)
-
-  # Select this comment
-  select: ->
-    @model.select()
-
-  # Unselect this comment
-  unselect: ->
-    @model.collection.select null
+    @$el.toggleClass('collapsed expanded')
 
   # This comment was selected
-  selected: (previous) ->
+  selected: (previous, options = {}) ->
     @bindKeyboardEvents()
     @$el.addClass('selected')
-
-    if previous
-      # Scroll into view if a previous comment was already selected
-      @$el.scrollIntoView(20)
-    else if @model != @model.collection.first()
-      # Scroll to top if no previous comment was selected
-      @$el.closest('.subject').prop 'scrollTop', @$el.position().top
+    @scrollIntoView(previous) if options.scroll
 
   # This comment was unselected
   unselected: ->
@@ -59,3 +45,14 @@ class app.Views.Comment extends Backbone.View
   # Only bind keyboard events if model is selected
   bindKeyboardEvents: ->
     super if @model.isSelected()
+
+  # Scroll the comment into view.
+  #
+  # previous - the comment that was previously selected.
+  scrollIntoView: (previous) ->
+    if previous
+      # Scroll into view if a previous comment was already selected
+      @$el.scrollIntoView(50)
+    else if @model != @model.collection.first()
+      # Scroll to top if no previous comment was selected
+      @$el.closest('.subject').prop 'scrollTop', @$el.position().top

@@ -32,5 +32,6 @@ class app.Views.Comments extends Backbone.View
   # Scroll to the first unread comment
   scroll: =>
     return if @collection.selected
-    unread.select() if unread = @collection.detect((comment) -> comment.isUnread())
+    if unread = @collection.detect((comment) -> comment.isUnread())
+      unread.select(scroll: true)
 
