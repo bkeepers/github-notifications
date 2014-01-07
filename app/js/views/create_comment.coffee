@@ -8,6 +8,7 @@ class app.Views.CreateComment extends Backbone.View
 
   events:
     'submit form': 'create'
+    'focusin': -> @collection.select null
 
   # Initialize the comment form
   #
