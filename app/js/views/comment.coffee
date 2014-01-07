@@ -53,7 +53,7 @@ class app.Views.Comment extends Backbone.View
     if previous
       # Scroll into view if a previous comment was already selected
       @$el.scrollIntoView(20)
-    else if @$el.isOutOfView()
+    else if @model != @model.collection.first()
       # Scroll to top if no previous comment was selected
       @$el.closest('.subject').prop 'scrollTop', @$el.position().top
 
