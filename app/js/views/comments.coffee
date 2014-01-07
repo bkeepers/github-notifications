@@ -22,14 +22,15 @@ class app.Views.Comments extends Backbone.View
 
   # Render the given commment
   add: (comment) ->
-    view = new app.Views.Comment(model: comment, notification: @model)
+    view = new app.Views.Comment(model: comment)
     @$el.append(view.render().el)
 
   # Render all comments in the collection
   addAll: ->
     @collection.each(@add, @)
 
-  # Scroll to the first expanded comment
+  # Scroll to the first unread comment
   scroll: =>
-    if position = @$('.conversation-comment.expanded:first').position()
-      @$el.closest('.subject').prop 'scrollTop', position.top
+    return if @collection.selected
+    unread.select() if unread = @collection.detect((comment) -> comment.isUnread())
+

@@ -2,7 +2,7 @@
 class app.Models.Notification extends Backbone.Model
   initialize: ->
     @url = @get('url')
-    @subject = new app.Models.Subject.for(@get('subject'))
+    @subject = new app.Models.Subject.for(@)
     @subscription = new app.Models.Subscription(id: @id, url: @url + '/subscription')
     @on 'selected', @read
 

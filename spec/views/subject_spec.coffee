@@ -1,4 +1,4 @@
-describe 'app.Models.Subject', ->
+describe 'app.View.Subject', ->
   beforeEach ->
     @view = new app.Models.Subject
 
