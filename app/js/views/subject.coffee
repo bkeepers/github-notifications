@@ -51,5 +51,4 @@ class app.Views.Subject extends Backbone.View
     comment?.select scroll: true
 
   selectPrevious: ->
-    if comment = @model.comments.prev()
-      @model.comments.select comment
+    comment.select scroll: true if comment = @model.comments.prev()
