@@ -41,7 +41,9 @@ window.app = _.extend {}, Backbone.Events,
     applicationCache.update() unless applicationCache.status == applicationCache.UNCACHED
 
 # Initialize the app
-$ -> app.init() unless window.jasmine?
+$ ->
+  $(document.body).addClass('standalone') if window.navigator.standalone
+  app.init() unless window.jasmine?
 
 $.ajaxSetup
   headers:

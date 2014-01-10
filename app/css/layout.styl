@@ -28,6 +28,12 @@ html, body {
     right: 0;
     height: 48px;
     z-index: 4;
+
+    .standalone & {
+      padding-top: status-bar-height;
+      height: 48px + status-bar-height;
+      outline-top: 1px dotted red;
+    }
   }
 
   .content {
@@ -37,6 +43,10 @@ html, body {
     right: 0;
     bottom: 0;
     overflow: auto;
+
+    .standalone & {
+      top: 48 + status-bar-height;
+    }
   }
 }
 
