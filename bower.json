@@ -11,7 +11,8 @@
     "mousetrap": "~1.4.5",
     "backbone.mousetrap": "https://github.com/elasticsales/backbone.mousetrap.git",
     "backbone.localStorage": "~1.1.6",
-    "jQuery.scrollIntoView": "https://github.com/Arwid/jQuery.scrollIntoView.git"
+    "jQuery.scrollIntoView": "https://github.com/Arwid/jQuery.scrollIntoView.git",
+    "fastclick": "~0.6.11"
   },
   "devDependencies": {
     "primer": "https://github.com/github/primer.git"

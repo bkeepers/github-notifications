@@ -42,6 +42,7 @@ window.app = _.extend {}, Backbone.Events,
 
 # Initialize the app
 $ ->
+  FastClick.attach(document.body)
   $(document.body).addClass('standalone') if window.navigator.standalone
   app.init() unless window.jasmine?
 
