@@ -38,4 +38,4 @@ class app.Views.Threads extends Backbone.View
 
   read: (e) ->
     e.preventDefault()
-    @collection.read(@options)
+    @collection.read(@options) if window.confirm("Are you sure you want to mark all these as read?")
