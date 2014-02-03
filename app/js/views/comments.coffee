@@ -12,7 +12,7 @@ class app.Views.Comments extends Backbone.View
 
   # Ajax callback to fetch next page of comments if the link exists.
   paginate: (data, options, xhr) =>
-    @fetch(link) if link = @nextLink(xhr.getResponseHeader("Link"))
+    @fetch(link.href) if link = @nextLink(xhr.getResponseHeader("Link"))
 
   # Parse the Link header, looking for rel=next
   nextLink: (header) =>
