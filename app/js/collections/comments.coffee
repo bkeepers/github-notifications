@@ -1,4 +1,4 @@
-class app.Collections.Comments extends Backbone.Collection
+class app.Collections.Comments extends PaginatedCollection
   model: app.Models.Comment
 
   initialize: (models, options = {}) ->
