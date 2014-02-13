@@ -39,6 +39,12 @@ class app.Views.Subject extends Backbone.View
       @model.comments.on 'sync', @loaded
       @$el.append new app.Views.CreateComment(collection: @model.comments).el
 
+    if url = @model.events.url
+      @model.events.on 'sync', =>
+        @model.events.each (event) ->
+          @$('.comments').append("<li>#{JSON.stringify(event.toJSON())}</li>")
+      @model.events.fetch()
+
   loaded: =>
     @$el.removeClass('loading')
 
