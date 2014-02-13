@@ -28,7 +28,7 @@ class app.Routers.Notifications extends Backbone.Router
     model = @repositories.get(id)
     return unless model
     model.select()
-    @view.load(url: model.notifications_url())
+    @view.load(url: model.notifications_url(), repository: model)
 
   show: (id) ->
     model = @collection.get(id)

@@ -14,6 +14,7 @@ class app.Models.Notification extends Backbone.Model
     # Don't mark unsupported notifications as read
     return unless @subject.get('url')
     @save {unread: false}, {patch: true} unless app.isDevelopment()
+    @collection.repository.decrement()
 
   # Star the notification
   star: ->
