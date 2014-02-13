@@ -1,6 +1,5 @@
 class app.Views.Repositories extends Backbone.View
   el: '#repositories'
-  template: JST['app/templates/repository.us']
 
   initialize: =>
     @collection.fetch()
@@ -8,7 +7,8 @@ class app.Views.Repositories extends Backbone.View
     @listenTo @collection, 'reset', @addAll
 
   add: (repository) ->
-    @$el.append @template(repository.toJSON())
+    view = new app.Views.Repository(model: repository)
+    @$el.append view.render().el
 
   addAll: ->
     @collection.each(@add, @)

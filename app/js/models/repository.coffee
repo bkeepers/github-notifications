@@ -13,3 +13,6 @@ class app.Models.Repository extends Backbone.Model
 
   toJSON: ->
     _.extend super, unread_count: @unread_count()
+
+  decrement: ->
+    @set('unread_count', @get('unread_count') - 1)
