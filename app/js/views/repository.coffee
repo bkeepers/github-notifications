@@ -12,8 +12,6 @@ class app.Views.Repository extends Backbone.View
 
   render: =>
     @$el.html @template(@model.toJSON())
-    console.log 'huh?', @model.isSelected() 
     @$('a').addClass 'selected' if @model.isSelected()
-
     app.trigger 'render', @
     @

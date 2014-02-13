@@ -16,7 +16,6 @@ class app.Views.Threads extends Backbone.View
     @options.data.all = @shouldShowAll()
 
     @collection.fetch _.extend({reset: true}, @options)
-    @collection.repository = options.repository
 
     # Collapse the menu on mobile
     $('#toggle-lists').attr('checked', false) # FIXME: this belongs somewhere else
