@@ -15,7 +15,7 @@ class app.Models.Notification extends Backbone.Model
     return unless @subject.get('url')
     @save {unread: false}, {patch: true} unless app.isDevelopment()
     repository = app.repositories.get(@get("repository").id)
-    repository.decrement()
+    repository?.decrement()
 
   # Star the notification
   star: ->
