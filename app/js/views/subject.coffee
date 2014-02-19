@@ -22,39 +22,33 @@ class app.Views.Subject extends Backbone.View
     @notification = options.notification
 
     @bannerView = new app.Views.Banner(model: @model, template: @banner) if @banner
+    @timelineView = new app.Views.Timeline(collection: @model.timeline)
 
-    @listenTo @model, 'change', @loadComments
+    @listenTo @model, 'change', => @model.timeline.fetch()
+
     @render()
 
     @model.fetch() if @model.url
 
+    @loaded() # TODO: KILL THIS
+
   render: ->
     @$el.html @template()
-    app.trigger 'render', @
     @$('.comments').append(@bannerView.el) if @banner
-
-  loadComments: ->
-    if url = @model.comments.url
-      @comments = new app.Views.Comments(collection: @model.comments, el: @$('.comments'))
-      @model.comments.on 'sync', @loaded
-      @$el.append new app.Views.CreateComment(collection: @model.comments).el
-
-    if url = @model.events.url
-      @model.events.on 'sync', =>
-        @model.events.each (event) ->
-          @$('.comments').append("<li>#{JSON.stringify(event.toJSON())}</li>")
-      @model.events.fetch()
+    @$('.comments').append(@timelineView.el)
+    @$el.append new app.Views.CreateComment(collection: @model.comments).el
+    app.trigger 'render', @
 
   loaded: =>
     @$el.removeClass('loading')
 
   selectNext: ->
-    comment = if @model.comments.selected
-      @model.comments.next()
+    item = if @model.timeline.selected
+      @model.timeline.next()
     else
-      @model.comments.first()
+      @model.timeline.first()
 
-    comment?.select scroll: true
+    item?.select scroll: true
 
   selectPrevious: ->
-    comment.select scroll: true if comment = @model.comments.prev()
+    item.select scroll: true if item = @model.timeline.prev()

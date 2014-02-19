@@ -7,12 +7,19 @@ class app.Models.Subject extends Backbone.Model
 
   initialize: ->
     @url = @get('url')
+    @timeline = new app.Collections.Timeline([])
+
     @comments = new app.Collections.Comments([], last_read_at: @get('last_read_at'))
     @events = new app.Collections.Events()
+
     @on 'change', ->
-      @comments.add @ if @get('body_html')
+      @timeline.add @ if @get('body_html')
+
       @comments.url = @get('comments_url')
+      @timeline.observe @comments
+
       @events.url = @get('events_url')
+      @timeline.observe @events
 
   isUnread: ->
     !@get('last_read_at') ||
