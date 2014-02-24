@@ -7,5 +7,8 @@ class app.Collections.Repositories extends Backbone.Collection
       item.repository.unread_count = item.unread_count
       item.repository
 
-  poll: (interval = 60 * 1000) ->
-    setInterval _.bind(@fetch, @), interval
+  poll: =>
+    @fetch remove: false
+
+  startPolling: (interval = 60 * 1000) ->
+    setInterval @poll, interval

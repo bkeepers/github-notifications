@@ -3,7 +3,7 @@ class app.Views.Repositories extends Backbone.View
 
   initialize: =>
     @collection.fetch()
-    @collection.poll()
+    @collection.startPolling()
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
 
