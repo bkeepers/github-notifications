@@ -1,0 +1,4 @@
+<span class="octicon octicon-bookmark discussion-item-icon"></span>
+<%= actor.login %> referenced this <%= subject.display_type %>
+from commit <code><%= commit_id.substring(0, 8) %></code>
+<time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>

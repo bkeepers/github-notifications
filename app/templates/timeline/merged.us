@@ -1,0 +1,5 @@
+<span class="octicon octicon-git-merge discussion-item-icon"></span>
+<%= actor.login %> merged commit <code><%= commit_id.substring(0, 8) %></code>
+into <%= subject.base.label %>
+from <%= subject.head.label %>
+<time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>

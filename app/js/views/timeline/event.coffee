@@ -1,8 +1,12 @@
 class app.Views.TimelineEvent extends Backbone.View
-  template: JST['app/templates/timeline_event.us']
   className: 'conversation-event'
 
   render: =>
-    @$el.html @template(@model.toJSON())
+    template = JST["app/templates/timeline/#{@model.get('event')}.us"]
+    return @ unless template
+
+    data = @model.toJSON()
+    data.subject = @model.collection.subject.toJSON()
+    @$el.html template(data)
     app.trigger 'render', @
     @

@@ -1,7 +1,7 @@
 class app.Collections.Timeline extends Backbone.Collection
 
-  initialize: (models, options = {}) ->
-    @last_read_at = options.last_read_at
+  initialize: (models = [], options = {}) ->
+    @subject = options.subject
     @collections = []
 
   comparator: (model) ->

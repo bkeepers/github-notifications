@@ -1,3 +1,0 @@
-<%= actor.login %>
-<%= event %>
-<time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
