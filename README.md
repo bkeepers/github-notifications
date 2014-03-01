@@ -4,8 +4,7 @@ This is an experiment with creating a more rich interface for consuming [GitHub 
 
 ## Local Development
 
-To run the app locally, make sure you have a working Node.js and Ruby (for
-Sass/Compass) environment, and then from the terminal run:
+To run the app locally, make sure you have a working Node.js environment, and then from the terminal run:
 
     $ script/bootstrap
     $ script/server

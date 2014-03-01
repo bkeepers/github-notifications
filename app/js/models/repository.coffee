@@ -15,4 +15,5 @@ class app.Models.Repository extends Backbone.Model
     _.extend super, unread_count: @unread_count()
 
   decrement: ->
+    return if @get('unread_count') == 0
     @set('unread_count', @get('unread_count') - 1)

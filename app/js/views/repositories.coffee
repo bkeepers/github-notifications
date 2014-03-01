@@ -3,6 +3,7 @@ class app.Views.Repositories extends Backbone.View
 
   initialize: =>
     @collection.fetch()
+    @collection.startPolling()
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
 
@@ -11,4 +12,5 @@ class app.Views.Repositories extends Backbone.View
     @$el.append view.render().el
 
   addAll: ->
+    @$el.empty()
     @collection.each(@add, @)
