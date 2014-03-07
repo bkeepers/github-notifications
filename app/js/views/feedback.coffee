@@ -17,10 +17,9 @@ class app.Views.Feedback extends Backbone.View
 
   submit: (e) ->
     e.preventDefault()
-    @model.save text: @$('textarea').val()
+    @model.save title: @$('[name=title]').val(), body: @$('[name=body]').val()
 
   confirm: =>
-    console.log @model.toJSON()
     @$el.html @confirmTemplate(@model.toJSON())
 
   remove: (e) =>
