@@ -1,0 +1,12 @@
+<div class="overlay">
+  <div class="modal">
+    <a href="#" class="octicon octicon-remove-close close"></a>
+    <form>
+      <h2 class="header">Thanks for your feedback!</h2>
+      <p>
+        Your feedback has been noted. You can follow the discussion about it at
+        <a target="_blank" href="<%= html_url %>">bkeepers/github-notifications#<%= number %></a>.
+      </p>
+    </form>
+  </div>
+</div>

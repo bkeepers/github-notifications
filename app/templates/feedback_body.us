@@ -1,0 +1,8 @@
+<%= body %>
+
+<table>
+  <tr>
+    <th>Browser</th>
+    <td><%= navigator.userAgent %></td>
+  </tr>
+</table>

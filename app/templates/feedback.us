@@ -1,0 +1,13 @@
+<div class="overlay">
+  <div class="modal">
+    <a href="#" class="octicon octicon-remove-close close"></a>
+    <form>
+      <h2 class="header">I just want to let you know…</h2>
+      <textarea name="body" placeholder=""></textarea>
+      <p class="note obscure-links">This will be posted to a public issue on <a target="_blank" href="https://github.com/bkeepers/github-notifications">bkeepers/github-notifications</a>.</p>
+      <div class="form-actions">
+        <button class="button primary">Send Feedback</button>
+      </div>
+    </form>
+  </div>
+</div>
