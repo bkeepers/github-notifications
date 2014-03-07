@@ -34,6 +34,10 @@ class app.Views.Shortcuts extends Backbone.View
       key: 'K'
       action: 'prevRepo'
 
+    'Send Feedback':
+      key: '!'
+      action: -> Backbone.history.navigate 'feedback', trigger: true
+
   # Put undocumented shortcuts here
   keyboardEvents:
     'ctrl+`': 'toggleDevelopmentMode'
