@@ -7,6 +7,10 @@ class app.Views.Feedback extends Backbone.View
     'click .close': 'remove'
     'click .overlay': 'closeIfClickedOutside'
 
+  keyboardEvents:
+    'esc': 'remove'
+    'meta+enter': 'submit'
+
   initialize: ->
     @model = new app.Models.Feedback
     @listenTo @model, 'sync', @confirm
@@ -16,7 +20,7 @@ class app.Views.Feedback extends Backbone.View
     $(document.body).append @el
 
   submit: (e) ->
-    e.preventDefault()
+    e.preventDefault() if e
     @model.save title: @$('[name=title]').val(), body: @$('[name=body]').val()
 
   confirm: =>
