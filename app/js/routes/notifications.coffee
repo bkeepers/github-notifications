@@ -5,6 +5,7 @@ class app.Routers.Notifications extends Backbone.Router
     'all': 'all'
     'r/:id': 'repository'
     'n/:id': 'show'
+    'feedback': 'feedback'
 
   initialize: (options)->
     @collection = options.notifications
@@ -34,6 +35,10 @@ class app.Routers.Notifications extends Backbone.Router
     model = @collection.get(id)
     return unless model
     new app.Views.NotificationDetailsView(model: model)
+
+  feedback: ->
+    view = new app.Views.Feedback
+    view.render()
 
   # FIXME: total hack, but can't think of a better way to do it
   selectItem: ->
