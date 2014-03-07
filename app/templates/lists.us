@@ -12,6 +12,6 @@
     <span class="title">Repositories</span>
   </ul>
 
-  <a href="#feedback">Send Feedback</a>
+  <a id="send-feedback" href="#feedback">Send Feedback</a>
 
 </div>

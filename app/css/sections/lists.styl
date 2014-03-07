@@ -1,5 +1,7 @@
+sidebar-color = desaturate(darken(header-color, 65%), 60%);
+
 #lists {
-  background-color: desaturate(darken(header-color, 65%), 60%);
+  background-color: sidebar-color;
   color: #eee;
   font-size: 13px;
   box-shadow: inset -1px 0 0 #000, inset -2px 0 0 #333, 1px 0 2px rgba(#000, .25);
@@ -74,4 +76,23 @@
 
 .list-unread-count {
   float: right;
+}
+
+#send-feedback {
+  display: block;
+  text-align: center;
+  color: rgba(#fff, 0.6);
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: inset 0 0 1px lighten(sidebar-color, 15%), 0 0 1px rgba(#000, 0.2);
+  margin: 20px;
+  padding: 10px;
+  border-radius: 2px;
+  background-color: lighten(sidebar-color, 10%);
+  color: #fff;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
 }
