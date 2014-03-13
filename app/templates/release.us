@@ -9,8 +9,7 @@
   </div>
 
   <div class="conversation-content markdown-body">
-    <!-- FIXME: GitHub API is not returning body_html for releases. Fix is pending. -->
-    <pre><%= body %></pre>
+    <%= body_html %>
     <a href="<%= zipball_url %>" class="button">
       <span class="octicon octicon-file-zip"></span>
       Source code (zip)
