@@ -12,7 +12,6 @@ class app.Views.NotificationDetailsView extends Backbone.View
   events:
     'click a': 'clickLink'
     'click *[rel=back]': 'unfocus'
-    'click header h1 a': 'open'
 
   # Required options:
   # model - a notification object
