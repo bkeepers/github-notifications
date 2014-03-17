@@ -3,7 +3,7 @@ sidebar-color = desaturate(darken(header-color, 65%), 60%);
 #lists {
   background-color: sidebar-color;
   color: #eee;
-  font-size: 13px;
+  font-size: 12px;
   box-shadow: inset -1px 0 0 #000, inset -2px 0 0 #333, 1px 0 2px rgba(#000, .25);
   -webkit-font-smoothing: antialiased;
 
@@ -30,7 +30,7 @@ sidebar-color = desaturate(darken(header-color, 65%), 60%);
 
   .list {
     a {
-      color: #999;
+      color: #ccc;
       padding: 0 18px;
       line-height: 26px;
       transition: color .2s ease;
@@ -41,18 +41,19 @@ sidebar-color = desaturate(darken(header-color, 65%), 60%);
 
       &.selected {
         color: #fff;
-        background: rgba(#fff, 0.05);
+        background: rgba(#fff, 0.075);
+        box-shadow: inset 2px 0 0 0 rgba(brand-blue, 0.65);
       }
     }
   }
 
   .primary {
     display: block;
-    font-size: 16px;
+    font-size: 14px;
     margin-bottom: 18px;
 
     a {
-      line-height: 34px;
+      line-height: 36px;
     }
   }
 
@@ -63,19 +64,26 @@ sidebar-color = desaturate(darken(header-color, 65%), 60%);
     font-size: 11px;
     line-height: 34px;
     padding: 0 18px;
+    margin: 18px 0 0 0;
   }
 }
 
 
 .list-name {
   @extend .nowrap;
-  max-width: 85%;
+  max-width: 80%;
   display: block;
   float: left;
 }
 
 .list-unread-count {
   float: right;
+  background: rgba(#000, 0.2);
+  width: 2.5em;
+  text-align: center;
+  border-radius: 20px;
+  line-height: 18px;
+  margin-top: 4px;
 }
 
 #send-feedback {

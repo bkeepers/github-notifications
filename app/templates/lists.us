@@ -5,8 +5,8 @@
   <ul id="filters" class="primary">
   </ul>
 
+  <h2 class="title">Repositories</h2>
   <ul id="repositories">
-    <span class="title">Repositories</span>
   </ul>
 
   <a id="send-feedback" href="#feedback">Send Feedback</a>
