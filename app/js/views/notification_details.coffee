@@ -5,7 +5,6 @@ class app.Views.NotificationDetailsView extends Backbone.View
   keyboardEvents:
     'm': -> @model.subscription.toggle()
     'M': 'muteAndNext'
-    's': -> @model.toggleStar()
     'o': 'open'
     'r': 'reply'
 

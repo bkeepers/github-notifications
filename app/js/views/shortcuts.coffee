@@ -18,10 +18,6 @@ class app.Views.Shortcuts extends Backbone.View
       key: 'g p'
       action: -> Backbone.history.navigate 'participating', trigger: true
 
-    'Go to Starred notifications':
-      key: 'g s'
-      action: -> Backbone.history.navigate 'starred', trigger: true
-
     'Open help for keyboard shortcuts':
       key: '?'
       action: 'help'
