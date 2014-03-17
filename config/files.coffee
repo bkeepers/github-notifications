@@ -29,7 +29,6 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "files",
       "vendor/bower/moment/moment.js",
       "vendor/bower/mousetrap/mousetrap.js",
       "vendor/bower/backbone.mousetrap/backbone.mousetrap.js",
-      "vendor/bower/backbone.localStorage/backbone.localStorage.js",
       "vendor/bower/jQuery.scrollIntoView/jquery.scrollIntoView.js",
       "vendor/bower/fastclick/lib/fastclick.js",
       "vendor/js/**/*.js"

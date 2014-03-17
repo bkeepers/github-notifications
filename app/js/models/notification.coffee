@@ -7,7 +7,7 @@ class app.Models.Notification extends Backbone.Model
     @on 'selected', @read
 
   toJSON: ->
-    _.extend super, subject: @subject.toJSON(), starred: @isStarred()
+    _.extend super, subject: @subject.toJSON()
 
   # Mark the notification as read.
   read: ->
@@ -20,21 +20,3 @@ class app.Models.Notification extends Backbone.Model
       repository?.decrement()
 
     @save {unread: false}, {patch: true}
-
-  # Star the notification
-  star: ->
-    @collection.starred.create(@toJSON())
-    @trigger 'change'
-
-  # Unstar the notification
-  unstar: ->
-    @collection.starred.get(@id)?.destroy()
-    @trigger 'change'
-
-  # Star or unstar the notification
-  toggleStar: ->
-    if @isStarred() then @unstar() else @star()
-
-  # Returns true if the notification is starred
-  isStarred: ->
-    @collection.starred.get(@id)?

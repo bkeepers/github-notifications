@@ -1,4 +1,4 @@
-# View all, participating, starred or notifications by repository
+# View all or participating or notifications by repository
 class app.Views.Lists extends Backbone.View
   el: '#lists'
   template: JST['app/templates/lists.us']

@@ -4,8 +4,6 @@ class app.Collections.Notifications extends Backbone.Collection
 
   initialize: ->
     @on 'reset', -> @select(undefined)
-    @starred = new app.Collections.Starred()
-    @starred.fetch()
 
   # Mark all notifications as read
   read: (options = {}) ->

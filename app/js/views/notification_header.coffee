@@ -3,9 +3,6 @@ class app.Views.NotificationHeader extends Backbone.View
   template: JST['app/templates/notification_header.us']
   tagName: 'header'
 
-  events:
-    'click .star': -> @model.toggleStar()
-
   # Required options:
   # model - a notification object
   initialize: ->
