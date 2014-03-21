@@ -7,7 +7,7 @@ class app.Views.Banner extends app.Views.Comment
   #            Models.PullRequest#banner, and Models.Commit#banner
   initialize: (options) ->
     @template = options.template
-    @listenTo @model, 'change', @render
+    @model.ready @render
 
   # Ignore all events defined by the Comment view
   events: {}

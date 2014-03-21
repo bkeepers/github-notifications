@@ -9,7 +9,8 @@ class app.Models.Subject extends Backbone.Model
     @url = @get('url')
     @notification = options.notification
     @comments = new app.Collections.Comments([], last_read_at: @get('last_read_at'))
-    @on 'change', ->
+    @once 'change', ->
+      @isReady = true
       @comments.add @ if @get('body_html')
       @comments.url = @get('comments_url')
 
@@ -19,3 +20,10 @@ class app.Models.Subject extends Backbone.Model
 
   toJSON: ->
     _.extend super, octicon: @octicon
+
+  # Execute the callback function when the subject is loaded.
+  ready: (fn) ->
+    if @isReady
+      fn.call(@)
+    else
+      @once 'change', fn
