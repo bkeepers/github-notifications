@@ -52,3 +52,9 @@ class app.Views.Subject extends Backbone.View
 
   selectPrevious: ->
     comment.select scroll: true if comment = @model.comments.prev()
+
+  hide: ->
+    @unbindKeyboardEvents()
+
+  show: ->
+    @bindKeyboardEvents()
