@@ -26,14 +26,17 @@ class App
     setInterval @update, 60 * 1000
     $(window).on 'beforeunload', @update
 
+  # DOM is ready, initialize the App
   ready: =>
     FastClick.attach(document.body)
     $(document.body).addClass('standalone') if window.navigator.standalone
     @authenticate() unless window.jasmine?
 
+  # Kick off authentication
   authenticate: ->
     new this.Models.Authentication()
 
+  # User is authenticated, start the main app.
   start: ->
     $('#app').show()
     @repositories = new this.Collections.Repositories()
@@ -54,6 +57,7 @@ class App
 
     Backbone.history.navigate 'all', trigger: true
 
+  # Notifictions do not get marked as read when in development mode.
   isDevelopment: ->
     localStorage['dev']?
 
