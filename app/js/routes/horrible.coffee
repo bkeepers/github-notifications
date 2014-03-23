@@ -1,14 +1,13 @@
-# Everythign about this router is horrible. All of it will be refactored out and
-# some glorious day this nastiness can be deleted.
+# Everything about this router is horrible. All of it will be refactored out and
+# some glorious day this nastiness can be deleted. Instead of trigging routes
+# and performing logic in them, the router should just call methods on the model
+# to put the app in the desired state.
+# See http://lostechies.com/derickbailey/2011/08/28/dont-execute-a-backbone-js-route-handler-from-your-code/
 class App.Routers.Horrible extends Backbone.Router
-  # Cache for recently loaded notification views
-  viewCache: new Cache(10)
-
   routes:
     'participating': 'participating'
     'all': 'all'
     'r/:id': 'repository'
-    'n/:id': 'show'
     'feedback': 'feedback'
 
   initialize: (options)->
@@ -32,20 +31,8 @@ class App.Routers.Horrible extends Backbone.Router
     model.select()
     @view.load(url: model.notifications_url())
 
-  show: (id) ->
-    model = @collection.get(id)
-    return unless model
-    @notification?.hide()
-
-    model.select()
-    @notification = @viewCache.fetch model.cid,
-      -> new App.Views.NotificationDetailsView(model: model)
-    $('#details').html(@notification.el)
-    @notification.show()
-
   feedback: ->
-    view = new App.Views.Feedback
-    view.render()
+    new App.Views.Feedback().render()
 
   # FIXME: total hack, but can't think of a better way to do it
   selectItem: ->

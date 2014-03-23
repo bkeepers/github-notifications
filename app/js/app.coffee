@@ -1,6 +1,7 @@
 class @App
   @Models: {}
   @Collections: {}
+  @Controllers: {}
   @Views: {}
   @Routers: {}
 
@@ -37,6 +38,9 @@ class @App
     $('#app').show()
     @repositories = new App.Collections.Repositories()
     @notifications = new App.Collections.Notifications()
+
+    new App.Routers.Notifications(@notifications)
+    new App.Controllers.Notifications(@notifications)
 
     new App.Views.Lists(repositories: @repositories)
     new App.Routers.Horrible(

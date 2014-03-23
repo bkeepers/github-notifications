@@ -69,7 +69,7 @@ class App.Views.Shortcuts extends Backbone.View
     Backbone.history.navigate "#r/#{repo.id}", trigger: true
 
   select: (notification) ->
-    Backbone.history.navigate "#n/#{notification.id}", trigger: true
+    notification?.select()
 
   render: ->
     @$('#shortcuts').html(@template(@))
