@@ -23,8 +23,10 @@
       <div id="threads" class="responsive-content sidebar pane">
         <header></header>
       </div>
-      <div id="details" class="pane">
-        <header>&nbsp;</header>
+      <div id="details">
+        <div class="pane">
+          <header>&nbsp;</header>
+        </div>
       </div>
     </div>
     <div id="shortcuts" style="display:none;">

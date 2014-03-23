@@ -1,6 +1,6 @@
 # Root view for all the details of a notification
 class app.Views.NotificationDetailsView extends Backbone.View
-  el: '#details'
+  className: 'pane'
 
   keyboardEvents:
     'm': -> @model.subscription.toggle()

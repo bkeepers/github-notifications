@@ -30,7 +30,8 @@ class app.Routers.Notifications extends Backbone.Router
   show: (id) ->
     model = @collection.get(id)
     return unless model
-    new app.Views.NotificationDetailsView(model: model)
+    view = new app.Views.NotificationDetailsView(model: model)
+    $('#details').html(view.el)
 
   feedback: ->
     view = new app.Views.Feedback
