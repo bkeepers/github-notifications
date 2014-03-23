@@ -22,10 +22,6 @@ class App
       # proper local caching is implemented.
       cache: false
 
-    # Update app cache every 60 seconds and when leaving the page
-    setInterval @update, 60 * 1000
-    $(window).on 'beforeunload', @update
-
   # DOM is ready, initialize the App
   ready: =>
     FastClick.attach(document.body)
@@ -68,10 +64,6 @@ class App
     else
       localStorage['dev'] = true
       console.log 'Development mode enabled'
-
-  # Update the application cache
-  update: ->
-    applicationCache.update() unless applicationCache.status == applicationCache.UNCACHED
 
 window.app = new App()
 
