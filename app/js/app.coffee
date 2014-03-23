@@ -24,7 +24,6 @@ class App
 
   # DOM is ready, initialize the App
   ready: =>
-    FastClick.attach(document.body)
     $(document.body).addClass('standalone') if window.navigator.standalone
     @authenticate() unless window.jasmine?
 
