@@ -37,6 +37,14 @@ window.app = _.extend {}, Backbone.Events,
   isDevelopment: ->
     localStorage['dev']?
 
+  toggleDevelopment: ->
+    if localStorage['dev']
+      localStorage.removeItem('dev')
+      console.log 'Development mode disabled'
+    else
+      localStorage['dev'] = true
+      console.log 'Development mode enabled'
+
   update: ->
     applicationCache.update() unless applicationCache.status == applicationCache.UNCACHED
 
