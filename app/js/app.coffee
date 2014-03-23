@@ -39,7 +39,7 @@ class @App
     @notifications = new App.Collections.Notifications()
 
     new App.Views.Lists(repositories: @repositories)
-    new App.Routers.Notifications(
+    new App.Routers.Horrible(
       notifications: @notifications,
       repositories: @repositories
     )

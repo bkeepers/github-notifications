@@ -1,4 +1,6 @@
-class App.Routers.Notifications extends Backbone.Router
+# Everythign about this router is horrible. All of it will be refactored out and
+# some glorious day this nastiness can be deleted.
+class App.Routers.Horrible extends Backbone.Router
   # Cache for recently loaded notification views
   viewCache: new Cache(10)
 
