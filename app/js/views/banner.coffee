@@ -3,7 +3,7 @@ class App.Views.Banner extends App.Views.Comment
 
   # Initialize a banner view with the given template
   #
-  # template - defined by subject. See Models.Issue#banner,
+  # template - defined by subject. See Models.Subject.Issue#banner,
   #            Models.PullRequest#banner, and Models.Commit#banner
   initialize: (options) ->
     @template = options.template

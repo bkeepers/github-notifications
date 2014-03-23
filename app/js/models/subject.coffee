@@ -2,7 +2,7 @@ class App.Models.Subject extends Backbone.Model
   @for: (notification) ->
     subject = notification.get('subject')
     subject.last_read_at = notification.get('last_read_at')
-    model = App.Models[subject.type] || App.Models.Subject
+    model = App.Models.Subject[subject.type] || App.Models.Subject
     new model(subject, notification: notification)
 
   initialize: (attributes, options = {}) ->
