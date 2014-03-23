@@ -1,9 +1,10 @@
 class app.Models.Authentication
-  constructor: ->
+  # callback - function to call once authentication is done
+  constructor: (callback) ->
     $(document).ajaxError @error
 
     if app.Models.Token.get()?
-      @done()
+      @done(callback)
     else
       @oauth()
 
@@ -16,7 +17,7 @@ class app.Models.Authentication
       app.Models.Token.set(null)
       @oauth()
 
-  done: ->
+  done: (callback) ->
     jQuery.ajaxPrefilter (options, originalOptions, xhr) =>
       xhr.setRequestHeader 'Authorization', "token #{app.Models.Token.get()}"
-    app.start()
+    callback()

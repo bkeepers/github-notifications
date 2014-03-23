@@ -29,10 +29,10 @@ class App
 
   # Kick off authentication
   authenticate: ->
-    new this.Models.Authentication()
+    new this.Models.Authentication @start
 
   # User is authenticated, start the main app.
-  start: ->
+  start: =>
     $('#app').show()
     @repositories = new this.Collections.Repositories()
     @notifications = new this.Collections.Notifications()
