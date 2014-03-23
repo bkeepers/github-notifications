@@ -19,4 +19,4 @@ class app.Models.Authentication
   done: ->
     jQuery.ajaxPrefilter (options, originalOptions, xhr) =>
       xhr.setRequestHeader 'Authorization', "token #{app.Models.Token.get()}"
-    app.ready()
+    app.start()

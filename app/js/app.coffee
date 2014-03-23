@@ -1,20 +1,40 @@
-window.app = _.extend {}, Backbone.Events,
+class App
   Models: {}
   Collections: {}
   Views: {}
   Routers: {}
   ajax: $.ajax
+
+  # FIXME: move to config
   endpoints:
     api: 'https://api.github.com/'
     web: 'https://github.com/'
 
-  init: ->
-    @auth()
+  constructor: ->
+    _.extend @, Backbone.Events
 
-  auth: ->
+    $.ajaxSetup
+      headers:
+        'Accept': 'application/vnd.github.v3.html+json'
+
+      # the Notifications API makes heavy use of the If-Modified-Since header for
+      # determining what to respond with. This disables any HTTP caching until
+      # proper local caching is implemented.
+      cache: false
+
+    # Update app cache every 60 seconds and when leaving the page
+    setInterval @update, 60 * 1000
+    $(window).on 'beforeunload', @update
+
+  ready: =>
+    FastClick.attach(document.body)
+    $(document.body).addClass('standalone') if window.navigator.standalone
+    @authenticate() unless window.jasmine?
+
+  authenticate: ->
     new this.Models.Authentication()
 
-  ready: ->
+  start: ->
     $('#app').show()
     @repositories = new this.Collections.Repositories()
     @notifications = new this.Collections.Notifications()
@@ -45,24 +65,11 @@ window.app = _.extend {}, Backbone.Events,
       localStorage['dev'] = true
       console.log 'Development mode enabled'
 
+  # Update the application cache
   update: ->
     applicationCache.update() unless applicationCache.status == applicationCache.UNCACHED
 
+window.app = new App()
+
 # Initialize the app
-$ ->
-  FastClick.attach(document.body)
-  $(document.body).addClass('standalone') if window.navigator.standalone
-  app.init() unless window.jasmine?
-
-$.ajaxSetup
-  headers:
-    'Accept': 'application/vnd.github.v3.html+json'
-
-  # the Notifications API makes heavy use of the If-Modified-Since header for
-  # determining what to respond with. This disables any HTTP caching until
-  # proper local caching is implemented.
-  cache: false
-
-# Update app cache every 60 seconds and when leaving the page
-setInterval app.update, 60 * 1000
-$(window).on 'beforeunload', app.update
+$ app.ready
