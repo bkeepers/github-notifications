@@ -1,4 +1,4 @@
-class app.Views.Threads extends Backbone.View
+class App.Views.Threads extends Backbone.View
   el: '#threads'
   template: JST['app/templates/threads.us']
 
@@ -29,7 +29,7 @@ class app.Views.Threads extends Backbone.View
     @
 
   add: (notification) ->
-    view = new app.Views.Notification(model: notification)
+    view = new App.Views.Notification(model: notification)
     @$('.notification-list').append(view.render().el)
 
   addAll: ->

@@ -1,4 +1,4 @@
-class app.Views.Repository extends Backbone.View
+class App.Views.Repository extends Backbone.View
   template: JST['app/templates/repository.us']
   className: 'list'
   tagName: 'li'

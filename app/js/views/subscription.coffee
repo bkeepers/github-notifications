@@ -1,4 +1,4 @@
-class app.Views.Subscription extends Backbone.View
+class App.Views.Subscription extends Backbone.View
   template: JST['app/templates/subscription.us']
   tagName: 'span'
   className: 'subscription'

@@ -1,8 +1,9 @@
-class App
-  Models: {}
-  Collections: {}
-  Views: {}
-  Routers: {}
+class @App
+  @Models: {}
+  @Collections: {}
+  @Views: {}
+  @Routers: {}
+
   ajax: $.ajax
 
   # FIXME: move to config
@@ -29,21 +30,21 @@ class App
 
   # Kick off authentication
   authenticate: ->
-    new this.Models.Authentication @start
+    new App.Models.Authentication @start
 
   # User is authenticated, start the main app.
   start: =>
     $('#app').show()
-    @repositories = new this.Collections.Repositories()
-    @notifications = new this.Collections.Notifications()
+    @repositories = new App.Collections.Repositories()
+    @notifications = new App.Collections.Notifications()
 
-    new this.Views.Lists(repositories: @repositories)
-    new this.Routers.Notifications(
+    new App.Views.Lists(repositories: @repositories)
+    new App.Routers.Notifications(
       notifications: @notifications,
       repositories: @repositories
     )
 
-    new this.Views.Shortcuts(
+    new App.Views.Shortcuts(
       repositories: @repositories,
       notifications: @notifications
     )

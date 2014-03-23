@@ -1,5 +1,5 @@
 # See http://developer.github.com/v3/activity/notifications/#get-a-thread-subscription
-class app.Models.Subscription extends Backbone.Model
+class App.Models.Subscription extends Backbone.Model
   defaults:
     ignored: false
 

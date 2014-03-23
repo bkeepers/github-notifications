@@ -1,5 +1,5 @@
 # An access token acquired via OAuth
-class app.Models.Token
+class App.Models.Token
   @localStorage: window.localStorage
 
   @get: =>

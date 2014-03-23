@@ -1,4 +1,4 @@
-class app.Views.Shortcuts extends Backbone.View
+class App.Views.Shortcuts extends Backbone.View
   template: JST['app/templates/shortcuts.us']
 
   shortcuts:

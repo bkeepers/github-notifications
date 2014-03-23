@@ -1,2 +1,2 @@
-class app.Views.Commit extends app.Views.Subject
+class App.Views.Commit extends App.Views.Subject
   banner: JST['app/templates/commit.us']

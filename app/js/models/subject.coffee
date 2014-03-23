@@ -1,14 +1,14 @@
-class app.Models.Subject extends Backbone.Model
+class App.Models.Subject extends Backbone.Model
   @for: (notification) ->
     subject = notification.get('subject')
     subject.last_read_at = notification.get('last_read_at')
-    model = app.Models[subject.type] || app.Models.Subject
+    model = App.Models[subject.type] || App.Models.Subject
     new model(subject, notification: notification)
 
   initialize: (attributes, options = {}) ->
     @url = @get('url')
     @notification = options.notification
-    @comments = new app.Collections.Comments([], last_read_at: @get('last_read_at'))
+    @comments = new App.Collections.Comments([], last_read_at: @get('last_read_at'))
     @once 'change', ->
       @isReady = true
       @comments.add @ if @get('body_html')

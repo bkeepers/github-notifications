@@ -1,12 +1,12 @@
 # Header view for a notification
-class app.Views.NotificationHeader extends Backbone.View
+class App.Views.NotificationHeader extends Backbone.View
   template: JST['app/templates/notification_header.us']
   tagName: 'header'
 
   # Required options:
   # model - a notification object
   initialize: ->
-    @subscription = new app.Views.Subscription(model: @model.subscription)
+    @subscription = new App.Views.Subscription(model: @model.subscription)
     @listenTo @model.subject, 'change', @render
     @listenTo @model, 'change', @render
 

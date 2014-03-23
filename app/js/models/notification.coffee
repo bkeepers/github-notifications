@@ -1,9 +1,9 @@
 # See http://developer.github.com/v3/activity/notifications/
-class app.Models.Notification extends Backbone.Model
+class App.Models.Notification extends Backbone.Model
   initialize: ->
     @url = @get('url')
-    @subject = new app.Models.Subject.for(@)
-    @subscription = new app.Models.Subscription(id: @id, url: @url + '/subscription')
+    @subject = new App.Models.Subject.for(@)
+    @subscription = new App.Models.Subscription(id: @id, url: @url + '/subscription')
     @on 'selected', @read
 
   toJSON: ->
@@ -16,6 +16,7 @@ class app.Models.Notification extends Backbone.Model
     return if app.isDevelopment()
 
     if @get('unread')
+      # FIXME: don't reference global `app.repositories`
       repository = app.repositories.get(@get("repository").id)
       repository?.decrement()
 

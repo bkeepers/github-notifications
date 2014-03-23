@@ -1,5 +1,5 @@
 # Form to create a new comment
-class app.Views.CreateComment extends Backbone.View
+class App.Views.CreateComment extends Backbone.View
   template: JST['app/templates/create_comment.us']
   className: 'write-content conversation-comment conversation-content'
 

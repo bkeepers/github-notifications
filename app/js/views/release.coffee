@@ -1,4 +1,4 @@
-class app.Views.Release extends app.Views.Subject
+class App.Views.Release extends App.Views.Subject
   banner: JST['app/templates/release.us']
 
   render: ->

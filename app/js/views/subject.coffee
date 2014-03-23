@@ -3,7 +3,7 @@
 # This view is responsible for showing most of the relevant details of the
 # thing that the notification is for, which should be an Issue, PullRequest,
 # or Commit.
-class app.Views.Subject extends Backbone.View
+class App.Views.Subject extends Backbone.View
   template: JST['app/templates/subject.us']
   className: 'subject content loading'
 
@@ -13,7 +13,7 @@ class app.Views.Subject extends Backbone.View
 
   # Chose the appropriate view class for the given subject
   @for: (model) ->
-    app.Views[model.get('type')] || app.Views.Subject
+    App.Views[model.get('type')] || App.Views.Subject
 
   # Required options:
   # notification - a Notification model
@@ -21,7 +21,7 @@ class app.Views.Subject extends Backbone.View
   initialize: (options) ->
     @notification = options.notification
 
-    @bannerView = new app.Views.Banner(model: @model, template: @banner) if @banner
+    @bannerView = new App.Views.Banner(model: @model, template: @banner) if @banner
 
     @render()
 
@@ -35,9 +35,9 @@ class app.Views.Subject extends Backbone.View
 
   loadComments: =>
     if url = @model.comments.url
-      @comments = new app.Views.Comments(collection: @model.comments, el: @$('.comments'))
+      @comments = new App.Views.Comments(collection: @model.comments, el: @$('.comments'))
       @model.comments.on 'sync', @loaded
-      @$el.append new app.Views.CreateComment(collection: @model.comments).el
+      @$el.append new App.Views.CreateComment(collection: @model.comments).el
 
   loaded: =>
     @$el.removeClass('loading')

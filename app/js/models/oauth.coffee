@@ -7,9 +7,11 @@
 #
 # POST /authenticate/:code
 # Uses the code to complete OAuth and return a JSON object with a token
-class app.Models.OAuth
+class App.Models.OAuth
   location: window.location
-  url: app.endpoints.web + "login/oauth/authorize"
+  
+  url: ->
+    app.endpoints.web + "login/oauth/authorize"
 
   # Finish OAuth if there is a code in the parameters, otherwise initate OAuth
   authorize: ->
@@ -30,7 +32,7 @@ class app.Models.OAuth
   # scope     - The OAuth scope needed by the application.
   #             See: http://developer.github.com/v3/oauth/#scopes
   redirect: (options) =>
-    @location.assign "#{@url}?client_id=#{options.client_id}&scope=#{options.scope}"
+    @location.assign "#{@url()}?client_id=#{options.client_id}&scope=#{options.scope}"
 
   getCode: ->
     match = @location.href.match(/\?code=(.*)/)
@@ -41,7 +43,7 @@ class app.Models.OAuth
       dataType: "json"
       type: 'POST'
       url: "/authenticate/#{code}"
-      success: (data) -> app.Models.Token.set(data.token)
+      success: (data) -> App.Models.Token.set(data.token)
 
   done: =>
     # Redirect to get code out of URL

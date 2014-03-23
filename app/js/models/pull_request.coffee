@@ -1,2 +1,2 @@
-class app.Models.PullRequest extends app.Models.Subject
+class App.Models.PullRequest extends App.Models.Subject
   octicon: 'git-pull-request'

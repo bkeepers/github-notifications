@@ -1,4 +1,4 @@
-class app.Routers.Notifications extends Backbone.Router
+class App.Routers.Notifications extends Backbone.Router
   # Cache for recently loaded notification views
   viewCache: new Cache(10)
 
@@ -15,7 +15,7 @@ class app.Routers.Notifications extends Backbone.Router
 
     @on 'route', @selectItem
 
-    @view = new app.Views.Threads(collection: @collection)
+    @view = new App.Views.Threads(collection: @collection)
     @view.render()
 
   participating: ->
@@ -37,12 +37,12 @@ class app.Routers.Notifications extends Backbone.Router
 
     model.select()
     @notification = @viewCache.fetch model.cid,
-      -> new app.Views.NotificationDetailsView(model: model)
+      -> new App.Views.NotificationDetailsView(model: model)
     $('#details').html(@notification.el)
     @notification.show()
 
   feedback: ->
-    view = new app.Views.Feedback
+    view = new App.Views.Feedback
     view.render()
 
   # FIXME: total hack, but can't think of a better way to do it
