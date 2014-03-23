@@ -1,6 +1,6 @@
 # Root view for all the details of a notification
 class app.Views.NotificationDetailsView extends Backbone.View
-  el: '#details'
+  className: 'pane'
 
   keyboardEvents:
     'm': -> @model.subscription.toggle()
@@ -18,7 +18,6 @@ class app.Views.NotificationDetailsView extends Backbone.View
     view = app.Views.Subject.for(@model.subject)
     @subject = new view(model: @model.subject, notification: @model)
     @header = new app.Views.NotificationHeader(model: @model)
-    @model.select()
     @render()
 
   render: ->
@@ -53,3 +52,12 @@ class app.Views.NotificationDetailsView extends Backbone.View
   reply:(e) ->
     e.preventDefault()
     @$('textarea').focus()
+
+  hide: ->
+    @$el.detach()
+    @unbindKeyboardEvents()
+    @subject.hide()
+
+  show: ->
+    @bindKeyboardEvents()
+    @subject.show()

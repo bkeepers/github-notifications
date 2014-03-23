@@ -23,9 +23,9 @@ class app.Views.Subject extends Backbone.View
 
     @bannerView = new app.Views.Banner(model: @model, template: @banner) if @banner
 
-    @listenTo @model, 'change', @loadComments
     @render()
 
+    @model.ready @loadComments
     @model.fetch() if @model.url
 
   render: ->
@@ -33,7 +33,7 @@ class app.Views.Subject extends Backbone.View
     app.trigger 'render', @
     @$('.comments').append(@bannerView.el) if @banner
 
-  loadComments: ->
+  loadComments: =>
     if url = @model.comments.url
       @comments = new app.Views.Comments(collection: @model.comments, el: @$('.comments'))
       @model.comments.on 'sync', @loaded
@@ -52,3 +52,9 @@ class app.Views.Subject extends Backbone.View
 
   selectPrevious: ->
     comment.select scroll: true if comment = @model.comments.prev()
+
+  hide: ->
+    @unbindKeyboardEvents()
+
+  show: ->
+    @bindKeyboardEvents()
