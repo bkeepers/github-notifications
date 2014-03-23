@@ -1,4 +1,7 @@
 class app.Routers.Notifications extends Backbone.Router
+  # Cache for recently loaded notification views
+  viewCache: new Cache(10)
+
   routes:
     'participating': 'participating'
     'all': 'all'
@@ -30,7 +33,8 @@ class app.Routers.Notifications extends Backbone.Router
   show: (id) ->
     model = @collection.get(id)
     return unless model
-    view = new app.Views.NotificationDetailsView(model: model)
+    view = @viewCache.fetch model.cid,
+      -> new app.Views.NotificationDetailsView(model: model)
     $('#details').html(view.el)
 
   feedback: ->
