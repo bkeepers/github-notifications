@@ -22,8 +22,7 @@ _.extend Backbone.Collection.prototype,
     previous = @selected
     @selected = model
     previous.trigger 'unselected', model, args... if previous
-    model.trigger 'selected', previous, args... if model
-    @trigger 'selected', model, previous, args...
+    model.trigger 'selected', model, previous, args... if model
 
   next: ->
     index = @indexOf(@selected)
