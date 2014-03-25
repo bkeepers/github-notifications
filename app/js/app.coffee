@@ -42,8 +42,6 @@ class @App
     new App.Routers.Notifications(@notifications)
     new App.Controllers.Notifications(@notifications)
 
-    new App.Views.Lists(repositories: @repositories)
-
     new App.Routers.Filters(@repositories)
     new App.Controllers.Filters(
       notifications: @notifications,

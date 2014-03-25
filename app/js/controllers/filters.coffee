@@ -10,6 +10,8 @@ class App.Controllers.Filters
     @view = new App.Views.Threads(collection: @notifications)
     @view.render()
 
+    new App.Views.Lists(repositories: @repositories)
+
   participating: ->
     @view.load(data: {participating: true})
 
