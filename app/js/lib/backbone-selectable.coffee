@@ -24,6 +24,9 @@ _.extend Backbone.Collection.prototype,
     previous.trigger 'unselected', model, args... if previous
     model.trigger 'selected', model, previous, args... if model
 
+  unselect: (args...) ->
+    @select null, args...
+
   next: ->
     index = @indexOf(@selected)
     @at index + 1 if index >= 0
@@ -38,7 +41,7 @@ _.extend Backbone.Model.prototype,
     @collection?.select(@, args...)
 
   unselect: (args...) ->
-    @collection?.select(null, args...)
+    @collection?.unselect(args...)
 
   isSelected: ->
     @collection?.selected == @

@@ -1,11 +1,18 @@
 class App.Routers.Filters extends Backbone.Router
   routes:
-    'participating': 'participating'
-    'all': 'all'
     'r/:id': 'repository'
 
-  initialize: (@collection) ->
-    @collection.on 'selected', (model) => @navigate "#r/#{model.id}" if model
+  initialize: (options) ->
+    @route /^(all|participating)$/, 'filter'
+
+    @filters = options.filters
+    @repositories = options.repositories
+
+    @filters.on 'selected', (model) => @navigate "##{model.id}" if model
+    @repositories.on 'selected', (model) => @navigate "#r/#{model.id}" if model
+
+  filter: (id) ->
+    @filters.get(id)?.select()
 
   repository: (id) ->
-    @collection.get(id)?.select()
+    @repositories.get(id)?.select()

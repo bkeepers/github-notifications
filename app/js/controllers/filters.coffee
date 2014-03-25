@@ -1,23 +1,26 @@
 class App.Controllers.Filters
   constructor: (options) ->
+    @filters = options.filters
     @repositories = options.repositories
     @notifications = options.notifications
 
+    @filters.on 'selected', @selectFilter
+    @repositories.on 'selected', @selectRepository
+
     @repositories.fetch()
     @repositories.startPolling()
-    @repositories.on 'selected', @repository
+
+    new App.Views.Lists(repositories: @repositories, filters: @filters)
 
     @view = new App.Views.Threads(collection: @notifications)
     @view.render()
 
-    new App.Views.Lists(repositories: @repositories)
+  selectFilter: (filter) =>
+    return unless filter
+    @repositories.unselect()
+    @view.load data: filter.get('data')
 
-  participating: ->
-    @view.load(data: {participating: true})
-
-  all: ->
-    @view.load()
-
-  repository: (model) =>
+  selectRepository: (model) =>
     return unless model
+    @filters.unselect()
     @view.load(url: model.notifications_url())

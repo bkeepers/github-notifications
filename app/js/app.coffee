@@ -36,17 +36,24 @@ class @App
   # User is authenticated, start the main app.
   start: =>
     $('#app').show()
+
+    @filters = new App.Collections.Filters([
+      {id: 'all', name: 'All', data: {}},
+      {id: 'participating', name: 'Participating', data: {participating: true}}
+    ])
     @repositories = new App.Collections.Repositories()
     @notifications = new App.Collections.Notifications()
 
+    new App.Routers.Filters
+      filters: @filters
+      repositories: @repositories      
+    new App.Controllers.Filters
+      filters: @filters
+      repositories: @repositories
+      notifications: @notifications
+
     new App.Routers.Notifications(@notifications)
     new App.Controllers.Notifications(@notifications)
-
-    new App.Routers.Filters(@repositories)
-    new App.Controllers.Filters(
-      notifications: @notifications,
-      repositories: @repositories
-    )
 
     new App.Views.Shortcuts(
       repositories: @repositories,

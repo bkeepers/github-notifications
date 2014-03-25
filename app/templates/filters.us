@@ -1,0 +1,3 @@
+<% _.each(filters, function(filter) { %>
+<li class="list"><a href="#<%= filter.id %>"><%= filter.name %></a></li>
+<% }) %>
