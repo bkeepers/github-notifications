@@ -1,4 +1,4 @@
-class App.Routers.Horrible extends Backbone.Router
+class App.Routers.Misc extends Backbone.Router
   routes:
     'feedback': 'feedback'
 
