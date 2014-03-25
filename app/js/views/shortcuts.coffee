@@ -61,12 +61,12 @@ class App.Views.Shortcuts extends Backbone.View
   nextRepo: (e) ->
     e.preventDefault()
     repo = @repositories.next() || @repositories.first()
-    Backbone.history.navigate "#r/#{repo.id}", trigger: true
+    repo?.select()
 
   prevRepo: (e) ->
     e.preventDefault()
     repo = @repositories.prev() || @repositories.last()
-    Backbone.history.navigate "#r/#{repo.id}", trigger: true
+    repo?.select()
 
   select: (notification) ->
     notification?.select()

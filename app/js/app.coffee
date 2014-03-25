@@ -43,7 +43,10 @@ class @App
     new App.Controllers.Notifications(@notifications)
 
     new App.Views.Lists(repositories: @repositories)
-    new App.Routers.Horrible(
+    new App.Routers.Horrible
+
+    new App.Routers.Filters(@repositories)
+    new App.Controllers.Filters(
       notifications: @notifications,
       repositories: @repositories
     )

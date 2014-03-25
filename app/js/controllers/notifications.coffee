@@ -9,7 +9,6 @@ class App.Controllers.Notifications
     return unless notification
     @selected?.hide()
 
-    # notification.select()
     @selected = @cache.fetch notification.cid,
       -> new App.Views.NotificationDetailsView(model: notification)
     # FIXME: replace with app layout
