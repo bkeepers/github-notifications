@@ -1,6 +1,7 @@
 class @App
   @Models: {}
   @Collections: {}
+  @Controllers: {}
   @Views: {}
   @Routers: {}
 
@@ -35,19 +36,31 @@ class @App
   # User is authenticated, start the main app.
   start: =>
     $('#app').show()
+
+    @filters = new App.Collections.Filters([
+      {id: 'all', name: 'All', data: {}},
+      {id: 'participating', name: 'Participating', data: {participating: true}}
+    ])
     @repositories = new App.Collections.Repositories()
     @notifications = new App.Collections.Notifications()
 
-    new App.Views.Lists(repositories: @repositories)
-    new App.Routers.Horrible(
-      notifications: @notifications,
+    new App.Routers.Filters
+      filters: @filters
+      repositories: @repositories      
+    new App.Controllers.Filters
+      filters: @filters
       repositories: @repositories
-    )
+      notifications: @notifications
+
+    new App.Routers.Notifications(@notifications)
+    new App.Controllers.Notifications(@notifications)
 
     new App.Views.Shortcuts(
       repositories: @repositories,
       notifications: @notifications
     )
+
+    new App.Routers.Misc
 
     Backbone.history.start() unless Backbone.History.started
 

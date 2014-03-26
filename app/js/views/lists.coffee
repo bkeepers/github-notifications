@@ -10,6 +10,7 @@ class App.Views.Lists extends Backbone.View
   initialize: (options) ->
     @render()
     @repositories = new App.Views.Repositories(collection: options.repositories)
+    @filters = new App.Views.Filters(collection: options.filters)
 
   render: ->
     @$el.html @template()

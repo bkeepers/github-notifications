@@ -32,7 +32,7 @@ class App.Views.Comment extends Backbone.View
     @$el.toggleClass('collapsed expanded')
 
   # This comment was selected
-  selected: (previous, options = {}) ->
+  selected: (model, previous, options = {}) ->
     @bindKeyboardEvents()
     @$el.addClass('selected')
     @scrollIntoView(previous) if options.scroll

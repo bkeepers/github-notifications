@@ -12,6 +12,7 @@
 module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "files",
   coffee:
     app: [
+      "app/js/lib/*.coffee"
       "app/js/app.coffee",
       "app/js/models/**/*.coffee",
       "app/js/views/comment.coffee",

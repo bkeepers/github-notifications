@@ -1,14 +1,9 @@
-class App.Views.Repository extends Backbone.View
-  template: JST['app/templates/repository.us']
+class App.Views.Filter extends Backbone.View
+  template: _.template('<a href="#<%= id %>"><%= name %></a>')
   className: 'list'
   tagName: 'li'
 
-  # Initialize the view
-  #
-  # Required options:
-  # model - a comment
   initialize: (options) ->
-    @listenTo @model, 'change', @render
     @listenTo @model, 'unselected', @unselected
     @listenTo @model, 'selected', @selected
 
