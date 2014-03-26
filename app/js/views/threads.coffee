@@ -3,25 +3,15 @@ class App.Views.Threads extends Backbone.View
   template: JST['app/templates/threads.us']
 
   events:
-    'change input[name=notifications-state]': -> @load(@options)
+    'change input[name=notifications-state]': 'stateChange'
     'click #mark-all-read': 'read'
 
-  initialize: =>
-    @options = {}
+  initialize: ->
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
-
-  load: (@options = {}) ->
-    @options.data ||= {}
-    @options.data.all = @shouldShowAll()
-
-    @collection.fetch _.extend({reset: true}, @options)
-
-    # Collapse the menu on mobile
-    $('#toggle-lists').attr('checked', false) # FIXME: this belongs somewhere else
-
-  shouldShowAll: ->
-    @$('input[name=notifications-state]:checked').val() == 'all'
+    @listenTo @collection, 'sync', ->
+      # FIXME: this belongs somewhere else
+      $('#toggle-lists').attr('checked', false) # Collapse the menu on mobile
 
   render: ->
     @$el.html @template()
@@ -38,4 +28,10 @@ class App.Views.Threads extends Backbone.View
 
   read: (e) ->
     e.preventDefault()
-    @collection.read(@options) if window.confirm("Are you sure you want to mark all these as read?")
+    @trigger 'read' if window.confirm("Are you sure you want to mark all these as read?")
+
+  shouldShowAll: ->
+    @$('input[name=notifications-state]:checked').val() == 'all'
+
+  stateChange: (e) ->
+    @trigger 'state', $(e.target).val()

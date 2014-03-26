@@ -1,5 +1,7 @@
 class App.Controllers.Filters
   constructor: (options) ->
+    @loadOptions = {}
+
     @filters = options.filters
     @repositories = options.repositories
     @notifications = options.notifications
@@ -15,12 +17,20 @@ class App.Controllers.Filters
     @view = new App.Views.Threads(collection: @notifications)
     @view.render()
 
+    @view.on 'state', => @load(@loadOptions)
+    @view.on 'read', => @notifications.read(@loadOptions)
+
+  load: (@loadOptions = {}) ->
+    @loadOptions.data ||= {}
+    @loadOptions.data.all = @view.shouldShowAll()
+    @notifications.fetch _.extend({reset: true}, @loadOptions)
+
   selectFilter: (filter) =>
     return unless filter
     @repositories.unselect()
-    @view.load data: filter.get('data')
+    @load data: filter.get('data')
 
   selectRepository: (model) =>
     return unless model
     @filters.unselect()
-    @view.load(url: model.notifications_url())
+    @load(url: model.notifications_url())
