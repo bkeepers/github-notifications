@@ -1,5 +1,5 @@
 # Root view for all the details of a notification
-class app.Views.NotificationDetailsView extends Backbone.View
+class App.Views.NotificationDetailsView extends Backbone.View
   className: 'pane'
 
   keyboardEvents:
@@ -15,9 +15,9 @@ class app.Views.NotificationDetailsView extends Backbone.View
   # Required options:
   # model - a notification object
   initialize: ->
-    view = app.Views.Subject.for(@model.subject)
+    view = App.Views.Subject.for(@model.subject)
     @subject = new view(model: @model.subject, notification: @model)
-    @header = new app.Views.NotificationHeader(model: @model)
+    @header = new App.Views.NotificationHeader(model: @model)
     @render()
 
   render: ->

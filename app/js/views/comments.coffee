@@ -1,5 +1,5 @@
 # Manage list of comment views
-class app.Views.Comments extends Backbone.View
+class App.Views.Comments extends Backbone.View
   initialize: ->
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
@@ -17,12 +17,12 @@ class app.Views.Comments extends Backbone.View
   # Parse the Link header, looking for rel=next
   nextLink: (header) =>
     return unless header
-    links = _.map header.split(/\s*,\s*/), (link) => new app.Models.Link(link)
+    links = _.map header.split(/\s*,\s*/), (link) => new App.Models.Link(link)
     _.find links, (link) -> link.rel == 'next'
 
   # Render the given commment
   add: (comment) ->
-    view = new app.Views.Comment(model: comment)
+    view = new App.Views.Comment(model: comment)
     @$el.append(view.render().el)
 
   # Render all comments in the collection

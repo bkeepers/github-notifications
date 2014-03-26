@@ -1,4 +1,4 @@
-class app.Views.Feedback extends Backbone.View
+class App.Views.Feedback extends Backbone.View
   template: JST['app/templates/feedback.us']
   confirmTemplate: JST['app/templates/feedback_confirm.us']
 
@@ -12,7 +12,7 @@ class app.Views.Feedback extends Backbone.View
     'meta+enter': 'submit'
 
   initialize: ->
-    @model = new app.Models.Feedback
+    @model = new App.Models.Feedback
     @listenTo @model, 'sync', @confirm
 
   render: ->

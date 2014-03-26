@@ -1,4 +1,4 @@
-describe 'app.Models.OAuth', ->
+describe 'App.Models.OAuth', ->
   beforeEach ->
     spyOn app, 'ajax'
 
@@ -8,9 +8,9 @@ describe 'app.Models.OAuth', ->
       href: '/foobar'
       pathname: '/foobar'
 
-    app.Models.OAuth.prototype.location = @location
+    App.Models.OAuth.prototype.location = @location
 
-    @oauth = new app.Models.OAuth
+    @oauth = new App.Models.OAuth
 
   describe 'redirect', ->
     it 'changes window.location', ->

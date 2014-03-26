@@ -1,4 +1,4 @@
-class app.Views.Shortcuts extends Backbone.View
+class App.Views.Shortcuts extends Backbone.View
   template: JST['app/templates/shortcuts.us']
 
   shortcuts:
@@ -79,9 +79,4 @@ class app.Views.Shortcuts extends Backbone.View
     @$('#shortcuts').toggle()
 
   toggleDevelopmentMode: ->
-    if localStorage['dev']
-      localStorage.removeItem('dev')
-      console.log 'Development mode disabled'
-    else
-      localStorage['dev'] = true
-      console.log 'Development mode enabled'
+    app.toggleDevelopment()

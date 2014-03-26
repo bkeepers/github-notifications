@@ -1,6 +1,7 @@
-class app.Collections.Repositories extends Backbone.Collection
-  model: app.Models.Repository
-  url: app.endpoints.api + 'notifications/repositories'
+class App.Collections.Repositories extends Backbone.Collection
+  model: App.Models.Repository
+  url: ->
+    app.endpoints.api + 'notifications/repositories'
 
   parse: (response, options) ->
     for item in response

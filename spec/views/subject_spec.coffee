@@ -1,20 +1,20 @@
-describe 'app.View.Subject', ->
+describe 'App.Views.Subject', ->
   beforeEach ->
-    @view = new app.Models.Subject
+    @view = new App.Models.Subject
 
   describe 'for', ->
     it 'returns PullRequest', ->
-      model = new app.Models.Subject(type: 'PullRequest')
-      expect(app.Views.Subject.for(model)).toBe(app.Views.PullRequest)
+      model = new App.Models.Subject(type: 'PullRequest')
+      expect(App.Views.Subject.for(model)).toBe(App.Views.Subject.PullRequest)
 
     it 'returns Issue', ->
-      model = new app.Models.Subject(type: 'Issue')
-      expect(app.Views.Subject.for(model)).toBe(app.Views.Issue)
+      model = new App.Models.Subject(type: 'Issue')
+      expect(App.Views.Subject.for(model)).toBe(App.Views.Subject.Issue)
 
     it 'returns Commit', ->
-      model = new app.Models.Subject(type: 'Commit')
-      expect(app.Views.Subject.for(model)).toBe(app.Views.Commit)
+      model = new App.Models.Subject(type: 'Commit')
+      expect(App.Views.Subject.for(model)).toBe(App.Views.Subject.Commit)
 
     it 'returns Subject for unknown type', ->
       model = new Backbone.Model()
-      expect(app.Views.Subject.for(model)).toBe(app.Views.Subject)
+      expect(App.Views.Subject.for(model)).toBe(App.Views.Subject)

@@ -1,5 +1,5 @@
 # See http://developer.github.com/v3/repos/releases/
-class app.Models.Release extends app.Models.Subject
+class App.Models.Subject.Release extends App.Models.Subject
   octicon: 'tag'
 
   toJSON: ->
