@@ -3,10 +3,10 @@ class App.Routers.Filters extends Backbone.Router
     'r/:id': 'repository'
 
   initialize: (options) ->
-    @route /^(all|participating)$/, 'filter'
-
     @filters = options.filters
     @repositories = options.repositories
+
+    @route(new RegExp("^(#{@filters.pluck('id').join('|')})$"), 'filter')
 
     @filters.on 'selected', (model) => @navigate "##{model.id}" if model
     @repositories.on 'selected', (model) => @navigate "#r/#{model.id}" if model

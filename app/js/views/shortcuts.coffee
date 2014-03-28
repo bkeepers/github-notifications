@@ -12,7 +12,7 @@ class App.Views.Shortcuts extends Backbone.View
 
     'Go to All notifications':
       key: 'g a'
-      action: -> Backbone.history.navigate 'all', trigger: true
+      action: -> Backbone.history.navigate 'everything', trigger: true
 
     'Go to Participating notifications':
       key: 'g p'

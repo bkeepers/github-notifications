@@ -38,15 +38,18 @@ class @App
     $('#app').show()
 
     @filters = new App.Collections.Filters([
-      {id: 'all', name: 'All', data: {}},
-      {id: 'participating', name: 'Participating', data: {participating: true}}
+      {id: 'everything', name: 'Everything', data: {}},
+      {id: 'participating', name: 'Participating', data: {participating: true}, reasons: ['author', 'comment', 'state_change', 'assign']}
+      {id: 'mentioned', name: 'Mentioned', data: {participating: true}, reasons: ['mention', 'team_mention']},
+      {id: 'watching', name: 'Watching', data: {}, reasons: ['subscribed', 'manual']},
     ])
+
     @repositories = new App.Collections.Repositories()
     @notifications = new App.Collections.Notifications()
 
     new App.Routers.Filters
       filters: @filters
-      repositories: @repositories      
+      repositories: @repositories
     new App.Controllers.Filters
       filters: @filters
       repositories: @repositories
@@ -64,7 +67,7 @@ class @App
 
     Backbone.history.start() unless Backbone.History.started
 
-    Backbone.history.navigate 'all', trigger: true
+    Backbone.history.navigate 'everything', trigger: true
 
   # Notifictions do not get marked as read when in development mode.
   isDevelopment: ->
