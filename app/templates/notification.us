@@ -1,5 +1,4 @@
 <a href="#n/<%= id %>" class="<%= unread ? 'unread' : 'read' %>">
-  <div><%= reason %></div>
   <span class="octicon octicon-<%= subject.octicon %>"></span>
   <span class="title"><%- subject.title %></span>
   <span class="repository"><%- repository.owner.login %> / <%- repository.name %></span>

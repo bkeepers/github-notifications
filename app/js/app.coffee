@@ -24,6 +24,9 @@ class @App
       # proper local caching is implemented.
       cache: false
 
+  # An event aggrigator
+  vent:  _.extend {}, Backbone.Events
+
   # DOM is ready, initialize the App
   ready: =>
     $(document.body).addClass('standalone') if window.navigator.standalone
@@ -45,7 +48,6 @@ class @App
     ])
 
     @repositories = new App.Collections.Repositories()
-    @notifications = new App.Collections.Notifications()
 
     new App.Routers.Filters
       filters: @filters
@@ -53,15 +55,12 @@ class @App
     new App.Controllers.Filters
       filters: @filters
       repositories: @repositories
-      notifications: @notifications
+      vent: @vent
 
-    new App.Routers.Notifications(@notifications)
-    new App.Controllers.Notifications(@notifications)
+    new App.Routers.Notifications(@vent)
+    new App.Controllers.Notifications(@vent)
 
-    new App.Views.Shortcuts(
-      repositories: @repositories,
-      notifications: @notifications
-    )
+    new App.Views.Shortcuts(vent: @vent, repositories: @repositories)
 
     new App.Routers.Misc
 

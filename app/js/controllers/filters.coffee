@@ -1,10 +1,8 @@
 class App.Controllers.Filters
   constructor: (options) ->
-    @loadOptions = {}
-
+    @vent = options.vent
     @filters = options.filters
     @repositories = options.repositories
-    @notifications = options.notifications
 
     @filters.on 'selected', @selectFilter
     @repositories.on 'selected', @selectRepository
@@ -14,23 +12,42 @@ class App.Controllers.Filters
 
     new App.Views.Lists(repositories: @repositories, filters: @filters)
 
-    @view = new App.Views.Threads(collection: @notifications)
-    @view.render()
-
-    @view.on 'state', => @load(@loadOptions)
-    @view.on 'read', => @notifications.read(@loadOptions)
-
-  load: (@loadOptions = {}) ->
-    @loadOptions.data ||= {}
-    @loadOptions.data.all = @view.shouldShowAll()
-    @notifications.fetch _.extend({reset: true}, @loadOptions)
+    options.vent.on 'notification:select', @select
+    options.vent.on 'notification:next', @next
+    options.vent.on 'notification:prev', @prev
 
   selectFilter: (filter) =>
     return unless filter
     @repositories.unselect()
-    @load data: filter.get('data')
+    @load filter.notifications
 
   selectRepository: (model) =>
     return unless model
     @filters.unselect()
-    @load(url: model.notifications_url())
+    @load model.notifications
+
+# FIXME: everything below this belongs in another controller
+  next: =>
+    model = @notifications.next() || @notifications.first()
+    model?.select()
+
+  prev: =>
+    model = @notifications.prev() || @notifications.last()
+    model?.select()
+
+  select: (id) =>
+    @notifications?.get(id)?.select()
+
+  load: (@notifications) ->
+    @notifications.on 'selected', (model) =>
+      @vent.trigger 'notification:selected', model
+
+    # @view?.remove()
+    @view = new App.Views.Threads(collection: @notifications)
+    @view.render()
+
+
+
+    @view.on 'state', => @load(@notifications)
+
+    @notifications.fetch reset: true, data: {all: @view.shouldShowAll()}

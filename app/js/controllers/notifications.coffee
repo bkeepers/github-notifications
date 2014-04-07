@@ -2,8 +2,8 @@ class App.Controllers.Notifications
   # Cache for recently loaded notification views
   cache: new Cache(10)
 
-  constructor: (@collection) ->
-    @collection.on 'selected', @show
+  constructor: (@vent) ->
+    @vent.on 'notification:selected', @show
 
   show: (notification) =>
     return unless notification

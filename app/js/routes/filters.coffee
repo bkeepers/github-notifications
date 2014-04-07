@@ -8,8 +8,8 @@ class App.Routers.Filters extends Backbone.Router
 
     @route(new RegExp("^(#{@filters.pluck('id').join('|')})$"), 'filter')
 
-    @filters.on 'selected', (model) => @navigate "##{model.id}" if model
-    @repositories.on 'selected', (model) => @navigate "#r/#{model.id}" if model
+    @listenTo @filters, 'selected', (model) => @navigate "##{model.id}" if model
+    @listenTo @repositories, 'selected', (model) => @navigate "#r/#{model.id}" if model
 
   filter: (id) ->
     @filters.get(id)?.select()

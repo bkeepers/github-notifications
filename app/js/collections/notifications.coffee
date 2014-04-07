@@ -3,12 +3,30 @@ class App.Collections.Notifications extends Backbone.Collection
   url: ->
     app.endpoints.api + 'notifications'
 
-  initialize: ->
+  # options.filter - a function that takes a model as an argument and returns
+  #                  true if the model should be added to the collection.
+  # options.data   - default params to use on the fetch request.
+  initialize: (models, options = {}) ->
+    @filter = options.filter if options.filter
+    @data = options.data
     @on 'reset', -> @select(undefined)
+
+  # Default filter accepts all models
+  filter: (model) -> true
+
+  fetch: (options = {}) ->
+    options.data = _.extend(@data || {}, options.data || {})
+    super
 
   # Mark all notifications as read
   read: (options = {}) ->
+    # FIXME: mark each notification read individually since collection is filtered
     options.data = '{}'
     @sync 'update', @, options unless app.isDevelopment()
     # Update the internal state of each notification
     @each (notification) -> notification.set 'unread', false
+
+  # Overriden to allow filtering out some models.
+  _prepareModel: (attrs, options) ->
+    model = super
+    model if @filter(model)

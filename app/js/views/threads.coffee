@@ -28,7 +28,8 @@ class App.Views.Threads extends Backbone.View
 
   read: (e) ->
     e.preventDefault()
-    @trigger 'read' if window.confirm("Are you sure you want to mark all these as read?")
+    if window.confirm("Are you sure you want to mark all these as read?")
+      @collection.read()
 
   shouldShowAll: ->
     @$('input[name=notifications-state]:checked').val() == 'all'
