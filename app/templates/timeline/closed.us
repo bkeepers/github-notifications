@@ -1,3 +1,5 @@
-<span class="octicon octicon-circle-slash discussion-item-icon"></span>
-<%= actor.login %> closed the <%= subject.display_type %>
+<span class="octicon octicon-circle-slash conversation-item-icon"></span>
+<img class="avatar" src="<%= actor.avatar_url %>">
+<a class="author" href="<%= actor.html_url %>"><%= actor.login %></a>
+closed the <%= subject.display_type %>
 <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
