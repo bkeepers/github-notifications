@@ -1,4 +1,4 @@
-class app.Views.Shortcuts extends Backbone.View
+class App.Views.Shortcuts extends Backbone.View
   template: JST['app/templates/shortcuts.us']
 
   shortcuts:
@@ -18,10 +18,6 @@ class app.Views.Shortcuts extends Backbone.View
       key: 'g p'
       action: -> Backbone.history.navigate 'participating', trigger: true
 
-    'Go to Starred notifications':
-      key: 'g s'
-      action: -> Backbone.history.navigate 'starred', trigger: true
-
     'Open help for keyboard shortcuts':
       key: '?'
       action: 'help'
@@ -33,6 +29,10 @@ class app.Views.Shortcuts extends Backbone.View
     'Previous Repository':
       key: 'K'
       action: 'prevRepo'
+
+    'Send Feedback':
+      key: '!'
+      action: -> Backbone.history.navigate 'feedback', trigger: true
 
   # Put undocumented shortcuts here
   keyboardEvents:
@@ -61,15 +61,15 @@ class app.Views.Shortcuts extends Backbone.View
   nextRepo: (e) ->
     e.preventDefault()
     repo = @repositories.next() || @repositories.first()
-    Backbone.history.navigate "#r/#{repo.id}", trigger: true
+    repo?.select()
 
   prevRepo: (e) ->
     e.preventDefault()
     repo = @repositories.prev() || @repositories.last()
-    Backbone.history.navigate "#r/#{repo.id}", trigger: true
+    repo?.select()
 
   select: (notification) ->
-    Backbone.history.navigate "#n/#{notification.id}", trigger: true
+    notification?.select()
 
   render: ->
     @$('#shortcuts').html(@template(@))
@@ -79,9 +79,4 @@ class app.Views.Shortcuts extends Backbone.View
     @$('#shortcuts').toggle()
 
   toggleDevelopmentMode: ->
-    if localStorage['dev']
-      localStorage.removeItem('dev')
-      console.log 'Development mode disabled'
-    else
-      localStorage['dev'] = true
-      console.log 'Development mode enabled'
+    app.toggleDevelopment()

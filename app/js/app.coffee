@@ -1,60 +1,84 @@
-window.app = _.extend {}, Backbone.Events,
-  Models: {}
-  Collections: {}
-  Views: {}
-  Routers: {}
+class @App
+  @Models: {}
+  @Collections: {}
+  @Controllers: {}
+  @Views: {}
+  @Routers: {}
+
   ajax: $.ajax
+
+  # FIXME: move to config
   endpoints:
     api: 'https://api.github.com/'
     web: 'https://github.com/'
 
-  init: ->
-    @auth()
+  constructor: ->
+    _.extend @, Backbone.Events
 
-  auth: ->
-    new this.Models.Authentication()
+    $.ajaxSetup
+      headers:
+        'Accept': 'application/vnd.github.v3.html+json'
 
-  ready: ->
+      # the Notifications API makes heavy use of the If-Modified-Since header for
+      # determining what to respond with. This disables any HTTP caching until
+      # proper local caching is implemented.
+      cache: false
+
+  # DOM is ready, initialize the App
+  ready: =>
+    $(document.body).addClass('standalone') if window.navigator.standalone
+    @authenticate() unless window.jasmine?
+
+  # Kick off authentication
+  authenticate: ->
+    new App.Models.Authentication @start
+
+  # User is authenticated, start the main app.
+  start: =>
     $('#app').show()
-    @repositories = new this.Collections.Repositories()
-    @notifications = new this.Collections.Notifications()
 
-    new this.Views.Lists(repositories: @repositories)
-    new this.Routers.Notifications(
-      notifications: @notifications,
+    @filters = new App.Collections.Filters([
+      {id: 'all', name: 'All', data: {}},
+      {id: 'participating', name: 'Participating', data: {participating: true}}
+    ])
+    @repositories = new App.Collections.Repositories()
+    @notifications = new App.Collections.Notifications()
+
+    new App.Routers.Filters
+      filters: @filters
+      repositories: @repositories      
+    new App.Controllers.Filters
+      filters: @filters
       repositories: @repositories
-    )
+      notifications: @notifications
 
-    new this.Views.Shortcuts(
+    new App.Routers.Notifications(@notifications)
+    new App.Controllers.Notifications(@notifications)
+
+    new App.Views.Shortcuts(
       repositories: @repositories,
       notifications: @notifications
     )
+
+    new App.Routers.Misc
 
     Backbone.history.start() unless Backbone.History.started
 
     Backbone.history.navigate 'all', trigger: true
 
+  # Notifictions do not get marked as read when in development mode.
   isDevelopment: ->
     localStorage['dev']?
 
-  update: ->
-    applicationCache.update() unless applicationCache.status == applicationCache.UNCACHED
+  toggleDevelopment: ->
+    if localStorage['dev']
+      localStorage.removeItem('dev')
+      console.log 'Development mode disabled'
+    else
+      localStorage['dev'] = true
+      console.log 'Development mode enabled'
+
+window.app = new App()
 
 # Initialize the app
-$ ->
-  FastClick.attach(document.body)
-  $(document.body).addClass('standalone') if window.navigator.standalone
-  app.init() unless window.jasmine?
-
-$.ajaxSetup
-  headers:
-    'Accept': 'application/vnd.github.v3.html+json'
-
-  # the Notifications API makes heavy use of the If-Modified-Since header for
-  # determining what to respond with. This disables any HTTP caching until
-  # proper local caching is implemented.
-  cache: false
-
-# Update app cache every 60 seconds and when leaving the page
-setInterval app.update, 60 * 1000
-$(window).on 'beforeunload', app.update
+$ app.ready

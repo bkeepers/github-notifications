@@ -1,0 +1,25 @@
+<div class="conversation-banner">
+  <div class="conversation-meta">
+    <a href="<%= author.html_url %>" class="conversation-user">
+      <img class="conversation-avatar" src="<%= author.avatar_url %>">
+      <%- author.login %>
+    </a>
+
+    <time class="js-relative-time" datetime="<%= published_at %>"><%= published_at %></time>
+  </div>
+
+  <div class="conversation-content markdown-body">
+    <%= body_html %>
+    <a href="<%= zipball_url %>" class="button">
+      <span class="octicon octicon-file-zip"></span>
+      Source code (zip)
+    </a>
+    <a href="<%= tarball_url %>" class="button">
+      <span class="octicon octicon-file-zip"></span>
+      Source code (tar.gz)
+    </a>
+
+    <span class="octicon octicon-tag"></span>
+    <a href="<%= tag_html_url %>"><%= tag_name %></a>
+  </div>
+</div>

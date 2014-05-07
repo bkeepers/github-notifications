@@ -12,13 +12,10 @@
 module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "files",
   coffee:
     app: [
+      "app/js/lib/*.coffee",
       "app/js/app.coffee",
-      "app/js/lib/*.coffee"
-      "app/js/models/subject.coffee",
       "app/js/models/**/*.coffee",
-      # FIXME: should be able to remove this next line before merging this branch
       "app/js/views/comment.coffee",
-      "app/js/views/subject.coffee",
       "app/js/**/*.coffee"
     ]
 
@@ -30,7 +27,6 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "files",
       "vendor/bower/moment/moment.js",
       "vendor/bower/mousetrap/mousetrap.js",
       "vendor/bower/backbone.mousetrap/backbone.mousetrap.js",
-      "vendor/bower/backbone.localStorage/backbone.localStorage.js",
       "vendor/bower/jQuery.scrollIntoView/jquery.scrollIntoView.js",
       "vendor/bower/fastclick/lib/fastclick.js",
       "vendor/js/**/*.js"

@@ -1,4 +1,4 @@
-class app.Views.Timeline extends Backbone.View
+class App.Views.Timeline extends Backbone.View
   initialize: ->
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
@@ -25,5 +25,5 @@ class app.Views.Timeline extends Backbone.View
       unread.select(scroll: true)
 
   viewFor: (model) ->
-    view = app.Views["Timeline" + model.constructor.name] || app.Views.Comment
+    view = App.Views["Timeline" + model.constructor.name] || App.Views.Comment
     new view(model: model)

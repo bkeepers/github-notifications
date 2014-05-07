@@ -1,18 +1,24 @@
-class app.Models.Subject extends Backbone.Model
+# Base class for the subject of a notification.
+class App.Models.Subject extends Backbone.Model
   @for: (notification) ->
     subject = notification.get('subject')
     subject.last_read_at = notification.get('last_read_at')
-    model = app.Models[subject.type] || app.Models.Subject
-    new model(subject)
+    model = App.Models.Subject[subject.type] || App.Models.Subject
+    new model(subject, notification: notification)
 
-  initialize: ->
+  # Override in subclass to show an icon
+  octicon: null
+
+  initialize: (attributes, options = {}) ->
     @url = @get('url')
-    @timeline = new app.Collections.Timeline([], subject: @)
+    @notification = options.notification
 
-    @comments = new app.Collections.Comments([], last_read_at: @get('last_read_at'))
-    @events = new app.Collections.Events([], subject: @)
+    @timeline = new App.Collections.Timeline([], subject: @)
+    @comments = new App.Collections.Comments([], last_read_at: @get('last_read_at'))
+    @events = new App.Collections.Events([], subject: @)
 
-    @on 'change', ->
+    @once 'change', ->
+      @isReady = true
       @timeline.add @ if @get('body_html')
 
       @comments.url = @get('comments_url')
@@ -27,3 +33,10 @@ class app.Models.Subject extends Backbone.Model
 
   toJSON: ->
     _.extend super, octicon: @octicon, display_type: @display_type
+
+  # Execute the callback function when the subject is loaded.
+  ready: (fn) ->
+    if @isReady
+      fn.call(@)
+    else
+      @once 'change', fn

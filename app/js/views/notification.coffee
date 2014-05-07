@@ -1,5 +1,5 @@
 # The view for a single notification in the list
-class app.Views.Notification extends Backbone.View
+class App.Views.Notification extends Backbone.View
   tagName: 'li'
   className: 'notification'
   template: JST['app/templates/notification.us']

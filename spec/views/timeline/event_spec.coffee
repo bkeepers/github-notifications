@@ -1,15 +1,15 @@
-describe 'app.Views.TimelineEvent', ->
+describe 'App.Views.TimelineEvent', ->
   beforeEach ->
-    @issue = new app.Models.Issue
-    @pull = new app.Models.PullRequest(
+    @issue = new App.Models.Subject.Issue
+    @pull = new App.Models.Subject.PullRequest(
       head: {label: 'github:feature-branch'},
       base: {label: 'github:master'}
     )
 
-    @event = new app.Models.Event(payload)
+    @event = new App.Models.Event(payload)
 
     @event.collection = {subject: @issue}
-    @view = new app.Views.TimelineEvent(model: @event)
+    @view = new App.Views.TimelineEvent(model: @event)
 
   text = ($el) ->
     $el.text().replace(/\s+/g, ' ')

@@ -1,5 +1,5 @@
-# View all, participating, starred or notifications by repository
-class app.Views.Lists extends Backbone.View
+# View all or participating or notifications by repository
+class App.Views.Lists extends Backbone.View
   el: '#lists'
   template: JST['app/templates/lists.us']
 
@@ -9,7 +9,8 @@ class app.Views.Lists extends Backbone.View
   # repositories - a collection of repositories to render
   initialize: (options) ->
     @render()
-    @repositories = new app.Views.Repositories(collection: options.repositories)
+    @repositories = new App.Views.Repositories(collection: options.repositories)
+    @filters = new App.Views.Filters(collection: options.filters)
 
   render: ->
     @$el.html @template()

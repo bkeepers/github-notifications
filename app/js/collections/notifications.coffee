@@ -1,11 +1,10 @@
-class app.Collections.Notifications extends Backbone.Collection
-  model: app.Models.Notification
-  url: app.endpoints.api + 'notifications'
+class App.Collections.Notifications extends Backbone.Collection
+  model: App.Models.Notification
+  url: ->
+    app.endpoints.api + 'notifications'
 
   initialize: ->
     @on 'reset', -> @select(undefined)
-    @starred = new app.Collections.Starred()
-    @starred.fetch()
 
   # Mark all notifications as read
   read: (options = {}) ->

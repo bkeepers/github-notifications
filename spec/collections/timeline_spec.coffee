@@ -1,17 +1,17 @@
-describe 'app.Collections.Timeline', ->
+describe 'App.Collections.Timeline', ->
   describe 'comparator', ->
     it 'sorts by created_at', ->
-      @collection = new app.Collections.Timeline
-      @collection.add new app.Models.Comment(created_at: '2014-02-13')
-      @collection.add new app.Models.Comment(created_at: '2014-02-12')
-      @collection.add new app.Models.Comment(created_at: '2014-02-15')
+      @collection = new App.Collections.Timeline
+      @collection.add new App.Models.Comment(created_at: '2014-02-13')
+      @collection.add new App.Models.Comment(created_at: '2014-02-12')
+      @collection.add new App.Models.Comment(created_at: '2014-02-15')
 
       expect(@collection.first().get('created_at')).toEqual('2014-02-12')
       expect(@collection.last().get('created_at')).toEqual('2014-02-15')
 
   describe 'observe', ->
     beforeEach ->
-      @timeline = new app.Collections.Timeline
+      @timeline = new App.Collections.Timeline
       @other = new Backbone.Collection()
 
       @timeline.observe @other

@@ -2,13 +2,13 @@
   <h1>GitHub Notifications</h1>
 </header>
 <div class="content">
-  <ul class="primary">
-    <li class="list"><a href="#all">All</a></li>
-    <li class="list"><a href="#participating">Participating</a></li>
-    <li class="list"><a href="#starred">Starred</a></li>
+  <ul id="filters" class="primary">
   </ul>
 
   <ul id="repositories">
     <span class="title">Repositories</span>
   </ul>
+
+  <a id="send-feedback" href="#feedback">Send Feedback</a>
+
 </div>

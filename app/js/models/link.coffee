@@ -1,6 +1,6 @@
 # The `Link` header includes pagination, like:
 # <https://url?page=1>; rel="first", <https://url?page=2>; rel="prev"
-class app.Models.Link
+class App.Models.Link
   regex: /<([^>]*)>; ?rel="([^"]*)"/
 
   constructor: (text) ->

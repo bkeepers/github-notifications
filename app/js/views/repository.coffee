@@ -1,4 +1,4 @@
-class app.Views.Repository extends Backbone.View
+class App.Views.Repository extends Backbone.View
   template: JST['app/templates/repository.us']
   className: 'list'
   tagName: 'li'
@@ -9,9 +9,17 @@ class app.Views.Repository extends Backbone.View
   # model - a comment
   initialize: (options) ->
     @listenTo @model, 'change', @render
+    @listenTo @model, 'unselected', @unselected
+    @listenTo @model, 'selected', @selected
 
   render: =>
     @$el.html @template(@model.toJSON())
-    @$('a').addClass 'selected' if @model.isSelected()
+    @selected() if @model.isSelected()
     app.trigger 'render', @
     @
+
+  unselected: ->
+    @$('a').removeClass('selected')
+
+  selected: ->
+    @$('a').addClass('selected').scrollIntoView(100)

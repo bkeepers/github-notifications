@@ -1,26 +1,23 @@
 # Root view for all the details of a notification
-class app.Views.NotificationDetailsView extends Backbone.View
-  el: '#details'
+class App.Views.NotificationDetailsView extends Backbone.View
+  className: 'pane'
 
   keyboardEvents:
     'm': -> @model.subscription.toggle()
     'M': 'muteAndNext'
-    's': -> @model.toggleStar()
     'o': 'open'
     'r': 'reply'
 
   events:
     'click a': 'clickLink'
     'click *[rel=back]': 'unfocus'
-    'click header h1 a': 'open'
 
   # Required options:
   # model - a notification object
   initialize: ->
-    view = app.Views.Subject.for(@model.subject)
+    view = App.Views.Subject.for(@model.subject)
     @subject = new view(model: @model.subject, notification: @model)
-    @header = new app.Views.NotificationHeader(model: @model)
-    @model.select()
+    @header = new App.Views.NotificationHeader(model: @model)
     @render()
 
   render: ->
@@ -41,8 +38,7 @@ class app.Views.NotificationDetailsView extends Backbone.View
 
   muteAndNext: ->
     @model.subscription.toggle()
-    if notification = @model.collection.next()
-      Backbone.history.navigate "#n/#{notification.id}", trigger: true
+    @model.collection.next()?.select()
 
   # Go to the page on GitHub for this notification
   open: (e) ->
@@ -55,3 +51,12 @@ class app.Views.NotificationDetailsView extends Backbone.View
   reply:(e) ->
     e.preventDefault()
     @$('textarea').focus()
+
+  hide: ->
+    @$el.detach()
+    @unbindKeyboardEvents()
+    @subject.hide()
+
+  show: ->
+    @bindKeyboardEvents()
+    @subject.show()

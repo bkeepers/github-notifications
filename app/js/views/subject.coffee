@@ -3,7 +3,7 @@
 # This view is responsible for showing most of the relevant details of the
 # thing that the notification is for, which should be an Issue, PullRequest,
 # or Commit.
-class app.Views.Subject extends Backbone.View
+class App.Views.Subject extends Backbone.View
   template: JST['app/templates/subject.us']
   className: 'subject content loading'
 
@@ -13,7 +13,7 @@ class app.Views.Subject extends Backbone.View
 
   # Chose the appropriate view class for the given subject
   @for: (model) ->
-    app.Views[model.get('type')] || app.Views.Subject
+    App.Views.Subject[model.get('type')] || App.Views.Subject
 
   # Required options:
   # notification - a Notification model
@@ -21,13 +21,14 @@ class app.Views.Subject extends Backbone.View
   initialize: (options) ->
     @notification = options.notification
 
-    @bannerView = new app.Views.Banner(model: @model, template: @banner) if @banner
-    @timelineView = new app.Views.Timeline(collection: @model.timeline)
+    @bannerView = new App.Views.Banner(model: @model, template: @banner) if @banner
+    @timelineView = new App.Views.Timeline(collection: @model.timeline)
 
     @listenTo @model, 'change', => @model.timeline.fetch()
 
     @render()
 
+    # @model.ready @loadComments
     @model.fetch() if @model.url
 
     @loaded() # TODO: KILL THIS
@@ -36,7 +37,7 @@ class app.Views.Subject extends Backbone.View
     @$el.html @template()
     @$('.comments').append(@bannerView.el) if @banner
     @$('.comments').append(@timelineView.el)
-    @$el.append new app.Views.CreateComment(collection: @model.comments).el
+    @$el.append new App.Views.CreateComment(collection: @model.comments).el
     app.trigger 'render', @
 
   loaded: =>
@@ -52,3 +53,9 @@ class app.Views.Subject extends Backbone.View
 
   selectPrevious: ->
     item.select scroll: true if item = @model.timeline.prev()
+
+  hide: ->
+    @unbindKeyboardEvents()
+
+  show: ->
+    @bindKeyboardEvents()

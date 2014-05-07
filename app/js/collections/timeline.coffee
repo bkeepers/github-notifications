@@ -1,4 +1,4 @@
-class app.Collections.Timeline extends Backbone.Collection
+class App.Collections.Timeline extends Backbone.Collection
 
   initialize: (models = [], options = {}) ->
     @subject = options.subject
