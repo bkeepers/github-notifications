@@ -1,25 +1,33 @@
-<div class="conversation-banner">
-  <div class="conversation-meta">
+<h1 class="conversation-title">
+  <a href="<%= html_url %>">
+    <%- title %>
+  </a>
+</h1>
+
+<div class="conversation-event conversation-banner-meta">
+  <span class="conversation-summary nowrap">
+    <span class="octicon octicon-tag conversation-item-icon"></span>
+    <img class="avatar" src="<%= author.avatar_url %>">
     <a href="<%= author.html_url %>" class="author">
-      <img class="avatar" src="<%= author.avatar_url %>">
       <%- author.login %>
     </a>
+    released this
 
     <time class="js-relative-time" datetime="<%= published_at %>"><%= published_at %></time>
-  </div>
+  </span>
+</div>
 
-  <div class="conversation-content markdown-body">
-    <%= body_html %>
-    <a href="<%= zipball_url %>" class="button">
-      <span class="octicon octicon-file-zip"></span>
-      Source code (zip)
-    </a>
-    <a href="<%= tarball_url %>" class="button">
-      <span class="octicon octicon-file-zip"></span>
-      Source code (tar.gz)
-    </a>
+<div class="conversation-content markdown-body">
+  <%= body_html %>
+  <a href="<%= zipball_url %>" class="button">
+    <span class="octicon octicon-file-zip"></span>
+    Source code (zip)
+  </a>
+  <a href="<%= tarball_url %>" class="button">
+    <span class="octicon octicon-file-zip"></span>
+    Source code (tar.gz)
+  </a>
 
-    <span class="octicon octicon-tag"></span>
-    <a href="<%= tag_html_url %>"><%= tag_name %></a>
-  </div>
+  <span class="octicon octicon-tag"></span>
+  <a href="<%= tag_html_url %>"><%= tag_name %></a>
 </div>

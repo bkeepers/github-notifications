@@ -31,10 +31,12 @@ class App.Views.Subject extends Backbone.View
     @$el.html @template(@model.toJSON())
     @$('.comments').append(@bannerView.el) if @banner
     @$('.comments').append(@timelineView.el)
-    @$el.append new App.Views.CreateComment(collection: @model.comments).el
     app.trigger 'render', @
 
   loaded: =>
+    if @model.comments.url
+      @$el.append new App.Views.CreateComment(collection: @model.comments).el
+
     @$el.removeClass('loading')
 
   hide: ->
