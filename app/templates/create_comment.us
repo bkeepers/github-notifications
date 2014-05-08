@@ -1,6 +1,24 @@
-<form>
-  <div class="error-message">There was an error creating your comment.</div>
-  <textarea name="body" placeholder="Leave a comment"></textarea>
+<div class="tabnav">
+  <ul class="tabnav-tabs">
+    <li><a href="#write-bucket" class="tabnav-tab write-tab">Write</a></li>
+    <li><a href="#preview-bucket" class="tabnav-tab preview-tab">Preview</a></li>
+  </ul>
+</div>
+
+<form class="conversation-content">
+  <div id="write-bucket" class="write-bucket">
+    <div class="error-message">There was an error creating your comment.</div>
+    <textarea name="body" placeholder="Leave a comment"></textarea>
+  </div>
+
+  <div id="preview-bucket" class="preview-bucket">
+    <div class="comment-content">
+      <div class="comment-body markdown-body  js-comment-body">
+        <p>Nothing to preview</p>
+      </div>
+    </div>
+  </div>
+
   <div class="form-actions">
     <button class="button primary">Comment</button>
   </div>
