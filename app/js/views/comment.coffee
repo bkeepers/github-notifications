@@ -1,7 +1,7 @@
 # A single Comment view
 class App.Views.Comment extends Backbone.View
   template: JST['app/templates/comment.us']
-  className: 'conversation-comment'
+  className: 'conversation-comment conversation-item'
 
   keyboardEvents:
     'space': 'toggle'

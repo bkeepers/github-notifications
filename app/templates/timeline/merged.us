@@ -1,0 +1,7 @@
+<span class="octicon octicon-git-merge conversation-item-icon"></span>
+<img class="avatar" src="<%= actor.avatar_url %>">
+<a class="author" href="<%= actor.html_url %>"><%= actor.login %></a>
+merged commit <span class="git-sha"><%= commit_id.substring(0, 8) %></span>
+into <span class="git-ref"><%= subject.base.label %></span>
+from <span class="git-ref"><%= subject.head.label %></span>
+<time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>

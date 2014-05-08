@@ -1,8 +1,6 @@
 <div class="conversation-meta">
-  <a href="<%= author.html_url %>">
-    <img class="conversation-avatar" src="<%= author.avatar_url %>">
-    <%- author.login %>
-  </a>
+  <img class="avatar" src="<%= author.avatar_url %>">
+  <a class="author" href="<%= author.html_url %>"><%- author.login %></a>
   committed
 </div>
 

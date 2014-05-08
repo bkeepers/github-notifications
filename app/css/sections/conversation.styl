@@ -3,8 +3,21 @@
   to   { opacity: 1; }
 }
 
-.conversation-comment {
+.conversation-item {
   animation: fadein 0.3s;
+
+  @media only screen and (min-width: 768px) {
+    margin: 9px;
+  }
+
+  .author {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+.conversation-comment {
   background: #fff;
   overflow: hidden;
   border: 1px solid transparent;
@@ -23,7 +36,6 @@
   }
 
   @media only screen and (min-width: 768px) {
-    margin: 9px;
     border-radius: 2px;
     box-shadow: 0 0 2px rgba(#000, 0.2);
   }
@@ -35,21 +47,6 @@
   &.collapsed {
     .conversation-content { display: none; }
   }
-}
-
-.conversation-user {
-  font-weight: bold;
-  color: inherit;
-}
-
-.conversation-avatar {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  left: 6px;
-  top: 50%;
-  margin-top: -12px;
-  border-radius: 2px;
 }
 
 .conversation-meta {
@@ -64,16 +61,11 @@
     color: #818189;
     font-size: 0.9em;
   }
-
-  a {
-    color: inherit;
-  }
 }
 
 .conversation-content {
   padding: 9px 18px 18px 36px;
 }
-
 
 .conversation-banner {
   overflow: hidden;
@@ -96,6 +88,68 @@
 
   .conversation-summary {
     margin: 0;
+  }
+}
+
+.conversation-meta {
+  .avatar {
+    margin-left: -30px;
+    top: 4px;
+  }
+}
+
+.conversation-item {
+  .avatar {
+    width: 24px;
+    height: 24px;
+    float: left;
+    vertical-align: middle;
+    position: relative;
+    border-radius: 2px;
+    margin-right: 5px;
+    margin-top: 2px;
+  }
+}
+
+.conversation-event {
+  margin: 24px 0 24px 45px;
+  color: #666;
+
+  .avatar {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.conversation-event-hidden {
+  display: none;
+}
+
+.conversation-item-icon {
+  float: left;
+  width: 30px;
+  height: 30px;
+  margin-top: -7px;
+  margin-right: 7px;
+  line-height: 30px;
+  color: #666666;
+  text-align: center;
+  background-color: #f3f3f3;
+  border-radius: 50%;
+
+  .conversation-event-merged & {
+    color: #fff;
+    background-color: git-merge-color;
+  }
+
+  .conversation-event-closed & {
+    color: #fff;
+    background-color: issue-closed-color;
+  }
+
+  .conversation-event-reopened & {
+    color: #fff;
+    background-color: issue-opened-color;
   }
 }
 
@@ -125,4 +179,24 @@
   display: none;
 
   .error & { display: block; }
+}
+
+.git-ref {
+  position: relative;
+  // height: 20px;
+  display: inline-block;
+  padding: 0 5px;
+  border-radius: 3px;
+  font: 10px/20px Monaco, "Liberation Mono", Courier, monospace;
+  color: #336479;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #e8f0f8;
+}
+
+.git-sha {
+  color: #000;
+  font-weight: bold;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-size: 12px;
 }

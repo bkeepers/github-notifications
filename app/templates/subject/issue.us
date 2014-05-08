@@ -8,7 +8,7 @@
   </div>
 
   <p class="conversation-summary nowrap">
-    <a href="<%= user.html_url %>" class="conversation-user"><%= user.login %></a>
+    <a href="<%= user.html_url %>" class="author"><%= user.login %></a>
     opened this issue
   </p>
 </div>

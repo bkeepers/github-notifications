@@ -1,7 +1,7 @@
 <div class="conversation-banner">
   <div class="conversation-meta">
-    <a href="<%= author.html_url %>" class="conversation-user">
-      <img class="conversation-avatar" src="<%= author.avatar_url %>">
+    <a href="<%= author.html_url %>" class="author">
+      <img class="avatar" src="<%= author.avatar_url %>">
       <%- author.login %>
     </a>
 

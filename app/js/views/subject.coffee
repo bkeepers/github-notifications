@@ -7,10 +7,6 @@ class App.Views.Subject extends Backbone.View
   template: JST['app/templates/subject.us']
   className: 'subject content loading'
 
-  keyboardEvents:
-    'n': 'selectNext'
-    'p': 'selectPrevious'
-
   # Chose the appropriate view class for the given subject
   @for: (model) ->
     App.Views.Subject[model.get('type')] || App.Views.Subject
@@ -22,39 +18,29 @@ class App.Views.Subject extends Backbone.View
     @notification = options.notification
 
     @bannerView = new App.Views.Banner(model: @model, template: @banner) if @banner
+    @timelineView = new App.Views.Timeline(collection: @model.timeline)
+
+    @listenTo @model, 'change', => @model.timeline.fetch()
 
     @render()
 
-    @model.ready @loadComments
+    # @model.ready @loadComments
     @model.fetch() if @model.url
+
+    @loaded() # TODO: KILL THIS
 
   render: ->
     @$el.html @template()
-    app.trigger 'render', @
     @$('.comments').append(@bannerView.el) if @banner
-
-  loadComments: =>
-    if url = @model.comments.url
-      @comments = new App.Views.Comments(collection: @model.comments, el: @$('.comments'))
-      @model.comments.on 'sync', @loaded
-      @$el.append new App.Views.CreateComment(collection: @model.comments).el
+    @$('.comments').append(@timelineView.el)
+    @$el.append new App.Views.CreateComment(collection: @model.comments).el
+    app.trigger 'render', @
 
   loaded: =>
     @$el.removeClass('loading')
 
-  selectNext: ->
-    comment = if @model.comments.selected
-      @model.comments.next()
-    else
-      @model.comments.first()
-
-    comment?.select scroll: true
-
-  selectPrevious: ->
-    comment.select scroll: true if comment = @model.comments.prev()
-
   hide: ->
-    @unbindKeyboardEvents()
+    @timelineView.unbindKeyboardEvents()
 
   show: ->
-    @bindKeyboardEvents()
+    @timelineView.bindKeyboardEvents()

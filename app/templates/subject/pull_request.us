@@ -8,10 +8,10 @@
   </div>
 
   <p class="conversation-summary nowrap">
-    <a href="<%= user.html_url %>" class="conversation-user"><%= user.login %></a>
+    <a href="<%= user.html_url %>" class="author"><%= user.login %></a>
     wants to merge <%= commits %> commits into
-    <span class="commit-ref"><%- base.ref %></span>
+    <span class="git-ref"><%- base.ref %></span>
     from
-    <span class="commit-ref"><%- head.ref %></span>
+    <span class="git-ref"><%- head.ref %></span>
   </p>
 </div>
