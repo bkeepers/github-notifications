@@ -13,7 +13,7 @@
     </span>
   </span>
 
-  <span class="conversation-summary nowrap">
+  <span class="conversation-summary">
     <a href="<%= user.html_url %>" class="author"><%= user.login %></a>
     wants to merge <%= commits %> commits into
     <span class="git-ref"><%- base.ref %></span>
