@@ -12,6 +12,15 @@ class App.Collections.Timeline extends Backbone.Collection
     collection.on 'add',    (model) => @add(model)
     collection.on 'remove', (model) => @remove(model)
 
+    @on 'add',    (model) => @listenTo model, 'selected', @select
+    @on 'remove', (model) => @stopListening model
+
   fetch: (options) ->
     _.each @collections, (collection) ->
       collection.fetch() if collection.url
+
+  # Don't add models to the timeline that don't want to be in it.
+  _prepareModel: ->
+    model = super
+    return false if model.hideInTimeline?()
+    model

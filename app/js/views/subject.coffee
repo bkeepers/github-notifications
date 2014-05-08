@@ -7,10 +7,6 @@ class App.Views.Subject extends Backbone.View
   template: JST['app/templates/subject.us']
   className: 'subject content loading'
 
-  keyboardEvents:
-    'n': 'selectNext'
-    'p': 'selectPrevious'
-
   # Chose the appropriate view class for the given subject
   @for: (model) ->
     App.Views.Subject[model.get('type')] || App.Views.Subject
@@ -43,19 +39,8 @@ class App.Views.Subject extends Backbone.View
   loaded: =>
     @$el.removeClass('loading')
 
-  selectNext: ->
-    item = if @model.timeline.selected
-      @model.timeline.next()
-    else
-      @model.timeline.first()
-
-    item?.select scroll: true
-
-  selectPrevious: ->
-    item.select scroll: true if item = @model.timeline.prev()
-
   hide: ->
-    @unbindKeyboardEvents()
+    @timelineView.unbindKeyboardEvents()
 
   show: ->
-    @bindKeyboardEvents()
+    @timelineView.bindKeyboardEvents()

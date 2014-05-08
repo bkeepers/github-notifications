@@ -2,6 +2,7 @@
 class App.Models.Subject extends Backbone.Model
   @for: (notification) ->
     subject = notification.get('subject')
+    subject.last_read_at = notification.get('last_read_at')
     model = App.Models.Subject[subject.type] || App.Models.Subject
     new model(subject, notification: notification)
 
@@ -10,7 +11,6 @@ class App.Models.Subject extends Backbone.Model
 
   initialize: (attributes, options = {}) ->
     @url = @get('url')
-    @notification = options.notification
 
     @timeline = new App.Collections.Timeline([], subject: @)
     @comments = new App.Collections.Comments([], subject: @)

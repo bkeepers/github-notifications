@@ -1,4 +1,8 @@
 class App.Views.Timeline extends Backbone.View
+  keyboardEvents:
+    'n': 'selectNext'
+    'p': 'selectPrevious'
+
   initialize: ->
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
@@ -22,8 +26,24 @@ class App.Views.Timeline extends Backbone.View
   scroll: =>
     return if @collection.selected
     if unread = @collection.detect((model) -> model.isUnread())
-      unread.select(scroll: true)
+      @collection.select unread, scroll: true
 
   viewFor: (model) ->
     view = App.Views["Timeline" + model.constructor.name] || App.Views.Comment
     new view(model: model)
+
+  selectNext: ->
+    item = if @collection.selected
+      @collection.next()
+    else
+      @collection.first()
+
+    @collection.select item, scroll: true if item
+
+  selectPrevious: ->
+    item = if @collection.selected
+      @collection.prev()
+    else
+      @collection.last()
+      
+    @collection.select item, scroll: true if item
