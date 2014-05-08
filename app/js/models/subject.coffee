@@ -2,7 +2,6 @@
 class App.Models.Subject extends Backbone.Model
   @for: (notification) ->
     subject = notification.get('subject')
-    subject.last_read_at = notification.get('last_read_at')
     model = App.Models.Subject[subject.type] || App.Models.Subject
     new model(subject, notification: notification)
 
@@ -14,7 +13,7 @@ class App.Models.Subject extends Backbone.Model
     @notification = options.notification
 
     @timeline = new App.Collections.Timeline([], subject: @)
-    @comments = new App.Collections.Comments([], last_read_at: @get('last_read_at'))
+    @comments = new App.Collections.Comments([], subject: @)
     @events = new App.Collections.Events([], subject: @)
 
     @once 'change', ->
@@ -28,8 +27,10 @@ class App.Models.Subject extends Backbone.Model
       @timeline.observe @events
 
   isUnread: ->
-    !@get('last_read_at') ||
-      moment(@get('last_read_at')) < moment(@get('created_at'))
+    @isUnreadSince(@get('created_at'))
+
+  isUnreadSince: (timestamp) ->
+    !@get('last_read_at') || moment(@get('last_read_at')) < moment(timestamp)
 
   toJSON: ->
     _.extend super, octicon: @octicon, display_type: @display_type

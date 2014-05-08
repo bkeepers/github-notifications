@@ -3,6 +3,5 @@ class App.Models.Event extends Backbone.Model
     super
     @url = @get('url')
 
-  # TODO: implement this
   isUnread: ->
-    false
+    @collection?.subject?.isUnreadSince(@get('created_at'))

@@ -4,5 +4,4 @@
 class App.Models.Comment extends Backbone.Model
 
   isUnread: ->
-    !@collection?.last_read_at ||
-      moment(@collection.last_read_at) < moment(@get('created_at'))
+    !@collection || @collection.subject.isUnreadSince(@get('created_at'))
