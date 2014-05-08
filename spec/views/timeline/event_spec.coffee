@@ -37,12 +37,6 @@ describe 'App.Views.TimelineEvent', ->
       @view.render()
       expect(text(@view.$el)).toMatch(/octocat reopened the pull request/)
 
-  describe 'subscribed', ->
-    beforeEach -> @event.set event: 'subscribed'
-
-    it 'renders nothing', ->
-      expect(text(@view.render().$el)).toEqual('')
-
   describe 'merged', ->
     beforeEach ->
       @event.collection.subject = @pull
@@ -64,11 +58,6 @@ describe 'App.Views.TimelineEvent', ->
       it 'renders', ->
         @view.render()
         expect(text(@view.$el)).toMatch(/referenced this issue from commit 6dcb09b5/)
-
-  # TODO: mentioned
-  # TODO: assigned
-  # TODO: head_ref_restored
-  # TODO: head_ref_deleted
 
   payload = {
     "id": 1,
