@@ -20,7 +20,6 @@
 .conversation-comment {
   background: #fff;
   overflow: hidden;
-  border: 1px solid transparent;
 
   &:focus {
     outline: none;
@@ -37,7 +36,7 @@
 
   @media only screen and (min-width: 768px) {
     border-radius: 2px;
-    box-shadow: 0 0 2px rgba(#000, 0.2);
+    border: 1px solid #e3e3e3;
   }
 
   @media only screen and (max-width: 767px) {
@@ -181,10 +180,6 @@
   &.open { background-color: #6cc644; }
   &.closed { background-color: #bd2c00; }
   .octicon { color: #fff; }
-}
-
-.write-content {
-  padding: 9px 9px 9px 36px;
 }
 
 .error-message {
