@@ -68,27 +68,40 @@
 }
 
 .conversation-banner {
-  overflow: hidden;
-  padding: 6px 18px 6px 36px;
+  margin: 18px;
 
-  .conversation-state {
-    float: left;
-    margin-right: 9px;
-  }
-
-  .conversation-banner-meta {
-    float: right;
-    margin-left: 18px;
-
-    a {
-      font-weight: bold;
-      color: inherit;
-    }
+  .conversation-event {
+    margin: 0;
   }
 
   .conversation-summary {
     margin: 0;
+    display: inline;
   }
+}
+
+.conversation-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-weight: normal;
+  line-height: 1.1;
+  word-wrap: break-word;
+  font-size: 28px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .issue-number {
+    color: #aaa;
+    font-weight: 300;
+    letter-spacing: -1px;
+  }
+}
+
+.conversation-banner-meta {
+  line-height: 30px;
 }
 
 .conversation-meta {
@@ -114,10 +127,13 @@
 .conversation-event {
   margin: 24px 0 24px 45px;
   color: #666;
+  line-height: 30px;
 
   .avatar {
     width: 16px;
     height: 16px;
+    float: none;
+    margin-top: 0;
   }
 }
 
@@ -126,10 +142,8 @@
 }
 
 .conversation-item-icon {
-  float: left;
   width: 30px;
   height: 30px;
-  margin-top: -7px;
   margin-right: 7px;
   line-height: 30px;
   color: #666666;
@@ -155,13 +169,18 @@
 
 .state-indicator {
   display: inline-block;
-  height: 20px;
   padding: 0 5px;
+  line-height: 24px;
+  top: -4px;
   color: #fff;
   border-radius: 2px;
+  padding: 4px 8px;
+  margin-right: 8px;
+  line-height: 20px;
 
   &.open { background-color: #6cc644; }
   &.closed { background-color: #bd2c00; }
+  .octicon { color: #fff; }
 }
 
 .write-content {
@@ -183,7 +202,6 @@
 
 .git-ref {
   position: relative;
-  // height: 20px;
   display: inline-block;
   padding: 0 5px;
   border-radius: 3px;

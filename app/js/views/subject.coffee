@@ -24,13 +24,11 @@ class App.Views.Subject extends Backbone.View
 
     @render()
 
-    # @model.ready @loadComments
+    @model.ready @loaded
     @model.fetch() if @model.url
 
-    @loaded() # TODO: KILL THIS
-
   render: ->
-    @$el.html @template()
+    @$el.html @template(@model.toJSON())
     @$('.comments').append(@bannerView.el) if @banner
     @$('.comments').append(@timelineView.el)
     @$el.append new App.Views.CreateComment(collection: @model.comments).el
