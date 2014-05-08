@@ -18,16 +18,10 @@
 }
 
 .conversation-comment {
-  background: #fff;
   overflow: hidden;
 
   &:focus {
     outline: none;
-  }
-
-  &.selected {
-    border: 1px solid #51a7e8;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,.075), 0 0 3px rgba(81,167,232,.5);
   }
 
   a {
@@ -37,6 +31,11 @@
   @media only screen and (min-width: 768px) {
     border-radius: 2px;
     border: 1px solid #e3e3e3;
+
+    &.selected {
+      border: 1px solid #51a7e8;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,.075), 0 0 3px rgba(81,167,232,.5);
+    }
   }
 
   @media only screen and (max-width: 767px) {
@@ -67,7 +66,12 @@
 }
 
 .conversation-banner {
-  margin: 18px;
+  padding: 18px;
+  margin: 0;
+
+  @media only screen and (max-width: 767px) {
+    border-bottom: 1px solid #f1f1f1;
+  }
 
   .conversation-event {
     margin: 0;
