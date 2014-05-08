@@ -11,6 +11,7 @@ class App.Models.Subject extends Backbone.Model
 
   initialize: (attributes, options = {}) ->
     @url = @get('url')
+    @notification = options.notification
 
     @timeline = new App.Collections.Timeline([], subject: @)
     @comments = new App.Collections.Comments([], subject: @)

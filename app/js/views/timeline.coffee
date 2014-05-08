@@ -45,5 +45,5 @@ class App.Views.Timeline extends Backbone.View
       @collection.prev()
     else
       @collection.last()
-      
+
     @collection.select item, scroll: true if item
