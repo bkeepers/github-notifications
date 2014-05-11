@@ -29,7 +29,11 @@ class App.Views.Timeline extends Backbone.View
       @collection.select unread, scroll: true
 
   viewFor: (model) ->
-    view = App.Views["Timeline" + model.constructor.name] || App.Views.Comment
+    view = if model instanceof App.Models.Event
+      App.Views["TimelineEvent"]
+    else
+      App.Views.Comment
+      
     new view(model: model)
 
   selectNext: ->
