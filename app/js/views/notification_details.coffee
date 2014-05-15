@@ -34,7 +34,7 @@ class App.Views.NotificationDetailsView extends Backbone.View
 
   unfocus: (e) ->
     e.preventDefault()
-    @$el.removeClass('focused')
+    @model.unselect()
 
   muteAndNext: ->
     @model.subscription.toggle()
@@ -53,9 +53,15 @@ class App.Views.NotificationDetailsView extends Backbone.View
     @$('textarea').focus()
 
   hide: ->
-    @$el.detach()
+    @$el.removeClass('focused')
     @unbindKeyboardEvents()
-    @subject.hide()
+    # FIXME: find a better way to give animation time to finish. This can leave
+    # the view in an inconsistent state if this model is selected again before
+    # the timeout fires.
+    setTimeout =>
+      @$el.detach()
+      @subject.hide()
+    , 300
 
   show: ->
     @bindKeyboardEvents()
