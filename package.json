@@ -19,7 +19,7 @@
     "express": "~3.4.4"
   },
   "devDependencies": {
-    "lineman": ">=0.19.3",
+    "lineman": "~0.30.0",
     "grunt-concat-sourcemap": "~0.3.0",
     "grunt-contrib-stylus": "~0.9.0",
     "nib": "~1.0.1",
