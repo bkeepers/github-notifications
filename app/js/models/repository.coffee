@@ -20,3 +20,6 @@ class App.Models.Repository extends Backbone.Model
 
   filterOptions: ->
     url: @notifications_url()
+
+  read: ->
+    @set('unread_count', 0)
