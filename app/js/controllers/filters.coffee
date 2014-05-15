@@ -4,8 +4,13 @@ class App.Controllers.Filters
     @repositories = options.repositories
     @notifications = options.notifications
 
-    @filters.on 'selected', @select
-    @repositories.on 'selected', @select
+    @filters.on 'selected', (model) =>
+      @repositories.unselect()
+      @select(model)
+
+    @repositories.on 'selected', (model) =>
+      @filters.unselect()
+      @select(model)
 
     @repositories.fetch()
     @repositories.startPolling()
@@ -17,6 +22,5 @@ class App.Controllers.Filters
 
   select: (filter) =>
     return unless filter
-    @view.filter?.unselect()
     @view.filter = filter
     @view.load filter.filterOptions()
