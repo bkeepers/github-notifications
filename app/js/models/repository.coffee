@@ -17,3 +17,6 @@ class App.Models.Repository extends Backbone.Model
   decrement: ->
     return if @get('unread_count') == 0
     @set('unread_count', @get('unread_count') - 1)
+
+  filterOptions: ->
+    url: @notifications_url()
