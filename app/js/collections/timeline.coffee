@@ -15,6 +15,9 @@ class App.Collections.Timeline extends Backbone.Collection
     @on 'add',    (model) => @listenTo model, 'selected', @select
     @on 'remove', (model) => @stopListening model
 
+  select: (model, options) =>
+    super unless @selected == model
+
   fetch: (options) ->
     _.each @collections, (collection) ->
       collection.fetch() if collection.url

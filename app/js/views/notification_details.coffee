@@ -34,7 +34,7 @@ class App.Views.NotificationDetailsView extends Backbone.View
 
   unfocus: (e) ->
     e.preventDefault()
-    @$el.removeClass('focused')
+    @model.unselect()
 
   muteAndNext: ->
     @model.subscription.toggle()
@@ -53,9 +53,13 @@ class App.Views.NotificationDetailsView extends Backbone.View
     @$('textarea').focus()
 
   hide: ->
-    @$el.detach()
+    @$el.removeClass('focused')
     @unbindKeyboardEvents()
-    @subject.hide()
+    # give animation time to finish
+    setTimeout =>
+      @$el.detach()
+      @subject.hide()
+    , 1000
 
   show: ->
     @bindKeyboardEvents()

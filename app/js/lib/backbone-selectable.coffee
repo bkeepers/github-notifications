@@ -19,10 +19,9 @@ _.extend Backbone.Collection.prototype,
   # model - a model in this collection, or null to unselect
   # args... - arguments passed to the events.
   select: (model, args...) ->
-    return if model == @selected
     previous = @selected
     @selected = model
-    previous.trigger 'unselected', model, args... if previous
+    previous.trigger 'unselected', previous, model, args... if previous
     model.trigger 'selected', model, previous, args... if model
 
   unselect: (args...) ->

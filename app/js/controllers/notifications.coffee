@@ -3,14 +3,18 @@ class App.Controllers.Notifications
   cache: new Cache(10)
 
   constructor: (@collection) ->
-    @collection.on 'selected', @show
+    _.extend @, Backbone.Events
+    @listenTo @collection, 'unselected', @hide
+    @listenTo @collection, 'selected', @show
 
   show: (notification) =>
     return unless notification
-    @selected?.hide()
 
-    @selected = @cache.fetch notification.cid,
+    view = @cache.fetch notification.cid,
       -> new App.Views.NotificationDetailsView(model: notification)
     # FIXME: replace with app layout
-    $('#details').html(@selected.el)
-    @selected.show()
+    $('#details').html(view.el)
+    view.show()
+
+  hide: (model) ->
+    @cache.get(model.cid)?.hide()
