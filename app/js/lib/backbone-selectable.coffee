@@ -8,10 +8,10 @@ _.extend Backbone.Collection.prototype,
   #     collection = new Backbone.Collection
   #     model = collection.create({name: 'Selectable Model'})
   #
-  #     model.on 'selected', (previous, options) ->
+  #     model.on 'selected', (selectedModel, previousModel, options) ->
   #       console.log 'selected', @ if options.debug
   #
-  #     model.on 'unselected', (selected, options) ->
+  #     model.on 'unselected', (previousModel, selectedModel, options) ->
   #       console.log 'unselected', @ if options.debug
   #
   #     collection.select model, debug: true
