@@ -55,11 +55,13 @@ class App.Views.NotificationDetailsView extends Backbone.View
   hide: ->
     @$el.removeClass('focused')
     @unbindKeyboardEvents()
-    # give animation time to finish
+    # FIXME: find a better way to give animation time to finish. This can leave
+    # the view in an inconsistent state if this model is selected again before
+    # the timeout fires.
     setTimeout =>
       @$el.detach()
       @subject.hide()
-    , 1000
+    , 300
 
   show: ->
     @bindKeyboardEvents()
