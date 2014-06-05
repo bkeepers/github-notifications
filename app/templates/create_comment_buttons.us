@@ -1,0 +1,8 @@
+<% if(state == 'open') { %>
+  <button type="submit" name="close" class="button comment-and-button">Comment &amp; Close</button>
+  <button type="submit" name="close" class="button no-comment-button">Close</button>
+<% } else if(state == 'closed') { %>
+  <button type="submit" name="open" class="button comment-and-button">Comment &amp; Reopen</button>
+  <button type="submit" name="open" class="button no-comment-button">Reopen</button>
+<% } %>
+<button class="button primary">Comment</button>
