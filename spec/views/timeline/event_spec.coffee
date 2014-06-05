@@ -1,9 +1,11 @@
 describe 'App.Views.TimelineEvent', ->
   beforeEach ->
-    @issue = new App.Models.Subject.Issue
+    @notification = new Backbone.Model
+      repository: {html_url: 'https://github.com/bkeepers/github-notifications'}
+    @issue = new App.Models.Subject.Issue({}, {notification: @notification})
     @pull = new App.Models.Subject.PullRequest(
-      head: {label: 'github:feature-branch'},
-      base: {label: 'github:master'}
+      {head: {label: 'github:feature-branch'}, base: {label: 'github:master'}},
+      {notification: @notification}
     )
 
     @event = new App.Models.Event(payload)
@@ -46,6 +48,11 @@ describe 'App.Views.TimelineEvent', ->
       @view.render()
       expect(text(@view.$el)).toMatch(/octocat merged commit 6dcb09b5 into github:master from github:feature-branch/)
 
+    it 'links to commit', ->
+      @view.render()
+      expected = 'https://github.com/bkeepers/github-notifications/commit/6dcb09b5b57875f334f61aebed695e2e4193db5e'
+      expect(@view.$('.git-sha').attr('href')).toEqual(expected)
+
   describe 'referenced', ->
     beforeEach ->
       @event.set event: 'referenced'
@@ -58,6 +65,11 @@ describe 'App.Views.TimelineEvent', ->
       it 'renders', ->
         @view.render()
         expect(text(@view.$el)).toMatch(/referenced this issue from commit 6dcb09b5/)
+
+      it 'links to commit', ->
+        @view.render()
+        expected = 'https://github.com/bkeepers/github-notifications/commit/6dcb09b5b57875f334f61aebed695e2e4193db5e'
+        expect(@view.$('.git-sha').attr('href')).toEqual(expected)
 
   payload = {
     "id": 1,
