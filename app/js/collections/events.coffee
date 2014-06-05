@@ -1,4 +1,4 @@
-class App.Collections.Events extends Backbone.Collection
+class App.Collections.Events extends PaginatedCollection
   model: App.Models.Event
 
   initialize: (models = [], options = {}) ->
