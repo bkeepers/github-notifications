@@ -1,4 +1,4 @@
-class App.Controllers.Notifications
+class App.Controllers.Notification
   # Cache for recently loaded notification views
   cache: new Cache(10)
 

@@ -58,7 +58,7 @@ class @App
       vent: @vent
 
     new App.Routers.Notifications(@vent)
-    new App.Controllers.Notifications(@vent)
+    new App.Controllers.Notification(@vent)
 
     new App.Views.Shortcuts(vent: @vent, repositories: @repositories)
 
