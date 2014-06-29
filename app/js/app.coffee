@@ -51,7 +51,8 @@ class @App
 
     new App.Routers.Filters
       filters: @filters
-      repositories: @repositories
+      vent: @vent
+
     new App.Controllers.Filters
       filters: @filters
       repositories: @repositories

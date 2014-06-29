@@ -13,3 +13,6 @@ class App.Collections.Repositories extends Backbone.Collection
 
   startPolling: (interval = 60 * 1000) ->
     setInterval @poll, interval
+
+  findByName: (name) ->
+    @find (model) -> model.get('full_name') == name

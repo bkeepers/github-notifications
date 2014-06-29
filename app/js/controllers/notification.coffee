@@ -5,7 +5,6 @@ class App.Controllers.Notification
   constructor: (@vent) ->
     _.extend @, Backbone.Events
     @listenTo @vent, 'notification:selected', @show
-    # FIXME: trigger this somewhere
     @listenTo @vent, 'notification:unselected', @hide
 
   show: (notification) =>
