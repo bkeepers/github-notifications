@@ -5,3 +5,6 @@ class App.Models.Filter extends Backbone.Model
 
   reasonFilter: (model) =>
     !@get('reasons') || model.get('reason') in @get('reasons')
+
+  read: ->
+    # noop

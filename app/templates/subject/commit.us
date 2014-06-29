@@ -1,9 +1,16 @@
-<div class="conversation-meta">
-  <a href="<%= author.html_url %>">
-    <img class="conversation-avatar" src="<%= author.avatar_url %>">
-    <%- author.login %>
+<h1 class="conversation-title">
+  <a href="<%= html_url %>">
+    <%- title %>
+    <span class="issue-number"><%= sha.substring(0, 8) %></span>
   </a>
+</h1>
+
+<div class="conversation-event conversation-banner-meta">
+  <span class="octicon octicon-git-commit conversation-item-icon"></span>
+  <img class="avatar" src="<%= author.avatar_url %>">
+  <a class="author" href="<%= author.html_url %>"><%- author.login %></a>
   committed
+  <time class="js-relative-time" datetime="<%= commit.committer.date %>"><%= commit.committer.date %></time>
 </div>
 
 <div class="conversation-content"><a href="<%= html_url %>"><%= sha %></a></div>

@@ -4,27 +4,22 @@ class App.Controllers.Filters
     @filters = options.filters
     @repositories = options.repositories
 
-    @filters.on 'selected', @selectFilter
-    @repositories.on 'selected', @selectRepository
+    @filters.on 'selected', (model) =>
+      @repositories.unselect()
+      @load(model)
+
+    @repositories.on 'selected', (model) =>
+      @filters.unselect()
+      @load(model)
 
     @repositories.fetch()
     @repositories.startPolling()
 
     new App.Views.Lists(repositories: @repositories, filters: @filters)
 
-    options.vent.on 'notification:select', @select
-    options.vent.on 'notification:next', @next
-    options.vent.on 'notification:prev', @prev
-
-  selectFilter: (filter) =>
-    return unless filter
-    @repositories.unselect()
-    @load filter.notifications
-
-  selectRepository: (model) =>
-    return unless model
-    @filters.unselect()
-    @load model.notifications
+    @vent.on 'notification:select', @select
+    @vent.on 'notification:next', @next
+    @vent.on 'notification:prev', @prev
 
 # FIXME: everything below this belongs in another controller
   next: =>
@@ -38,16 +33,17 @@ class App.Controllers.Filters
   select: (id) =>
     @notifications?.get(id)?.select()
 
-  load: (@notifications) ->
+  load: (filter) ->
+    next unless filter
+    @notifications = filter.notifications
+
     @notifications.on 'selected', (model) =>
       @vent.trigger 'notification:selected', model
 
-    # @view?.remove()
+    # TODO: cache views
     @view = new App.Views.Threads(collection: @notifications)
     @view.render()
 
-
-
-    @view.on 'state', => @load(@notifications)
+    @view.on 'state', => @load(filter)
 
     @notifications.fetch reset: true, data: {all: @view.shouldShowAll()}

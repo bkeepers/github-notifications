@@ -1,14 +1,21 @@
-<div class="conversation-banner">
+<h1 class="conversation-title">
+  <a href="<%= html_url %>">
+    <%- title %>
+    <span class="issue-number">#<%= number %></span>
+  </a>
+</h1>
+
+<div class="conversation-event conversation-banner-meta">
   <span class="conversation-state">
-      <span class="state-indicator <%= state %>"><%= state %></span>
+    <span class="state-indicator <%= state %>">
+      <span class="notification-type-octicon octicon octicon-<%= octicon %>"></span>
+      <%= state %>
+    </span>
   </span>
 
-  <div class="conversation-banner-meta">
-    <a href="<%= html_url %>">#<%= number %></a>
-  </div>
-
-  <p class="conversation-summary nowrap">
-    <a href="<%= user.html_url %>" class="conversation-user"><%= user.login %></a>
+  <span class="conversation-summary nowrap">
+    <a href="<%= user.html_url %>" class="author"><%= user.login %></a>
     opened this issue
-  </p>
+    <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
+  </span>
 </div>

@@ -12,18 +12,29 @@ class App.Models.Subject extends Backbone.Model
   initialize: (attributes, options = {}) ->
     @url = @get('url')
     @notification = options.notification
-    @comments = new App.Collections.Comments([], last_read_at: @get('last_read_at'))
+
+    @timeline = new App.Collections.Timeline([], subject: @)
+    @comments = new App.Collections.Comments([], subject: @)
+    @events = new App.Collections.Events([], subject: @)
+
     @once 'change', ->
       @isReady = true
-      @comments.add @ if @get('body_html')
+      @timeline.add @ if @get('body_html')
+
       @comments.url = @get('comments_url')
+      @timeline.observe @comments
+
+      @events.url = @get('events_url')
+      @timeline.observe @events
 
   isUnread: ->
-    !@get('last_read_at') ||
-      moment(@get('last_read_at')) < moment(@get('created_at'))
+    @isUnreadSince(@get('created_at'))
+
+  isUnreadSince: (timestamp) ->
+    !@get('last_read_at') || moment(@get('last_read_at')) < moment(timestamp)
 
   toJSON: ->
-    _.extend super, octicon: @octicon
+    _.extend super, octicon: @octicon, display_type: @display_type
 
   # Execute the callback function when the subject is loaded.
   ready: (fn) ->

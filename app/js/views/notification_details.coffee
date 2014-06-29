@@ -1,5 +1,6 @@
 # Root view for all the details of a notification
 class App.Views.NotificationDetailsView extends Backbone.View
+  template: JST['app/templates/notification_details.us']
   className: 'pane'
 
   keyboardEvents:
@@ -17,14 +18,13 @@ class App.Views.NotificationDetailsView extends Backbone.View
   initialize: ->
     view = App.Views.Subject.for(@model.subject)
     @subject = new view(model: @model.subject, notification: @model)
-    @header = new App.Views.NotificationHeader(model: @model)
+    @subscription = new App.Views.Subscription(model: @model.subscription)
     @render()
 
   render: ->
-    @$el.empty()
-    @$el.append @header.el
+    @$el.html @template()
+    @$('.actions').append @subscription.el
     @$el.append @subject.el
-    @$el.addClass('focused')
     @
 
   # Set target=_blank if it is an external link
@@ -34,7 +34,7 @@ class App.Views.NotificationDetailsView extends Backbone.View
 
   unfocus: (e) ->
     e.preventDefault()
-    @$el.removeClass('focused')
+    @model.unselect()
 
   muteAndNext: ->
     @model.subscription.toggle()
@@ -53,10 +53,17 @@ class App.Views.NotificationDetailsView extends Backbone.View
     @$('textarea').focus()
 
   hide: ->
-    @$el.detach()
+    @$el.removeClass('focused')
     @unbindKeyboardEvents()
-    @subject.hide()
+    # FIXME: find a better way to give animation time to finish. This can leave
+    # the view in an inconsistent state if this model is selected again before
+    # the timeout fires.
+    setTimeout =>
+      @$el.detach()
+      @subject.hide()
+    , 300
 
   show: ->
     @bindKeyboardEvents()
     @subject.show()
+    @$el.addClass('focused')

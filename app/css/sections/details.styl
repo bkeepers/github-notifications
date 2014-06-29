@@ -1,20 +1,13 @@
 #details {
-  background-color: #f7f7f7;
+  .pane {
+    background-color: #fff;
+  }
 
   header {
     a {
       text-decoration: none;
       color: inherit;
     }
-  }
-
-  h1 {
-    @extend .nowrap;
-    font-size: 16px;
-    margin: 0 90px 0 0;
-    padding: 0;
-    font-weight: normal;
-    max-width: 1px; // hack to fix overflow
   }
 
   .octicon-mute:hover {
@@ -25,11 +18,4 @@
     color: brand-red;
     &:hover { color: brand-green; }
   }
-}
-
-.notification-type-octicon {
-  width: 22px;
-  display: inline-block;
-  color: inherit !important;
-  opacity: 0.6;
 }
