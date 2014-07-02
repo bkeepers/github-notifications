@@ -1,5 +1,6 @@
 class App.Collections.Notifications extends Backbone.Collection
   model: App.Models.Notification
+
   url: ->
     app.endpoints.api + 'notifications'
 
@@ -26,7 +27,22 @@ class App.Collections.Notifications extends Backbone.Collection
     # Update the internal state of each notification
     @each (notification) -> notification.set 'unread', false
 
-  # Overriden to allow filtering out some models.
+  # Fetch the previous page of notifications
+  #
+  # Returns false if last request returned zero notifications
+  paginate: ->
+    return false if @donePaginating
+    data = before: @last()?.get('updated_at')
+    @fetch(reset: false, remove: false, data: data).done(@checkIfPaginated)
+
+  checkIfPaginated: (data, options, xhr) =>
+    @donePaginating = data.length == 0
+
+  # Internal: Keep notifications in reverse-chronological order
+  comparator: (model) ->
+    -moment(model.get('updated_at')).valueOf()
+
+  # Internal: Overriden to allow filtering out some models.
   _prepareModel: (attrs, options) ->
     model = super
     model if @filter(model)

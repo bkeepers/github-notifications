@@ -13,9 +13,13 @@ class App.Views.Threads extends Backbone.View
       # FIXME: this belongs somewhere else
       $('#toggle-lists').attr('checked', false) # Collapse the menu on mobile
 
+    # Fetch more if filtered notifications don't fill the screen.
+    @listenToOnce @collection, 'sync', @paginate
+
   render: ->
     @$el.html @template()
     app.trigger 'render', @
+    @$('.content').on 'scroll', _.debounce(@paginate, 50)
     @
 
   add: (notification) ->
@@ -36,3 +40,10 @@ class App.Views.Threads extends Backbone.View
 
   stateChange: (e) ->
     @trigger 'state', $(e.target).val()
+
+  paginate: =>
+    @collection.paginate().done?(@paginate) if @shouldPaginate()
+
+  shouldPaginate: ->
+    content = @$('.content')
+    content.children().height() - content.scrollTop() < content.height() + 200
