@@ -11,16 +11,6 @@ module.exports = (lineman) ->
         src: "app/css/app.styl"
         dest: "<%= files.stylus.generatedApp %>"
 
-    clean:
-      bower:
-        src: "vendor/bower"
-
-    bower:
-      install:
-        options:
-          targetDir: "vendor/bower"
-          cleanBowerDir: true
-
   files:
     stylus:
       main: "app/css/main.styl"
