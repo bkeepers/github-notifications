@@ -1,0 +1,7 @@
+<div class="conversation-item conversation-content warning">
+  <h2><span class="octicon octicon-alert"></span> You must have super powers!</h2>
+
+  <p>This notification is not yet supported in the GitHub API, so we can't show it here.</p>
+
+  <a class="minibutton" href="<%= url %>">View on GitHub.com</a>
+</div>
