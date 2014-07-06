@@ -42,9 +42,8 @@ class @App
 
     @filters = new App.Collections.Filters([
       {id: 'everything', name: 'Everything', data: {}},
-      {id: 'participating', name: 'Participating', data: {participating: true}, reasons: ['author', 'comment', 'state_change', 'assign']}
-      {id: 'mentioned', name: 'Mentioned', data: {participating: true}, reasons: ['mention', 'team_mention']},
-      {id: 'watching', name: 'Watching', data: {}, reasons: ['subscribed', 'manual']},
+      {id: 'participating', name: 'Participating', data: {participating: true}, reasons: ['mention', 'author', 'comment', 'state_change', 'assign']}
+      {id: 'mentioned', name: 'Mentioned', data: {participating: true}, reasons: ['team_mention']},
     ])
 
     @repositories = new App.Collections.Repositories()
