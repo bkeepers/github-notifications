@@ -23,14 +23,15 @@ class App.Views.Threads extends Backbone.View
   render: ->
     @$el.html @template()
     app.trigger 'render', @
+    @$list = @$('.notification-list')
     @
 
   add: (notification) ->
     view = new App.Views.Notification(model: notification)
-    @$('.notification-list').append(view.render().el)
+    @$list.append(view.render().el)
 
   addAll: ->
-    @$('.notification-list').empty()
+    @$list.empty()
     @collection.each(@add, @)
 
   read: (e) ->

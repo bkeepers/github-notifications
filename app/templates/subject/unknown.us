@@ -1,0 +1,7 @@
+<div class="conversation-item conversation-content warning">
+  <h2><span class="octicon octicon-alert"></span> Your super powers don't work here.</h2>
+
+  <p>Your super human strength gets you access to special features on GitHub, but it apparently isn't enough to fabricate API endpoints. Try using Jedi mind tricks on someone that can implement the API.</p>
+
+  <a class="minibutton" href="<%= url %>">View on GitHub.com</a>
+</div>

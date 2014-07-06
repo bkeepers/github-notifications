@@ -17,4 +17,4 @@ describe 'App.Views.Subject', ->
 
     it 'returns Subject for unknown type', ->
       model = new Backbone.Model()
-      expect(App.Views.Subject.for(model)).toBe(App.Views.Subject)
+      expect(App.Views.Subject.for(model)).toBe(App.Views.Subject.Unknown)
