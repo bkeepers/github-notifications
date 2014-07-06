@@ -12,5 +12,7 @@
     <a id="mark-all-read" class="menubutton octicon octicon-check" href="#" title="Mark all as read"></a>
   </nav>
 </header>
-<ul class="notification-list content">
-</ul>
+<div class="content">
+  <ul class="notification-list">
+  </ul>
+</div>

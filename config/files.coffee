@@ -35,9 +35,7 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend "files",
 
   css:
     vendor: [
+      "vendor/bower/octicons/octicons/octicons.css",
       "vendor/bower/normalize-css/normalize.css",
       "vendor/css/**/*.css"
     ]
-
-  webfonts:
-    root: "css"
