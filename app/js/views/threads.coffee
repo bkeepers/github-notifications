@@ -10,6 +10,10 @@ class App.Views.Threads extends Backbone.View
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
     @listenToOnce @collection, 'sync', =>
+      # FIXME: this should be bound in #render, but for some reason the scroll
+      # event doesn't work when this is there.
+      @$content = @$('.content').on('scroll', _.debounce(@paginate, 50))
+
       # Fetch more if filtered notifications don't fill the screen.
       setTimeout(@paginate, 1)
 
@@ -19,7 +23,6 @@ class App.Views.Threads extends Backbone.View
   render: ->
     @$el.html @template()
     app.trigger 'render', @
-    @$content = @$('.content').on('scroll', _.debounce(@paginate, 50))
     @
 
   add: (notification) ->
