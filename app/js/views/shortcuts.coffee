@@ -22,10 +22,6 @@ class App.Views.Shortcuts extends Backbone.View
       key: 'g m'
       action: -> Backbone.history.navigate 'mentioned', trigger: true
 
-    'Go to Watching':
-      key: 'g w'
-      action: -> Backbone.history.navigate 'watching', trigger: true
-
     'Open help for keyboard shortcuts':
       key: '?'
       action: 'help'
