@@ -1,6 +1,6 @@
 class App.Views.Threads extends Backbone.View
   template: JST['app/templates/threads.us']
-  className: 'pane'
+  className: 'pane loading'
 
   events:
     'change input[name=notifications-state]': 'stateChange'
@@ -9,6 +9,9 @@ class App.Views.Threads extends Backbone.View
   initialize: ->
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
+    @listenTo @collection, 'request', @startPaginating
+    @listenTo @collection, 'sync', @donePaginating
+
     @listenToOnce @collection, 'sync', =>
       # FIXME: this should be bound in #render, but for some reason the scroll
       # event doesn't work when this is there.
@@ -16,6 +19,8 @@ class App.Views.Threads extends Backbone.View
 
       # FIXME: this belongs somewhere else
       $('#toggle-lists').attr('checked', false) # Collapse the menu on mobile
+
+      @$el.removeClass('loading')
 
     @stateChange()
 
@@ -46,14 +51,21 @@ class App.Views.Threads extends Backbone.View
     @collection.fetch(reset: true).then(@paginate)
 
   paginate: =>
-    return if @paginating || @collection.donePaginating || !@shouldPaginate()
-    @paginating = true
-    @collection.paginate().then(=> @paginating = false).done(@paginate)
+    return if @isPaginating || @collection.donePaginating || !@shouldPaginate()
+    @collection.paginate().done(@paginate)
 
   shouldPaginate: ->
-    @$content.children().height() - @$content.scrollTop() < @$content.height() + 200
+    @$content.children().height() - @$content.scrollTop() < @$content.height() + 300
 
   hide: ->
     @$el.detach()
 
   show: ->
+
+  startPaginating: ->
+    @isPaginating = true
+    @$el.addClass('paginating')
+
+  donePaginating: ->
+    @isPaginating = false
+    @$el.removeClass('paginating')

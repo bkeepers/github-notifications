@@ -15,4 +15,5 @@
 <div class="content">
   <ul class="notification-list">
   </ul>
+  <div class="loader"></div>
 </div>
