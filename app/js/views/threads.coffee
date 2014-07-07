@@ -20,8 +20,6 @@ class App.Views.Threads extends Backbone.View
       # FIXME: this belongs somewhere else
       $('#toggle-lists').attr('checked', false) # Collapse the menu on mobile
 
-      @$el.removeClass('loading')
-
     @stateChange()
 
   render: ->
@@ -47,6 +45,7 @@ class App.Views.Threads extends Backbone.View
     @$('input[name=notifications-state]:checked').val() == 'all'
 
   stateChange: ->
+    @$el.addClass('loading')
     @collection.data.all = @shouldShowAll()
     @collection.fetch(reset: true).then(@paginate)
 
@@ -68,4 +67,4 @@ class App.Views.Threads extends Backbone.View
 
   donePaginating: ->
     @isPaginating = false
-    @$el.removeClass('paginating')
+    @$el.removeClass('loading paginating')
