@@ -32,7 +32,7 @@ class App.Collections.Notifications extends Backbone.Collection
   # Returns false if last request returned zero notifications
   paginate: ->
     return $.Deferred.reject() if @donePaginating
-    data = before: @oldest_timestamp?.toISOString()
+    data = before: @oldestTimestamp?.toISOString()
     @fetch(reset: false, remove: false, data: data).done(@checkIfPaginated)
 
   checkIfPaginated: (data, options, xhr) =>
@@ -48,7 +48,7 @@ class App.Collections.Notifications extends Backbone.Collection
 
     # Save timestamp of earliest notification we've seen, regardless of filter.
     updated_at = moment(model.get('updated_at'))
-    if updated_at.isBefore(@oldest_timestamp || moment())
-      @oldest_timestamp = updated_at
+    if updated_at.isBefore(@oldestTimestamp || moment())
+      @oldestTimestamp = updated_at
 
     model if @filter(model)
