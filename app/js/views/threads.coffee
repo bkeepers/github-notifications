@@ -14,11 +14,10 @@ class App.Views.Threads extends Backbone.View
       # event doesn't work when this is there.
       @$content = @$('.content').on('scroll', _.debounce(@paginate, 50))
 
-      # Fetch more if filtered notifications don't fill the screen.
-      setTimeout(@paginate, 1)
-
       # FIXME: this belongs somewhere else
       $('#toggle-lists').attr('checked', false) # Collapse the menu on mobile
+
+    @stateChange()
 
   render: ->
     @$el.html @template()
@@ -42,8 +41,9 @@ class App.Views.Threads extends Backbone.View
   shouldShowAll: ->
     @$('input[name=notifications-state]:checked').val() == 'all'
 
-  stateChange: (e) ->
-    @trigger 'state', $(e.target).val()
+  stateChange: ->
+    @collection.data.all = @shouldShowAll()
+    @collection.fetch(reset: true).then(@paginate)
 
   paginate: =>
     return if @paginating || @collection.donePaginating || !@shouldPaginate()
@@ -52,3 +52,8 @@ class App.Views.Threads extends Backbone.View
 
   shouldPaginate: ->
     @$content.children().height() - @$content.scrollTop() < @$content.height() + 200
+
+  hide: ->
+    @$el.detach()
+
+  show: ->

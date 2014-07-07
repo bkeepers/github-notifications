@@ -9,14 +9,15 @@ class App.Collections.Notifications extends Backbone.Collection
   # options.data   - default params to use on the fetch request.
   initialize: (models, options = {}) ->
     @filter = options.filter if options.filter
-    @data = options.data
+    @data = options.data || {}
     @on 'reset', -> @select(undefined)
 
   # Default filter accepts all models
   filter: (model) -> true
 
   fetch: (options = {}) ->
-    options.data = _.extend(@data || {}, options.data || {})
+    @oldestTimestamp = @donePaginating = null if options.reset
+    options.data = _.extend({}, @data, options.data || {})
     super
 
   # Mark all notifications as read

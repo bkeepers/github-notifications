@@ -25,10 +25,10 @@ class App.Controllers.Notifications
     @listenTo @vent, 'notification:select', @select
     @listenTo @vent, 'notification:next', @next
     @listenTo @vent, 'notification:prev', @prev
-    @listenTo @view, 'state', @show
 
-    @notifications.fetch reset: true, data: {all: @view.shouldShowAll()}
     $('#threads').html(@view.el) # FIXME: replace with app layout
+    @view.show()
 
   hide: ->
     @stopListening()
+    @view.hide()
