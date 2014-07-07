@@ -47,9 +47,7 @@ class App.Collections.Notifications extends Backbone.Collection
     model = super
 
     # Save timestamp of earliest notification we've seen, regardless of filter.
-    # FIXME: subtracts 1 millisecond because the API will return <=, which includes
-    # the last notification. Need to update the API.
-    updated_at = moment(model.get('updated_at')).subtract('millisecond', 1)
+    updated_at = moment(model.get('updated_at'))
     if updated_at.isBefore(@oldest_timestamp || moment())
       @oldest_timestamp = updated_at
 
