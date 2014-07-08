@@ -10,8 +10,12 @@ module.exports = {
 
     app.post('/authenticate/:code', function(req, res) {
       authenticate(req.params.code, function(err, token) {
-        var result = err || !token ? {"error": "bad_code"} : {"token": token};
-        res.json(result);
+        if(err || !token) {
+          res.status(406);
+          res.json({"error": "bad_code"});
+        } else {
+          res.json({"token": token});
+        }
       });
     });
   }
