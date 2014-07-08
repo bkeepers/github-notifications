@@ -11,3 +11,10 @@ describe 'App.Collections.Notifications', ->
     it 'ignores models that do not satisfy the filter', ->
       @collection.add new Backbone.Model(name: 'Ulysses Everett McGill', bonafide: false)
       expect(@collection.size()).toBe(0)
+
+    it 'marks each notification individually as read', ->
+      model = new Backbone.Model(name: 'Iliad', bonafide: true)
+      model.read = jasmine.createSpy('read')
+      @collection.add(model)
+      @collection.read()
+      expect(model.read).toHaveBeenCalled()

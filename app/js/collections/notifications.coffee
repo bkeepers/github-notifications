@@ -20,13 +20,9 @@ class App.Collections.Notifications extends Backbone.Collection
     options.data = _.extend({}, @data, options.data || {})
     super
 
-  # Mark all notifications as read
-  read: (options = {}) ->
-    # FIXME: mark each notification read individually since collection is filtered
-    options.data = '{}'
-    @sync 'update', @, options unless app.isDevelopment()
-    # Update the internal state of each notification
-    @each (notification) -> notification.set 'unread', false
+  # Mark each notification as read
+  read: ->
+    @invoke 'read'
 
   # Fetch the previous page of notifications
   #
