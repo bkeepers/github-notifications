@@ -33,9 +33,6 @@ function requireHTTPS(req, res, next) {
   }
 }
 
-var url = require('url'),
-    https = require('https'),
-    qs = require('querystring');
 var fs = require('fs');
 
 // Load config defaults from JSON file.
@@ -53,6 +50,9 @@ function loadConfig() {
 }
 
 var config = loadConfig();
+
+var https = config.oauth_port == 443 ? require('https') : require('http'),
+    qs = require('querystring');
 
 function authenticate(code, cb) {
   var data = qs.stringify({
