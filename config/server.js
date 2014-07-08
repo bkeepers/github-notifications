@@ -36,11 +36,16 @@ function requireHTTPS(req, res, next) {
 var url = require('url'),
     https = require('https'),
     qs = require('querystring');
+var fs = require('fs');
 
 // Load config defaults from JSON file.
 // Environment variables override defaults.
 function loadConfig() {
-  var config = JSON.parse(require('fs').readFileSync(__dirname + '/defaults.json', 'utf-8'));
+  var local = __dirname + '/local.json',
+      defaults = __dirname + '/defaults.json',
+      path = fs.existsSync(local) ? local : defaults,
+      config = JSON.parse(fs.readFileSync(path, 'utf-8'));
+
   for (var i in config) {
     config[i] = process.env[i.toUpperCase()] || config[i];
   }
