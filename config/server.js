@@ -4,8 +4,13 @@ module.exports = {
       app.use(requireHTTPS);
     }
 
-    app.get('/authenticate', function(req, res) {
-      res.json({client_id: config.oauth_client_id, scope: config.oauth_scope});
+    app.get('/config', function(req, res) {
+      res.json({
+        api_url: config.api_url,
+        web_url: config.web_url,
+        client_id: config.oauth_client_id,
+        scope: config.oauth_scope,
+      });
     });
 
     app.post('/authenticate/:code', function(req, res) {
