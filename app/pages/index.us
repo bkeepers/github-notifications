@@ -20,13 +20,13 @@
       <div id="lists" class="sidebar pane">
         <header></header>
       </div>
-      <div id="threads" class="responsive-content sidebar">
-        <div class="pane">
+      <div id="threads" class="responsive-content sidebar pane">
+        <div>
           <header>&nbsp;</header>
         </div>
       </div>
-      <div id="details">
-        <div class="pane">
+      <div id="details" class="pane">
+        <div>
           <header>&nbsp;</header>
         </div>
       </div>

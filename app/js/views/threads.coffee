@@ -1,6 +1,6 @@
 class App.Views.Threads extends Backbone.View
   template: JST['app/templates/threads.us']
-  className: 'pane loading'
+  className: 'loading'
 
   events:
     'change input[name=notifications-state]': 'stateChange'

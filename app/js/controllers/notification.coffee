@@ -13,8 +13,9 @@ class App.Controllers.Notification
     view = @cache.fetch notification.cid,
       -> new App.Views.NotificationDetailsView(model: notification)
     # FIXME: replace with app layout
-    $('#details').html(view.el)
+    $('#details').html(view.el).addClass('focused')
     view.show()
 
   hide: (model) ->
+    $('#details').removeClass('focused')
     @cache.get(model.cid)?.hide()

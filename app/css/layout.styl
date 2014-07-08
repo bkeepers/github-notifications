@@ -21,7 +21,7 @@ html, body {
   top: 0;
   bottom: 0;
 
-  & > header {
+  header {
     position: absolute;
     top: 0;
     left: 0;
@@ -56,12 +56,12 @@ html, body {
     width: 216px;
   }
 
-  #threads .pane {
+  #threads {
     left: 216px;
     width: 300px;
   }
 
-  #details .pane {
+  #details {
     left: 516px;
     right: 0;
   }
@@ -89,7 +89,7 @@ html, body {
     z-index: 2;
   }
 
-  #details .pane {
+  #details {
     z-index: 3;
     transition: transform 250ms ease;
     transform: translateX(105%); // 105 to push the shadow of the screen
