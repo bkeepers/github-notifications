@@ -44,3 +44,9 @@ class App.Views.Subject extends Backbone.View
 
   show: ->
     @timelineView.bindKeyboardEvents()
+
+  url: ->
+    if unread = @model.comments.detect((comment) -> comment.isUnread())
+      unread.get('html_url')
+    else
+      @model.get('html_url')

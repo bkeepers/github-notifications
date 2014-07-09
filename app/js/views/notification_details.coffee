@@ -41,10 +41,7 @@ class App.Views.NotificationDetailsView extends Backbone.View
 
   # Go to the page on GitHub for this notification
   open: (e) ->
-    if unread = @model.subject.comments.detect((comment) -> comment.isUnread())
-      window.open unread.get('html_url'), '_blank'
-    else
-      window.open @model.subject.get('html_url'), '_blank'
+    window.open @subject.url(), '_blank'
 
   # Focus the reply textarea
   reply:(e) ->
