@@ -3,9 +3,11 @@ class App.Views.Subject.Unknown extends Backbone.View
   className: 'subject content'
 
   initialize: ->
-    url = @model.notification.get('repository').html_url + '/notifications'
-    @$el.html @template(url: url)
+    @$el.html @template(url: @url())
+
+  url: ->
+    @model.get('html_url') || @model.notification.get('repository').html_url + '/notifications'
 
   show: ->
-    
+
   hide: ->
