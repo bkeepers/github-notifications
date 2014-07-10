@@ -9,8 +9,6 @@ class App.Views.Threads extends Backbone.View
   initialize: ->
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
-    @listenTo @collection, 'request', @startPaginating
-    @listenTo @collection, 'sync', @donePaginating
 
     @listenToOnce @collection, 'sync', =>
       # FIXME: this should be bound in #render, but for some reason the scroll
@@ -19,6 +17,8 @@ class App.Views.Threads extends Backbone.View
 
       # FIXME: this belongs somewhere else
       $('#toggle-lists').attr('checked', false) # Collapse the menu on mobile
+
+      @$el.removeClass('loading')
 
     @stateChange()
 
@@ -51,7 +51,8 @@ class App.Views.Threads extends Backbone.View
 
   paginate: =>
     return if @isPaginating || @collection.donePaginating || !@shouldPaginate()
-    @collection.paginate().done(@paginate)
+    @startPaginating
+    @collection.paginate().then(@donePaginating).done(@paginate)
 
   shouldPaginate: ->
     @$content.children().height() - @$content.scrollTop() < @$content.height() + 300
@@ -65,6 +66,6 @@ class App.Views.Threads extends Backbone.View
     @isPaginating = true
     @$el.addClass('paginating')
 
-  donePaginating: ->
+  donePaginating: =>
     @isPaginating = false
-    @$el.removeClass('loading paginating')
+    @$el.removeClass('paginating')
