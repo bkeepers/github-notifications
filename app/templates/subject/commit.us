@@ -20,13 +20,13 @@
     <a href="<%= parent.html_url %>" class="git-sha"><%= parent.sha.substring(0, 8) %></a>
   <% }) %>
   <code>commit</code> <a href="<%= html_url %>" class="git-sha"><%= sha %></a>
+</div>
 
-  <div class="toc-diff-stats">
-    <span class="octicon octicon-diff"></span>
-    <%= pluralize(files.length, 'changed file') %> with
-    <strong><%= pluralize(stats.additions, 'addition') %></strong> and
-    <strong><%= pluralize(stats.deletions), 'deletion' %></strong>.
-  </div>
+<div class="toc-diff-stats">
+  <span class="octicon octicon-diff"></span>
+  <%= pluralize(files.length, 'changed file') %> with
+  <strong><%= pluralize(stats.additions, 'addition') %></strong> and
+  <strong><%= pluralize(stats.deletions, 'deletion') %></strong>.
 </div>
 
 <% // FIXME: move this to its own view %>
@@ -34,11 +34,13 @@
   <% _.each(files, function(file) { %>
     <div class="file">
       <div class="meta">
-        <%= file.filename %>
-        <a href="<%= file.blob_url %>" class="minibutton" title="View whole file at version <%= file.sha.substring(0, 8) %>">View</a>
+        <div class="info"><%= file.filename %></div>
+        <div class="actions">
+          <a href="<%= file.blob_url %>" class="minibutton" title="View whole file at version <%= file.sha.substring(0, 8) %>">View</a>
+        </div>
       </div>
 
-      <pre><%= file.patch %></pre>
+      <pre class="data"><%= file.patch %></pre>
     </div>
   <% }) %>
 </div>
