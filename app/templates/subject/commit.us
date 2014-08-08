@@ -13,4 +13,32 @@
   <time class="js-relative-time" datetime="<%= commit.committer.date %>"><%= commit.committer.date %></time>
 </div>
 
-<div class="conversation-content"><a href="<%= html_url %>"><%= sha %></a></div>
+<div class="conversation-content">
+  <p><%= commit.message %></p>
+  <code><%= pluralize(parents.length, 'parent', false) %></code>
+  <% _.each(parents, function(parent) { %>
+    <a href="<%= parent.html_url %>" class="git-sha"><%= parent.sha.substring(0, 8) %></a>
+  <% }) %>
+  <code>commit</code> <a href="<%= html_url %>" class="git-sha"><%= sha %></a>
+
+  <div class="toc-diff-stats">
+    <span class="octicon octicon-diff"></span>
+    <%= pluralize(files.length, 'changed file') %> with
+    <strong><%= pluralize(stats.additions, 'addition') %></strong> and
+    <strong><%= pluralize(stats.deletions), 'deletion' %></strong>.
+  </div>
+</div>
+
+<% // FIXME: move this to its own view %>
+<div class="files">
+  <% _.each(files, function(file) { %>
+    <div class="file">
+      <div class="meta">
+        <%= file.filename %>
+        <a href="<%= file.blob_url %>" class="minibutton" title="View whole file at version <%= file.sha.substring(0, 8) %>">View</a>
+      </div>
+
+      <pre><%= file.patch %></pre>
+    </div>
+  <% }) %>
+</div>
