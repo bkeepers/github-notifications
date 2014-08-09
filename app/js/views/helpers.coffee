@@ -1,5 +1,8 @@
 App.Views.Helpers =
-  # Create a new object that extends these helpers and then the given object
+  # Create a new object that extends these helpers and then the given object.
+  #
+  #   JST["template"](App.Views.Helpers.extend(@model.toJSON()))
+  #
   extend: (object) ->
     _.extend {}, @, object
 
