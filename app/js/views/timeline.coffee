@@ -10,7 +10,10 @@ class App.Views.Timeline extends Backbone.View
     @addAll()
 
   add: (model) ->
-    view = @viewFor(model).render()
+    view = @viewFor(model)
+    return unless view
+
+    view.render()
 
     sibling = @$el.children().eq(@collection.indexOf(model))
 
@@ -31,10 +34,10 @@ class App.Views.Timeline extends Backbone.View
   viewFor: (model) ->
     view = if model instanceof App.Models.Event
       App.Views["TimelineEvent"]
-    else
+    else if model.get('body_html')
       App.Views.Comment
-      
-    new view(model: model)
+
+    new view(model: model) if view
 
   selectNext: ->
     item = if @collection.selected
