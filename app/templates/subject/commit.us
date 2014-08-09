@@ -5,42 +5,12 @@
   </a>
 </h1>
 
-<div class="conversation-event conversation-banner-meta">
-  <span class="octicon octicon-git-commit conversation-item-icon"></span>
-  <img class="avatar" src="<%= author.avatar_url %>">
-  <a class="author" href="<%= author.html_url %>"><%- author.login %></a>
-  committed
-  <time class="js-relative-time" datetime="<%= commit.committer.date %>"><%= commit.committer.date %></time>
-</div>
-
-<div class="conversation-content">
-  <p><%= commit.message %></p>
-  <code><%= pluralize(parents.length, 'parent', false) %></code>
-  <% _.each(parents, function(parent) { %>
-    <a href="<%= parent.html_url %>" class="git-sha"><%= parent.sha.substring(0, 8) %></a>
-  <% }) %>
-  <code>commit</code> <a href="<%= html_url %>" class="git-sha"><%= sha %></a>
-</div>
-
-<div class="toc-diff-stats">
-  <span class="octicon octicon-diff"></span>
-  <%= pluralize(files.length, 'changed file') %> with
-  <strong><%= pluralize(stats.additions, 'addition') %></strong> and
-  <strong><%= pluralize(stats.deletions, 'deletion') %></strong>.
-</div>
-
-<% // FIXME: move this to its own view %>
-<div class="files">
-  <% _.each(files, function(file) { %>
-    <div class="file">
-      <div class="meta">
-        <div class="info"><%= file.filename %></div>
-        <div class="actions">
-          <a href="<%= file.blob_url %>" class="minibutton" title="View whole file at version <%= file.sha.substring(0, 8) %>">View</a>
-        </div>
-      </div>
-
-      <pre class="data"><%= file.patch %></pre>
-    </div>
-  <% }) %>
+<div class="toc-diff-stats conversation-event conversation-banner-meta">
+  <span class="conversation-summary">
+    <span class="octicon octicon-git-commit conversation-item-icon"></span>
+    <a href="<%= author.html_url %>" class="author"><%= author.login %></a>
+    changed <%= pluralize(files.length, 'file') %> with
+    <strong><%= pluralize(stats.additions, 'addition') %></strong> and
+    <strong><%= pluralize(stats.deletions, 'deletion') %></strong>.
+  </span>
 </div>

@@ -34,6 +34,8 @@ class App.Views.Timeline extends Backbone.View
   viewFor: (model) ->
     view = if model instanceof App.Models.Event
       App.Views["TimelineEvent"]
+    else if model instanceof App.Models.Subject.Commit
+      App.Views.Timeline.Commit
     else if model.get('body_html')
       App.Views.Comment
 

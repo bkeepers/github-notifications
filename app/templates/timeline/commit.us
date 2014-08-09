@@ -1,0 +1,38 @@
+<div class="conversation-meta">
+  <a href="<%= author.html_url %>" class="author">
+    <img class="avatar" src="<%= author.avatar_url %>">
+    <%- author.login %>
+  </a>
+  committed
+
+  <time class="js-relative-time" datetime="<%= commit.committer.date %>"><%= commit.committer.date %></time>
+</div>
+
+<div class="conversation-content">
+  <div class="commit-message"><%= commit.message %></div>
+
+  <code><%= pluralize(parents.length, 'parent', false) %></code>
+  <% _.each(parents, function(parent) { %>
+    <a href="<%= parent.html_url %>" class="git-sha"><%= parent.sha.substring(0, 8) %></a>
+  <% }) %>
+  <code>commit</code> <a href="<%= html_url %>" class="git-sha"><%= sha %></a>
+
+  <div class="diff">
+    <% // FIXME: move this to its own view %>
+    <div class="files">
+      <% _.each(files, function(file) { %>
+        <div class="file">
+          <div class="meta">
+            <div class="info">
+              <a href="<%= file.blob_url %>" title="View whole file at version <%= file.sha.substring(0, 8) %>"><%= file.filename %></a>
+            </div>
+            <div class="actions">
+            </div>
+          </div>
+
+          <pre class="data"><%= file.patch %></pre>
+        </div>
+      <% }) %>
+    </div>
+  <div>
+</div>
