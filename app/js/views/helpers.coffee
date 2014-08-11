@@ -12,3 +12,6 @@ App.Views.Helpers =
       "#{count} #{noun}"
     else
       noun
+
+  shortSha: (sha) ->
+    sha.substring(0, 8)

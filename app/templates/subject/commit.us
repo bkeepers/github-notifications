@@ -5,7 +5,7 @@
   </a>
 </h1>
 
-<div class="toc-diff-stats conversation-event conversation-banner-meta">
+<div class="toc-diff-stats conversation-banner-meta">
   <span class="conversation-summary">
     <span class="octicon octicon-git-commit conversation-item-icon"></span>
     <a href="<%= author.html_url %>" class="author"><%= author.login %></a>

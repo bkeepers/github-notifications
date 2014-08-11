@@ -5,17 +5,13 @@
   </a>
   committed
 
+  <a href="<%= html_url %>" class="git-sha"><%= shortSha(sha) %></a>
+
   <time class="js-relative-time" datetime="<%= commit.committer.date %>"><%= commit.committer.date %></time>
 </div>
 
 <div class="conversation-content">
   <div class="commit-message"><%= commit.message %></div>
-
-  <code><%= pluralize(parents.length, 'parent', false) %></code>
-  <% _.each(parents, function(parent) { %>
-    <a href="<%= parent.html_url %>" class="git-sha"><%= parent.sha.substring(0, 8) %></a>
-  <% }) %>
-  <code>commit</code> <a href="<%= html_url %>" class="git-sha"><%= sha %></a>
 
   <div class="diff">
     <% // FIXME: move this to its own view %>
