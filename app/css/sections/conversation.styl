@@ -7,7 +7,7 @@
   animation: fadein 0.3s;
 
   @media only screen and (min-width: 768px) {
-    margin: 9px;
+    margin: 9px 9px 9px 54px;
   }
 
   .author {
@@ -19,9 +19,21 @@
   &:focus {
     outline: none;
   }
+
+  .avatar {
+    vertical-align: middle;
+    border-radius: 2px;
+    margin-right: 5px;
+  }
 }
 
 .conversation-comment {
+  .avatar {
+    float: left;
+    margin-left: -64px;
+    width: 36px;
+    height: 36px;
+  }
 
   a {
     text-decoration: none;
@@ -29,7 +41,7 @@
 
   @media only screen and (min-width: 768px) {
     border-radius: 2px;
-    border: 1px solid #e3e3e3;
+    border: 1px solid #eee;
 
     &.selected {
       border: 1px solid #51a7e8;
@@ -47,7 +59,7 @@
 }
 
 .conversation-meta {
-  padding: 0 18px 0 36px;
+  padding: 0 18px;
   line-height: 36px;
   vertical-align: middle;
   position: relative;
@@ -59,11 +71,11 @@
 }
 
 .conversation-content {
-  padding: 9px 18px 18px 36px;
+  padding: 9px 18px;
 }
 
 .conversation-banner {
-  padding: 18px;
+  padding: 18px 18px 18px 54px;
   margin: 0;
 
   @media only screen and (max-width: 767px) {
@@ -104,30 +116,9 @@
   line-height: 30px;
 }
 
-.conversation-meta {
-  .avatar {
-    margin-left: -30px;
-    top: 4px;
-  }
-}
-
-.conversation-item {
-  .avatar {
-    width: 24px;
-    height: 24px;
-    float: left;
-    vertical-align: middle;
-    position: relative;
-    border-radius: 2px;
-    margin-right: 5px;
-    margin-top: 2px;
-  }
-}
-
 .conversation-event {
-  margin: 24px 0 24px 45px;
   color: #666;
-  line-height: 30px;
+  padding: 9px 0;
 
   .avatar {
     width: 16px;

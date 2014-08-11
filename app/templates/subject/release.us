@@ -4,7 +4,7 @@
   </a>
 </h1>
 
-<div class="conversation-event conversation-banner-meta">
+<div class="conversation-banner-meta">
   <span class="conversation-summary nowrap">
     <span class="octicon octicon-tag conversation-item-icon"></span>
     <img class="avatar" src="<%= author.avatar_url %>">
