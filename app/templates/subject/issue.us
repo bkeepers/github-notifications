@@ -5,7 +5,7 @@
   </a>
 </h1>
 
-<div class="conversation-event conversation-banner-meta">
+<div class="conversation-banner-meta">
   <span class="conversation-state">
     <span class="state-indicator <%= state %>">
       <span class="notification-type-octicon octicon octicon-<%= octicon %>"></span>

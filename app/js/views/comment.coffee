@@ -28,6 +28,7 @@ class App.Views.Comment extends Backbone.View
 
   # Toggle the expanded or collapsed state of the comment
   toggle: (e) ->
+    return if $(e.target).is('a')
     e.preventDefault()
     @$el.toggleClass('collapsed expanded')
 
