@@ -1,4 +1,4 @@
-sidebar-color = desaturate(darken(header-color, 65%), 60%);
+sidebar-color = #151D22;
 
 #lists {
   background-color: sidebar-color;
@@ -30,17 +30,15 @@ sidebar-color = desaturate(darken(header-color, 65%), 60%);
 
   .list {
     a {
-      color: #ccc;
+      opacity: 0.5;
+      color: #fff;
       padding: 0 18px;
       line-height: 26px;
       transition: color .2s ease;
-
-      &:hover {
-        color: #ccc;
-      }
+      text-shadow: 0 1px 1px rgba(#000, 0.5);
 
       &.selected {
-        color: #fff;
+        opacity: 1;
         background: rgba(#fff, 0.075);
         box-shadow: inset 2px 0 0 0 rgba(brand-blue, 0.65);
       }
@@ -49,25 +47,32 @@ sidebar-color = desaturate(darken(header-color, 65%), 60%);
 
   .primary {
     display: block;
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
 
     a {
       line-height: 36px;
     }
+
+    .octicon {
+      margin-right: 4px;
+    }
   }
 
   .title {
-    color: rgba(#fff, 0.3);
-    font-weight: bold;
+    opacity: 0.25;
+    font-weight: 500;
     text-transform: uppercase;
-    font-size: 11px;
+    letter-spacing: 1px;
+    font-size: 12px;
     line-height: 34px;
     padding: 0 18px;
     margin: 18px 0 0 0;
   }
 }
-
 
 .list-name {
   @extend .nowrap;
