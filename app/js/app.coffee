@@ -38,15 +38,15 @@ class @App
     $('#app').show()
 
     @filters = new App.Collections.Filters([
-      {id: 'all', name: 'All', data: {}},
-      {id: 'participating', name: 'Participating', data: {participating: true}}
+      {id: 'all', name: 'All', data: {}, octicon: 'inbox'},
+      {id: 'participating', name: 'Participating', data: {participating: true}, octicon: 'mention'}
     ])
     @repositories = new App.Collections.Repositories()
     @notifications = new App.Collections.Notifications()
 
     new App.Routers.Filters
       filters: @filters
-      repositories: @repositories      
+      repositories: @repositories
     new App.Controllers.Filters
       filters: @filters
       repositories: @repositories
