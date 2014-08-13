@@ -19,7 +19,7 @@ class App.Models.Subject extends Backbone.Model
 
     @once 'change', ->
       @isReady = true
-      @timeline.add @ if @get('body_html')
+      @timeline.add @
 
       @comments.url = @get('comments_url')
       @timeline.observe @comments

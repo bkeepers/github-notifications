@@ -5,7 +5,7 @@ class App.Collections.Timeline extends Backbone.Collection
     @collections = []
 
   comparator: (model) ->
-    moment(model.get('created_at'))
+    moment model.createdAt?() || model.get('created_at')
 
   observe: (collection) ->
     @collections.push collection
