@@ -34,12 +34,6 @@ html, body {
     right: 0;
     height: header-height;
     z-index: 4;
-
-    .standalone & {
-      padding-top: status-bar-height;
-      height: header-height + status-bar-height;
-      outline-top: 1px dotted red;
-    }
   }
 
   .content {
@@ -49,13 +43,9 @@ html, body {
     right: 0;
     bottom: 0;
     overflow: auto;
-    
+
     @media screen and (min-width: 768px) {
       padding: 18px;
-    }
-
-    .standalone & {
-      top: header-height + status-bar-height;
     }
   }
 }
