@@ -1,16 +1,16 @@
 <h1 class="conversation-title">
-  <a href="<%= html_url %>">
+  <a href="<%- html_url %>">
     <%- title %>
-    <span class="issue-number"><%= sha.substring(0, 8) %></span>
+    <span class="issue-number"><%- sha.substring(0, 8) %></span>
   </a>
 </h1>
 
 <div class="toc-diff-stats conversation-banner-meta">
   <span class="conversation-summary">
     <span class="octicon octicon-git-commit conversation-item-icon"></span>
-    <a href="<%= author.html_url %>" class="author"><%= author.login %></a>
-    changed <%= pluralize(files.length, 'file') %> with
-    <strong><%= pluralize(stats.additions, 'addition') %></strong> and
-    <strong><%= pluralize(stats.deletions, 'deletion') %></strong>.
+    <a href="<%- author.html_url %>" class="author"><%- author.login %></a>
+    changed <%- pluralize(files.length, 'file') %> with
+    <strong><%- pluralize(stats.additions, 'addition') %></strong> and
+    <strong><%- pluralize(stats.deletions, 'deletion') %></strong>.
   </span>
 </div>

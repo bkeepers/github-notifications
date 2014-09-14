@@ -5,7 +5,7 @@
       <h2 class="header">Thanks for your feedback!</h2>
       <p>
         Sharing is caring! You can follow the discussion at
-        <a target="_blank" href="<%= html_url %>">bkeepers/github-notifications#<%= number %></a>.
+        <a target="_blank" href="<%- html_url %>">bkeepers/github-notifications#<%- number %></a>.
       </p>
     </form>
   </div>

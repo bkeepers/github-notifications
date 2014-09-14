@@ -1,10 +1,10 @@
 <div class="conversation-meta">
-  <a href="<%= user.html_url %>" class="author">
-    <img class="avatar" src="<%= user.avatar_url %>">
+  <a href="<%- user.html_url %>" class="author">
+    <img class="avatar" src="<%- user.avatar_url %>">
     <%- user.login %>
   </a>
 
-  <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
+  <time class="js-relative-time" datetime="<%- created_at %>"><%- created_at %></time>
 </div>
 
 <div class="conversation-content markdown-body"><%= body_html %></div>

@@ -1,21 +1,21 @@
 <h1 class="conversation-title">
-  <a href="<%= html_url %>">
+  <a href="<%- html_url %>">
     <%- title %>
-    <span class="issue-number">#<%= number %></span>
+    <span class="issue-number">#<%- number %></span>
   </a>
 </h1>
 
 <div class="conversation-banner-meta">
   <span class="conversation-state">
-    <span class="state-indicator <%= state %>">
-      <span class="notification-type-octicon octicon octicon-<%= octicon %>"></span>
-      <%= state %>
+    <span class="state-indicator <%- state %>">
+      <span class="notification-type-octicon octicon octicon-<%- octicon %>"></span>
+      <%- state %>
     </span>
   </span>
 
   <span class="conversation-summary">
-    <a href="<%= user.html_url %>" class="author"><%= user.login %></a>
-    wants to merge <%= commits %> commits into
+    <a href="<%- user.html_url %>" class="author"><%- user.login %></a>
+    wants to merge <%- commits %> commits into
     <span class="git-ref"><%- base.ref %></span>
     from
     <span class="git-ref"><%- head.ref %></span>
