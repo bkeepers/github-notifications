@@ -20,6 +20,9 @@ class App.Views.Threads extends Backbone.View
 
       @$el.removeClass('loading')
 
+    @listenTo @collection, 'request', @startPaginating
+    @listenTo @collection, 'sync', @donePaginating
+
     @stateChange()
 
   render: ->
@@ -51,8 +54,7 @@ class App.Views.Threads extends Backbone.View
 
   paginate: =>
     return if @isPaginating || @collection.donePaginating || !@shouldPaginate()
-    @startPaginating
-    @collection.paginate().then(@donePaginating).done(@paginate)
+    @collection.paginate().done(@paginate)
 
   shouldPaginate: ->
     @$content.children().height() - @$content.scrollTop() < @$content.height() + 300
