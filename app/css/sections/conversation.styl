@@ -6,7 +6,7 @@
   animation: fadein 0.3s ease-in;
 
   @media only screen and (min-width: 768px) {
-    margin: 9px 9px 9px 54px;
+    margin: 9px 9px 9px 45px;
   }
 
   .author {
@@ -40,7 +40,7 @@
 
   @media only screen and (min-width: 768px) {
     border-radius: 2px;
-    border: 1px solid #eee;
+    border: 1px solid border-color;
 
     &.selected {
       border: 1px solid #51a7e8;
@@ -74,11 +74,14 @@
 }
 
 .conversation-banner {
-  padding: 18px 18px 18px 54px;
-  margin: 0;
+
+  @media only screen and (min-width: 768px) {
+    margin: 0 0 18px 0;
+  }
 
   @media only screen and (max-width: 767px) {
     border-bottom: 1px solid #f1f1f1;
+    padding: 18px;
   }
 
   .conversation-event {
@@ -117,7 +120,6 @@
 
 .conversation-event {
   color: #666;
-  padding: 9px;
 
   .avatar {
     width: 16px;

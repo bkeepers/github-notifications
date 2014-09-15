@@ -1,5 +1,5 @@
 class App.Views.TimelineEvent extends Backbone.View
-  className: 'conversation-event conversation-item'
+  className: 'conversation-event conversation-item conversation-content'
 
   render: =>
     @$el.addClass("conversation-event-#{@model.get('event')}")

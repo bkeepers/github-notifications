@@ -46,12 +46,11 @@ time {
 
 .pane {
   header {
-    background-color: header-color;
-    line-height: 48px;
-    box-shadow: 0 0 1px #000, 0 0 5px rgba(#000, 0.5),
-      inset 1px 0 0 0 rgba(#fff, 0.1), inset -1px 0 0 0 rgba(#000, 0.1);
-    color: #fff;
     padding: 0 18px;
+    line-height: header-height;
+    border-bottom: 1px solid border-color;
+    color: base-color;
+    background-color: header-color;
 
     & > * {
       vertical-align: middle;
@@ -70,6 +69,10 @@ time {
       }
     }
 
+    .actions {
+      text-align: right;
+    }
+
     .actions, .responsive-toggle {
       width: 1%; // make it as small as possible since it is display:table-cell
     }
@@ -84,10 +87,6 @@ time {
   }
 
   @media screen and (max-width: 768px) {
-    box-shadow: -3px 0 3px rgba(#000, 0.2), inset 1px 0 1px rgba(#FFF, 0.1);
-
-    header {
-      box-shadow: inset 1px 0 1px rgba(#FFF, 0.1);
-    }
+    box-shadow: -1px 0 5px rgba(#000, 0.2);
   }
 }
