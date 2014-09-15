@@ -27,6 +27,11 @@ class App.Views.Subject extends Backbone.View
     @model.ready @loaded
     @model.fetch() if @model.url
 
+    # Show loader while timeline is loading
+    @listenTo @model.timeline, 'request', @startFetching
+    @listenTo @model.timeline, 'sync', @doneFetching
+    @fetchCount = 0
+
   render: ->
     @$el.html @template(@model.toJSON())
     @$('.comments').append(@bannerView.el) if @banner
@@ -50,3 +55,11 @@ class App.Views.Subject extends Backbone.View
       unread.get('html_url')
     else
       @model.get('html_url')
+
+  startFetching: ->
+    @fetchCount += 1
+    @$el.addClass('paginating')
+
+  doneFetching: ->
+    @fetchCount -= 1
+    @$el.removeClass('paginating') if @fetchCount == 0
