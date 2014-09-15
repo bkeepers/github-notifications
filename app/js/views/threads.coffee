@@ -11,10 +11,6 @@ class App.Views.Threads extends Backbone.View
     @listenTo @collection, 'reset', @addAll
 
     @listenToOnce @collection, 'sync', =>
-      # FIXME: this should be bound in #render, but for some reason the scroll
-      # event doesn't work when this is there.
-      @$content = @$('.content').on('scroll', _.debounce(@paginate, 50))
-
       # FIXME: this belongs somewhere else
       $('#toggle-lists').attr('checked', false) # Collapse the menu on mobile
 
@@ -23,17 +19,27 @@ class App.Views.Threads extends Backbone.View
     @listenTo @collection, 'request', @startPaginating
     @listenTo @collection, 'sync', @donePaginating
 
-    @stateChange()
-
   render: ->
     @$el.html @template()
+
+    # Bind to scroll and non-standard mouse events to enable loading more when
+    # content is not scrollable, such as when there are no notifications.
+    @$content = @$('.content').on('scroll mousewheel DOMMouseScroll', _.debounce(@loadMore, 50))
+
     app.trigger 'render', @
     @$list = @$('.notification-list')
     @
 
   add: (notification) ->
-    view = new App.Views.Notification(model: notification)
-    @$list.append(view.render().el)
+    view = new App.Views.Notification(model: notification).render()
+
+    # Maintain view order by inserting it the new element before the element
+    # that is currently in its place.
+    sibling = @$list.children().eq(@collection.indexOf(notification))
+    if sibling.length
+      sibling.before(view.el)
+    else
+      @$list.append(view.el)
 
   addAll: ->
     @$list.empty()
@@ -50,19 +56,30 @@ class App.Views.Threads extends Backbone.View
   stateChange: ->
     @$el.addClass('loading')
     @collection.data.all = @shouldShowAll()
-    @collection.fetch(reset: true).then(@paginate)
+    @collection.fetch(reset: true).then(@loadMore)
 
-  paginate: =>
-    return if @isPaginating || @collection.donePaginating || !@shouldPaginate()
-    @collection.paginate().done(@paginate)
+  loadMore: =>
+    return if @isPaginating
+
+    if @shouldPoll()
+      @collection.poll()
+    else if !@collection.donePaginating && @shouldPaginate()
+      @collection.paginate().done(@loadMore)
+
+  shouldPoll: ->
+    @$content.scrollTop() == 0
 
   shouldPaginate: ->
     @$content.children().height() - @$content.scrollTop() < @$content.height() + 300
 
   hide: ->
     @$el.detach()
+    @collection.stopPolling();
 
   show: ->
+    @collection.data.all = @shouldShowAll()
+    @collection.poll();
+    @collection.startPolling();
 
   startPaginating: ->
     @isPaginating = true

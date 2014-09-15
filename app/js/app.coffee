@@ -19,11 +19,6 @@ class @App
       headers:
         'Accept': 'application/vnd.github.v3.html+json'
 
-      # the Notifications API makes heavy use of the If-Modified-Since header for
-      # determining what to respond with. This disables any HTTP caching until
-      # proper local caching is implemented.
-      cache: false
-
   # An event aggrigator
   vent:  _.extend {}, Backbone.Events
 
