@@ -9,8 +9,11 @@ class App.Collections.Timeline extends Backbone.Collection
 
   observe: (collection) ->
     @collections.push collection
-    collection.on 'add',    (model) => @add(model)
-    collection.on 'remove', (model) => @remove(model)
+    collection.on 'add',    (model) => @add(model, silent: true)
+    collection.on 'remove', (model) => @remove(model, silent: true)
+
+    # Propagate all events
+    collection.on 'all', => @trigger.apply(@, arguments)
 
     @on 'add',    (model) => @listenTo model, 'selected', @select
     @on 'remove', (model) => @stopListening model
