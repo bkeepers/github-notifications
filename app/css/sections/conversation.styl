@@ -6,7 +6,7 @@
   animation: fadein 0.3s ease-in;
 
   @media only screen and (min-width: 768px) {
-    margin: 9px;
+    margin: 9px 9px 9px 54px;
   }
 
   .author {
@@ -14,13 +14,24 @@
     text-decoration: none;
     font-weight: bold;
   }
-}
-
-.conversation-comment {
-  overflow: hidden;
 
   &:focus {
     outline: none;
+  }
+
+  .avatar {
+    vertical-align: middle;
+    border-radius: 2px;
+    margin-right: 5px;
+  }
+}
+
+.conversation-comment {
+  .avatar {
+    float: left;
+    margin-left: -64px;
+    width: 36px;
+    height: 36px;
   }
 
   a {
@@ -29,7 +40,7 @@
 
   @media only screen and (min-width: 768px) {
     border-radius: 2px;
-    border: 1px solid #e3e3e3;
+    border: 1px solid #eee;
 
     &.selected {
       border: 1px solid #51a7e8;
@@ -47,7 +58,7 @@
 }
 
 .conversation-meta {
-  padding: 0 18px 0 36px;
+  padding: 0 18px;
   line-height: 36px;
   vertical-align: middle;
   position: relative;
@@ -59,11 +70,11 @@
 }
 
 .conversation-content {
-  padding: 9px 18px 18px 36px;
+  padding: 9px 18px;
 }
 
 .conversation-banner {
-  padding: 18px;
+  padding: 18px 18px 18px 54px;
   margin: 0;
 
   @media only screen and (max-width: 767px) {
@@ -104,30 +115,9 @@
   line-height: 30px;
 }
 
-.conversation-meta {
-  .avatar {
-    margin-left: -30px;
-    top: 4px;
-  }
-}
-
-.conversation-item {
-  .avatar {
-    width: 24px;
-    height: 24px;
-    float: left;
-    vertical-align: middle;
-    position: relative;
-    border-radius: 2px;
-    margin-right: 5px;
-    margin-top: 2px;
-  }
-}
-
 .conversation-event {
-  margin: 24px 0 24px 45px;
   color: #666;
-  line-height: 30px;
+  padding: 9px;
 
   .avatar {
     width: 16px;
@@ -178,8 +168,9 @@
   margin-right: 8px;
   line-height: 20px;
 
-  &.open { background-color: #6cc644; }
-  &.closed { background-color: #bd2c00; }
+  &.open { background-color: issue-opened-color; }
+  &.closed { background-color: issue-closed-color; }
+  &.merged { background-color: git-merge-color; }
   .octicon { color: #fff; }
 }
 
@@ -211,7 +202,12 @@
 .git-sha {
   color: #000;
   font-weight: bold;
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-family: monospace-font;
   font-size: 12px;
   text-decoration: none;
+}
+
+.commit-message {
+  white-space: pre-wrap;
+  font-family: monospace-font;
 }

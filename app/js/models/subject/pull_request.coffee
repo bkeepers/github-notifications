@@ -7,3 +7,8 @@ class App.Models.Subject.PullRequest extends App.Models.Subject
 
     @on 'change', ->
       @events.url = @get('issue_url') + '/events'
+
+  toJSON: ->
+    attrs = super
+    attrs.state = 'merged' if attrs.merged
+    attrs

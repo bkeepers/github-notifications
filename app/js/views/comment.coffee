@@ -20,7 +20,7 @@ class App.Views.Comment extends Backbone.View
     @listenTo @model, 'unselected', @unselected
 
   render: =>
-    @$el.html @template(@model.toJSON())
+    @$el.html @template(App.Views.Helpers.extend(@model.toJSON()))
     @$el.addClass if @model.isUnread() then 'expanded' else 'collapsed'
     @$el.attr('tabindex', 0) # Make it focusable
     app.trigger 'render', @
@@ -28,6 +28,7 @@ class App.Views.Comment extends Backbone.View
 
   # Toggle the expanded or collapsed state of the comment
   toggle: (e) ->
+    return if $(e.target).is('a')
     e.preventDefault()
     @$el.toggleClass('collapsed expanded')
 

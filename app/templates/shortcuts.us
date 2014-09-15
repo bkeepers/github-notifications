@@ -2,7 +2,7 @@
 
 <dl>
   <% for(var description in shortcuts) { %>
-    <dt><%= shortcuts[description].keys.join(' or ') %></dt>
-    <dd><%= description %></dd>
+    <dt><%- shortcuts[description].keys.join(' or ') %></dt>
+    <dd><%- description %></dd>
   <% } %>
 </dl>

@@ -1,21 +1,21 @@
 <h1 class="conversation-title">
-  <a href="<%= html_url %>">
+  <a href="<%- html_url %>">
     <%- title %>
-    <span class="issue-number">#<%= number %></span>
+    <span class="issue-number">#<%- number %></span>
   </a>
 </h1>
 
-<div class="conversation-event conversation-banner-meta">
+<div class="conversation-banner-meta">
   <span class="conversation-state">
-    <span class="state-indicator <%= state %>">
-      <span class="notification-type-octicon octicon octicon-<%= octicon %>"></span>
-      <%= state %>
+    <span class="state-indicator <%- state %>">
+      <span class="notification-type-octicon octicon octicon-<%- octicon %>"></span>
+      <%- state %>
     </span>
   </span>
 
   <span class="conversation-summary nowrap">
-    <a href="<%= user.html_url %>" class="author"><%= user.login %></a>
+    <a href="<%- user.html_url %>" class="author"><%- user.login %></a>
     opened this issue
-    <time class="js-relative-time" datetime="<%= created_at %>"><%= created_at %></time>
+    <time class="js-relative-time" datetime="<%- created_at %>"><%- created_at %></time>
   </span>
 </div>

@@ -41,9 +41,9 @@ class @App
     $('#app').show()
 
     @filters = new App.Collections.Filters([
-      {id: 'everything', name: 'Everything', data: {}},
-      {id: 'participating', name: 'Participating', data: {participating: true}, reasons: ['mention', 'author', 'comment', 'state_change', 'assign']}
-      {id: 'mentioned', name: 'Mentioned', data: {participating: true}, reasons: ['team_mention']},
+      {id: 'everything', name: 'Everything', data: {}, octicon: 'inbox'},
+      {id: 'participating', name: 'Participating', data: {participating: true}, reasons: ['mention', 'author', 'comment', 'state_change', 'assign'], octicon: 'mention'}
+      {id: 'mentioned', name: 'Mentioned', data: {participating: true}, reasons: ['team_mention'], octicon: 'jersey'},
     ])
 
     @repositories = new App.Collections.Repositories()
