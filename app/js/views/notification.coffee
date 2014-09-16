@@ -13,6 +13,7 @@ class App.Views.Notification extends Backbone.View
 
   render: ->
     @$el.html @template(@model.toJSON())
+    @selected() if @model.isSelected()
     app.trigger 'render', @
     @
 
