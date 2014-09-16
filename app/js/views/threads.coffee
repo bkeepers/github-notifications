@@ -7,7 +7,7 @@ class App.Views.Threads extends Backbone.View
     'click #mark-all-read': 'read'
 
   initialize: ->
-    @listenTo @collection, 'add', @add
+    @listenTo @collection, 'add change', @add
     @listenTo @collection, 'reset', @addAll
 
     @listenToOnce @collection, 'sync', =>
@@ -18,6 +18,8 @@ class App.Views.Threads extends Backbone.View
 
     @listenTo @collection, 'request', @startPaginating
     @listenTo @collection, 'sync', @donePaginating
+
+    @views = {}
 
   render: ->
     @$el.html @template()
@@ -30,12 +32,13 @@ class App.Views.Threads extends Backbone.View
     @$list = @$('.notification-list')
     @
 
-  add: (notification) ->
-    view = new App.Views.Notification(model: notification).render()
+  add: (model) ->
+    # memoize view instances
+    view = @views[model.id] ||= new App.Views.Notification(model: model).render()
 
     # Maintain view order by inserting it the new element before the element
     # that is currently in its place.
-    sibling = @$list.children().eq(@collection.indexOf(notification))
+    sibling = @$list.children().eq(@collection.indexOf(model))
     if sibling.length
       sibling.before(view.el)
     else
