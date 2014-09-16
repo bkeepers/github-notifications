@@ -4,9 +4,6 @@ class App.Collections.Notifications extends Backbone.Collection
   url: ->
     app.endpoints.api + 'notifications'
 
-  comparator: (model) ->
-    moment model.get('updated_at')
-
   # options.filter - a function that takes a model as an argument and returns
   #                  true if the model should be added to the collection.
   # options.data   - default params to use on the fetch request.
