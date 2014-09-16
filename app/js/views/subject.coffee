@@ -56,10 +56,16 @@ class App.Views.Subject extends Backbone.View
     else
       @model.get('html_url')
 
-  startFetching: ->
+  startFetching: (object) ->
+    # We only care about requests for the collection
+    return unless object instanceof Backbone.Collection
+
     @fetchCount += 1
     @$el.addClass('paginating')
 
-  doneFetching: ->
+  doneFetching: (object) ->
+    # We only care about requests for the collection
+    return unless object instanceof Backbone.Collection
+
     @fetchCount -= 1
     @$el.removeClass('paginating') if @fetchCount == 0
