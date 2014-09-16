@@ -81,7 +81,10 @@ class App.Views.Threads extends Backbone.View
     @collection.poll();
     @collection.startPolling();
 
-  startPaginating: ->
+  startPaginating: (object) ->
+    # Ignore model events
+    return unless object == @collection
+
     @isPaginating = true
     @$el.addClass('paginating')
 
