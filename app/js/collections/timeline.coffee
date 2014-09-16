@@ -13,10 +13,14 @@ class App.Collections.Timeline extends Backbone.Collection
     collection.on 'remove', (model) => @remove(model, silent: true)
 
     # Propagate all events
-    collection.on 'all', => @trigger.apply(@, arguments)
+    @listenTo collection, 'all', @propagateEvents
 
     @on 'add',    (model) => @listenTo model, 'selected', @select
     @on 'remove', (model) => @stopListening model
+
+  propagateEvents: (event, model, args...) ->
+    if model && !model.hideInTimeline?()
+      @trigger(event, model, args...)
 
   select: (model, options) =>
     super unless @selected == model
