@@ -20,5 +20,4 @@ class App.Models.Notification extends Backbone.Model
       repository = app.repositories.get(@get("repository").id)
       repository?.decrement()
 
-    @set 'unread', false
     @save {unread: false}, {patch: true}
