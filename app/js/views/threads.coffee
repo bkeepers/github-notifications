@@ -60,7 +60,7 @@ class App.Views.Threads extends Backbone.View
     @collection.fetch(reset: true).then(@loadMore)
 
   loadMore: =>
-    return if @isPaginating
+    return if @isLoading
 
     if @shouldPoll()
       @collection.poll()
@@ -85,12 +85,12 @@ class App.Views.Threads extends Backbone.View
     # Ignore model events
     return unless object == @collection
 
-    @isPaginating = true
+    @isLoading = true
     @$el.addClass('paginating')
 
   donePaginating: (object) ->
     # Ignore model events
     return unless object == @collection
 
-    @isPaginating = false
+    @isLoading = false
     @$el.removeClass('loading paginating')
