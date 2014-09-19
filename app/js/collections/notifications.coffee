@@ -12,6 +12,7 @@ class App.Collections.Notifications extends Backbone.Collection
     @filter = options.filter if options.filter
     @data = options.data || {}
     @on 'reset', -> @select(undefined)
+    @on 'sync', @savePollInterval
 
   # Default filter accepts all models
   filter: (model) -> true
@@ -19,10 +20,12 @@ class App.Collections.Notifications extends Backbone.Collection
   fetch: (options = {}) ->
     @oldestTimestamp = @donePaginating = null if options.reset
     options.data = _.extend({}, @data, options.data || {})
+    # Only report success if response is modified
+    options.ifModified = true
 
     # API uses If-Modified-Since to determine which notifications to fetch. We
     # want all of them if the collection is currently empty.
-    if @isEmpty()
+    unless @oldestTimestamp
       options.beforeSend = (xhr) =>
         xhr.setRequestHeader('If-Modified-Since', '')
 
@@ -45,7 +48,7 @@ class App.Collections.Notifications extends Backbone.Collection
     clearTimeout @pollTimer
     @pollTimer = setTimeout @poll, @pollInterval
 
-    @fetch(remove: false, reset: false).then(@savePollInterval)
+    @fetch(remove: false, reset: false)
 
   stopPolling: ->
     clearTimeout @pollTimer if @pollTimer
@@ -69,6 +72,6 @@ class App.Collections.Notifications extends Backbone.Collection
     model if @filter(model)
 
   # Internal: Save the poll interval returned from the API
-  savePollInterval: (data, status, xhr) ->
-    if interval = xhr.getResponseHeader('X-Poll-Interval')
+  savePollInterval: (collection, _, options) ->
+    if interval = options.xhr.getResponseHeader('X-Poll-Interval')
       @pollInterval = Number(interval) * 1000
