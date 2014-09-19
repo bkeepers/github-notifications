@@ -6,6 +6,12 @@ html, body {
   background-image: linear-gradient(to bottom, #fff 0%, #fff 100%); // For iOS 7 body while loading
 }
 
+#app {
+  @media screen and (min-width: 768px) {
+    margin: 0 18px;
+  }
+}
+
 .container {
   overflow: hidden;
   position: absolute;
@@ -26,26 +32,20 @@ html, body {
     top: 0;
     left: 0;
     right: 0;
-    height: 48px;
+    height: header-height;
     z-index: 4;
-
-    .standalone & {
-      padding-top: status-bar-height;
-      height: 48px + status-bar-height;
-      outline-top: 1px dotted red;
-    }
   }
 
   .content {
     position: absolute;
-    top: 48px;
+    top: header-height;
     left: 0;
     right: 0;
     bottom: 0;
     overflow: auto;
 
-    .standalone & {
-      top: 48 + status-bar-height;
+    @media screen and (min-width: 768px) {
+      padding: 18px;
     }
   }
 }
@@ -58,11 +58,11 @@ html, body {
 
   #threads {
     left: 216px;
-    width: 300px;
+    width: 324px;
   }
 
   #details .pane {
-    left: 516px;
+    left: 540px;
     right: 0;
   }
 }

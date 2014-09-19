@@ -9,6 +9,7 @@
 // </nav>
 .segmented-control {
   display: inline-block;
+  overflow: hidden;
 
   input {
     visibility: hidden;
@@ -17,18 +18,29 @@
   }
 
   label {
-    @extend .menubutton;
-    border-radius: 16px;
-    height: auto;
+    border: 1px solid border-color;
+    border-right-width: 0px;
     line-height: 24px;
-    margin-top: -8px;
     padding: 0 18px;
+    display: inline-block;
+    float: left;
   }
 
   // Selected
   input:checked + label {
-    background-color: rgba(#000, 0.15);
-    color: #fff;
+    background-color: selected-color;
+    color: darken(base-color, 25%);
+  }
+
+  // input is 1st child, so label is 2nd child
+  label:nth-child(2) {
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+  }
+
+  label:last-child {
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-right-width: 1px;
   }
 }
-
