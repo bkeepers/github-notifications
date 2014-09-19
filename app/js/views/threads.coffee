@@ -7,7 +7,7 @@ class App.Views.Threads extends Backbone.View
     'click #mark-all-read': 'read'
 
   initialize: ->
-    @listenTo @collection, 'add change', @add
+    @listenTo @collection, 'add change:updated_at', @add
     @listenTo @collection, 'reset', @addAll
 
     @listenToOnce @collection, 'sync', =>
