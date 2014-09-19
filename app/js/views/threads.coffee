@@ -80,7 +80,6 @@ class App.Views.Threads extends Backbone.View
   show: ->
     @collection.data.all = @shouldShowAll()
     @collection.poll();
-    @collection.startPolling();
 
   startPaginating: (object) ->
     # Ignore model events

@@ -1,5 +1,6 @@
 class App.Collections.Notifications extends Backbone.Collection
   model: App.Models.Notification
+  pollInterval: 60 * 1000
 
   url: ->
     app.endpoints.api + 'notifications'
@@ -41,14 +42,13 @@ class App.Collections.Notifications extends Backbone.Collection
 
   # Check for new notifications
   poll: =>
-    @fetch remove: false, reset: false
+    clearTimeout @pollTimer
+    @pollTimer = setTimeout @poll, @pollInterval
 
-  startPolling: (interval = 30 * 1000) ->
-    @pollTimer = setInterval @poll, interval unless @pollTimer
+    @fetch(remove: false, reset: false).then(@savePollInterval)
 
   stopPolling: ->
-    clearInterval @pollTimer if @pollTimer
-    @pollTimer = null
+    clearTimeout @pollTimer if @pollTimer
 
   checkIfPaginated: (data, options, xhr) =>
     @donePaginating = data.length == 0
@@ -67,3 +67,8 @@ class App.Collections.Notifications extends Backbone.Collection
       @oldestTimestamp = updated_at
 
     model if @filter(model)
+
+  # Internal: Save the poll interval returned from the API
+  savePollInterval: (data, status, xhr) ->
+    if interval = xhr.getResponseHeader('X-Poll-Interval')
+      @pollInterval = Number(interval) * 1000
