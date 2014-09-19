@@ -21,4 +21,7 @@ class App.Views.Notification extends Backbone.View
     @$el.removeClass('selected')
 
   selected: ->
-    @$el.addClass('selected').scrollIntoView(100)
+    @$el.addClass('selected')
+
+    # Only scroll if is out of view. Otherwise it triggers an unnecessary scroll event
+    @$el.scrollIntoView(100) if @$el.isOutOfView()
