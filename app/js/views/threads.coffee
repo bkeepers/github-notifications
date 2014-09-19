@@ -14,8 +14,6 @@ class App.Views.Threads extends Backbone.View
       # FIXME: this belongs somewhere else
       $('#toggle-lists').attr('checked', false) # Collapse the menu on mobile
 
-      @$el.removeClass('loading')
-
     @listenTo @collection, 'request', @startPaginating
     @listenTo @collection, 'sync', @donePaginating
 
@@ -91,6 +89,9 @@ class App.Views.Threads extends Backbone.View
     @isPaginating = true
     @$el.addClass('paginating')
 
-  donePaginating: =>
+  donePaginating: (object) ->
+    # Ignore model events
+    return unless object == @collection
+
     @isPaginating = false
-    @$el.removeClass('paginating')
+    @$el.removeClass('loading paginating')
