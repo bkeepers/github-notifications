@@ -7,8 +7,9 @@ class App.Views.Threads extends Backbone.View
     'click #mark-all-read': 'read'
 
   initialize: ->
-    @listenTo @collection, 'add change:updated_at', @add
+    @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
+    @listenTo @collection, 'change:updated_at', @queueForSort
 
     @listenToOnce @collection, 'sync', =>
       # FIXME: this belongs somewhere else
@@ -45,6 +46,12 @@ class App.Views.Threads extends Backbone.View
   addAll: ->
     @$list.empty()
     @collection.each(@add, @)
+
+  # When the collection is updated, the "change" event is fired on existing
+  # models before the collection is sorted, so we wait for the "sort" event
+  # before attempting to sort the views.
+  queueForSort: (model) ->
+    @collection.once 'sort', => @add(model)
 
   read: (e) ->
     e.preventDefault()
