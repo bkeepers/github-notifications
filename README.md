@@ -1,6 +1,6 @@
 # GitHub Notifications ![Build Status](https://travis-ci.org/bkeepers/github-notifications.png)
 
-This is an experiment with creating a more rich interface for consuming [GitHub Notifications](https://github.com/notifications). Check it out here: https://gh-notifications.herokuapp.com/
+a rich interface for [GitHub Notifications](https://github.com/notifications). Check it out here: https://notifications.githubapp.com/
 
 ## Local Development
 
@@ -12,6 +12,8 @@ To run the app locally, make sure you have a working Node.js environment, and th
 This will install all the needed dependencies, start up a server, and open
 [localhost:8000](http://localhost:8000) in your browser.
 
+## Contributing
+
 This project is built using [lineman](http://www.linemanjs.com/), a simple tool for
 building JavaScript web applications. There is no server component. The [app](app)
 gets compiled into static HTML, CSS, and JavaScript that uses the GitHub API.
@@ -21,8 +23,6 @@ The app is mostly CoffeeScript and uses [Backbone](http://backbonejs.org).
 
 The styles use [Stylus](http://learnboost.github.io/stylus/). [app/css/app.styl](app/css/app.styl) is
 the starting point.
-
-## Contributing
 
 If you find what looks like a bug:
 
