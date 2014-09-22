@@ -25,7 +25,7 @@
           <header>&nbsp;</header>
         </div>
       </div>
-      <div id="details" class="pane">
+      <div class="details pane default">
         <div>
           <header>&nbsp;</header>
         </div>
