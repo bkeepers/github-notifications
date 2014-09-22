@@ -11,10 +11,6 @@ class App.Views.Threads extends Backbone.View
     @listenTo @collection, 'reset', @addAll
     @listenTo @collection, 'change:updated_at', @queueForSort
 
-    @listenToOnce @collection, 'sync', =>
-      # FIXME: this belongs somewhere else
-      $('#toggle-lists').attr('checked', false) # Collapse the menu on mobile
-
     @listenTo @collection, 'request', @startPaginating
     @listenTo @collection, 'sync', @donePaginating
 

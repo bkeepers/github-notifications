@@ -51,6 +51,9 @@ class App.Controllers.Filters
   show: (filter) =>
     return unless filter
 
+    # Collapse the menu on mobile
+    $('#toggle-lists').attr('checked', false)
+
     controller = @cache.fetch filter.cid, =>
       new App.Controllers.Notifications(@vent, filter.notifications)
 
