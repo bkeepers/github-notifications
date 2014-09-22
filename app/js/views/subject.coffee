@@ -29,7 +29,7 @@ class App.Views.Subject extends Backbone.View
 
     # Show loader while timeline is loading
     @listenTo @model.timeline, 'request', @startFetching
-    @listenTo @model.timeline, 'sync', @doneFetching
+    @listenTo @model.timeline, 'sync error', @doneFetching
     @fetchCount = 0
 
   render: ->

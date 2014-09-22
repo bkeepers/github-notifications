@@ -12,7 +12,7 @@ class App.Views.Threads extends Backbone.View
     @listenTo @collection, 'change:updated_at', @queueForSort
 
     @listenTo @collection, 'request', @startPaginating
-    @listenTo @collection, 'sync', @donePaginating
+    @listenTo @collection, 'sync error', @donePaginating
 
     @views = {}
 
