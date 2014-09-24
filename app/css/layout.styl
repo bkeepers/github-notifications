@@ -62,9 +62,12 @@ html, body {
     width: 324px;
   }
 
-  #details {
+  .details {
     left: 540px;
     right: 0;
+    display: none;
+
+    &.selected, &.default { display: block; }
   }
 }
 
@@ -86,12 +89,12 @@ html, body {
     z-index: 2;
   }
 
-  #details {
+  .details {
     z-index: 3;
     transition: transform 250ms ease;
     transform: translateX(105%); // 105 to push the shadow of the screen
 
-    &.focused {
+    &.selected {
       transform: translateX(0);
     }
   }
