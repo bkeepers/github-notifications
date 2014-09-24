@@ -10,13 +10,17 @@ class App.Views.Shortcuts extends Backbone.View
       keys: ['k', 'up']
       action: 'prev'
 
-    'Go to All notifications':
-      key: 'g a'
-      action: -> Backbone.history.navigate 'all', trigger: true
+    'Go to Everything':
+      key: 'g e'
+      action: -> Backbone.history.navigate 'everything', trigger: true
 
-    'Go to Participating notifications':
+    'Go to Participating':
       key: 'g p'
       action: -> Backbone.history.navigate 'participating', trigger: true
+
+    'Go to Mentioned':
+      key: 'g m'
+      action: -> Backbone.history.navigate 'mentioned', trigger: true
 
     'Open help for keyboard shortcuts':
       key: '?'
@@ -42,7 +46,7 @@ class App.Views.Shortcuts extends Backbone.View
     @setElement document.body # otherwise it won't capture all the shortcuts
 
     @repositories = options.repositories
-    @notifications = options.notifications
+    @vent = options.vent
 
     for description, options of @shortcuts
       options.keys ||= [options.key]
@@ -52,19 +56,21 @@ class App.Views.Shortcuts extends Backbone.View
 
   next: (e) ->
     e.preventDefault()
-    @select @notifications.next() || @notifications.first()
+    @vent.trigger 'notification:next'
 
   prev: (e) ->
     e.preventDefault()
-    @select @notifications.prev() || @notifications.last()
+    @vent.trigger 'notification:prev'
 
   nextRepo: (e) ->
     e.preventDefault()
+    @vent.trigger 'repo:next'
     repo = @repositories.next() || @repositories.first()
     repo?.select()
 
   prevRepo: (e) ->
     e.preventDefault()
+    @vent.trigger 'repo:prev'
     repo = @repositories.prev() || @repositories.last()
     repo?.select()
 

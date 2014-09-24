@@ -1,6 +1,4 @@
 .loading {
-  position: relative;
-
   &:after {
     position: absolute;
     left: 0;
@@ -11,4 +9,15 @@
     background: #fff url('../img/octocat-spinner-128.gif') no-repeat center center;
     background-size: 64px;
   }
+}
+
+.loader {
+  display: none;
+  height: 64px;
+  background: #fff url('../img/octocat-spinner-128.gif') no-repeat center center;
+  background-size: 32px;
+}
+
+.paginating .loader {
+  display: block;
 }

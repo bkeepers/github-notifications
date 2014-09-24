@@ -5,7 +5,7 @@
   <ul id="filters" class="primary">
   </ul>
 
-  <span class="title">Repositories</span>
+  <h2 class="title">Repositories</h2>
   <ul id="repositories">
   </ul>
 

@@ -1,20 +1,34 @@
 class App.Controllers.Notifications
-  # Cache for recently loaded notification views
-  cache: new Cache(10)
-
-  constructor: (@collection) ->
+  constructor: (@vent, @notifications) ->
     _.extend @, Backbone.Events
-    @listenTo @collection, 'unselected', @hide
-    @listenTo @collection, 'selected', @show
 
-  show: (notification) =>
-    return unless notification
+    @view = new App.Views.Threads(collection: @notifications)
+    @view.render()
 
-    view = @cache.fetch notification.cid,
-      -> new App.Views.NotificationDetailsView(model: notification)
-    # FIXME: replace with app layout
-    $('#details').html(view.el)
-    view.show()
+  next: ->
+    model = @notifications.next() || @notifications.first()
+    model?.select()
 
-  hide: (model) ->
-    @cache.get(model.cid)?.hide()
+  prev: ->
+    model = @notifications.prev() || @notifications.last()
+    model?.select()
+
+  select: (id) ->
+    @notifications?.get(id)?.select()
+
+  show: ->
+    @listenTo @notifications, 'selected', (model) =>
+      @vent.trigger 'notification:selected', model
+    @listenTo @notifications, 'unselected', (unselected, selected) =>
+      @vent.trigger 'notification:unselected', unselected, selected
+
+    @listenTo @vent, 'notification:select', @select
+    @listenTo @vent, 'notification:next', @next
+    @listenTo @vent, 'notification:prev', @prev
+
+    $('#threads').html(@view.el) # FIXME: replace with app layout
+    @view.show()
+
+  hide: ->
+    @stopListening()
+    @view.hide()

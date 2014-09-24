@@ -1,7 +1,6 @@
 # Root view for all the details of a notification
 class App.Views.NotificationDetailsView extends Backbone.View
   template: JST['app/templates/notification_details.us']
-  className: 'pane'
 
   keyboardEvents:
     'm': -> @model.subscription.toggle()
@@ -50,7 +49,6 @@ class App.Views.NotificationDetailsView extends Backbone.View
     @$('textarea').focus()
 
   hide: ->
-    @$el.removeClass('focused')
     @unbindKeyboardEvents()
     # FIXME: find a better way to give animation time to finish. This can leave
     # the view in an inconsistent state if this model is selected again before
@@ -63,4 +61,3 @@ class App.Views.NotificationDetailsView extends Backbone.View
   show: ->
     @bindKeyboardEvents()
     @subject.show()
-    @$el.addClass('focused')

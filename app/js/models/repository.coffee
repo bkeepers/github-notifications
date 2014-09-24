@@ -1,10 +1,10 @@
 class App.Models.Repository extends Backbone.Model
 
-  notifications: ->
-    new App.Collections.Notifications([], url: @notifications_url())
+  initialize: ->
+    @notifications = new App.Collections.Notifications([], url: @notifications_url())
 
   notifications_url: ->
-    @get('notifications_url').replace(/\{.*\}/, '')
+    url.replace(/\{.*\}/, '') if url = @get('notifications_url')
 
   unread_count: ->
     count = @get('unread_count')

@@ -2,10 +2,10 @@ class App.Routers.Notifications extends Backbone.Router
   routes:
     'n/:id': 'show'
 
-  initialize: (@collection) ->
-    @collection.on 'selected', (model) => @navigate "#n/#{model.id}" if model
-    @collection.on 'unselected', (model, selectedAnotherModel) =>
+  initialize: (@vent) ->
+    @listenTo @vent, 'notification:selected', (model) => @navigate "#n/#{model.id}" if model
+    @listenTo @vent, 'notification:unselected', (model, selectedAnotherModel) =>
       @navigate "#n" unless selectedAnotherModel
 
   show: (id) ->
-    @collection.get(id)?.select()
+    @vent.trigger 'notification:select', id

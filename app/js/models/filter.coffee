@@ -1,7 +1,10 @@
 class App.Models.Filter extends Backbone.Model
 
-  filterOptions: ->
-    data: @get('data')
+  initialize: ->
+    @notifications = new App.Collections.Notifications([], filter: @reasonFilter, data: @get('data'))
+
+  reasonFilter: (model) =>
+    !@get('reasons') || model.get('reason') in @get('reasons')
 
   read: ->
     # noop

@@ -3,16 +3,20 @@ class App.Routers.Filters extends Backbone.Router
     'r/:id': 'repository'
 
   initialize: (options) ->
-    @route /^(all|participating)$/, 'filter'
-
     @filters = options.filters
-    @repositories = options.repositories
+    @vent = options.vent
 
-    @filters.on 'selected', (model) => @navigate "##{model.id}" if model
-    @repositories.on 'selected', (model) => @navigate "#r/#{model.id}" if model
+    @route(new RegExp("^(#{@filters.pluck('id').join('|')})$"), 'filter')
+    @route(/^([\w\.\-]+\/[\w\.\-]+)$/, 'repository')
+
+    @listenTo @vent, 'filter:selected', (model) =>
+      @navigate "##{model.id}" if model
+
+    @listenTo @vent, 'repository:selected', (model) =>
+      @navigate "#/#{model.get('full_name')}" if model
 
   filter: (id) ->
-    @filters.get(id)?.select()
+    @vent.trigger 'filter:select', id
 
-  repository: (id) ->
-    @repositories.get(id)?.select()
+  repository: (full_name) ->
+    @vent.trigger 'repository:select', full_name
