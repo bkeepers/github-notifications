@@ -42,6 +42,7 @@ class App.Views.NotificationDetailsView extends Backbone.View
 
   # Go to the page on GitHub for this notification
   open: (e) ->
+    e.preventDefault()
     window.open @subject.url(), '_blank'
 
   # Focus the reply textarea
