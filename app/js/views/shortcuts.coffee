@@ -18,9 +18,13 @@ class App.Views.Shortcuts extends Backbone.View
       key: 'g p'
       action: -> Backbone.history.navigate 'participating', trigger: true
 
-    'Go to Mentioned':
-      key: 'g m'
+    'Go to Team Mentions':
+      key: 'g t'
       action: -> Backbone.history.navigate 'mentioned', trigger: true
+
+    'Go to Direct Mentions':
+      key: 'g d'
+      action: -> Backbone.history.navigate 'direct', trigger: true
 
     'Open help for keyboard shortcuts':
       key: '?'
