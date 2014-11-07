@@ -1,6 +1,7 @@
 # FIXME: move to App.Views.Filters.Create
 class App.Views.FiltersCreate extends Backbone.View
   template: JST['app/templates/filters/create.us']
+  className: 'modal'
 
   octicons: '
     alert beer book briefcase broadcast browser bug calendar check circuit-board clock cloud-download code comment-discussion dashboard

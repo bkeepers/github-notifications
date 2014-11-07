@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="dialog">
   <a href="#" class="octicon octicon-remove-close close"></a>
   <form>
     <h2 class="header">New Filter</h2>

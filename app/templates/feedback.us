@@ -1,14 +1,14 @@
 <div class="overlay">
-  <div class="modal">
-    <a href="#" class="octicon octicon-remove-close close"></a>
-    <form>
-      <h2 class="header">I just want to let you know…</h2>
-      <p><input type="text" class="fullwidth" name="title" placeholder="Subject"></p>
-      <p><textarea name="body" placeholder="Explain what you mean."></textarea></p>
-      <p class="note obscure-links">This will be posted to a public issue on <a target="_blank" href="https://github.com/bkeepers/github-notifications">bkeepers/github-notifications</a>.</p>
-      <div class="form-actions">
-        <button class="button primary">Send Feedback</button>
-      </div>
-    </form>
-  </div>
+</div>
+<div class="dialog">
+  <a href="#" class="octicon octicon-remove-close close"></a>
+  <form>
+    <h2 class="header">I just want to let you know…</h2>
+    <p><input type="text" class="fullwidth" name="title" placeholder="Subject"></p>
+    <p><textarea name="body" placeholder="Explain what you mean."></textarea></p>
+    <p class="note obscure-links">This will be posted to a public issue on <a target="_blank" href="https://github.com/bkeepers/github-notifications">bkeepers/github-notifications</a>.</p>
+    <div class="form-actions">
+      <button class="button primary">Send Feedback</button>
+    </div>
+  </form>
 </div>

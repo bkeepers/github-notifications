@@ -1,6 +1,7 @@
 class App.Views.Feedback extends Backbone.View
   template: JST['app/templates/feedback.us']
   confirmTemplate: JST['app/templates/feedback_confirm.us']
+  className: 'modal'
 
   events:
     'submit form': 'submit'
