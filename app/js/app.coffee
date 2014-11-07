@@ -64,7 +64,7 @@ class @App
 
     Backbone.history.start() unless Backbone.History.started
 
-    Backbone.history.navigate 'everything', trigger: true
+    app.filters.first().select()
 
   # Notifictions do not get marked as read when in development mode.
   isDevelopment: ->
