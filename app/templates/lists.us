@@ -2,10 +2,14 @@
   <h1>GitHub Notifications</h1>
 </header>
 <div class="content">
+  <h2 class="title">
+    Filters
+    <a href="#filter/new"><span class="octicon octicon-plus"></span></a>
+  </h2>
+
   <ul id="filters" class="primary">
   </ul>
 
-  <a href="#filter/new">New Filter</a>
 
   <h2 class="title">Repositories</h2>
   <ul id="repositories">
