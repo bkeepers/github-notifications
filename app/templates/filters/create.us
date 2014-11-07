@@ -6,22 +6,25 @@
     <p><input type="text" class="fullwidth" name="name" placeholder="Name"></p>
 
     <h3>Icon</h3>
-    <div class="selector">
+    <ul class="selector row">
       <% _.each(octicons, function(octicon) { %>
-        <input id="octicon-<%= octicon %>" type="radio" name="octicon" value="<%= octicon %>"<%= model.octicon == octicon ? ' checked' : '' %>>
-        <label for="octicon-<%= octicon %>" class="selector-option">
-          <span class="octicon octicon-<%= octicon %>"></span>
-        </label>
+        <li>
+          <input id="octicon-<%= octicon %>" type="radio" name="octicon" value="<%= octicon %>"<%= model.octicon == octicon ? ' checked' : '' %>>
+          <label for="octicon-<%= octicon %>">
+            <span class="octicon octicon-<%= octicon %>"></span>
+          </label>
+        </li>
       <% }); %>
-    </div>
+    </ul>
 
     <h3>Reason</h3>
-    <ul>
-    <% _.each(reasons, function(description, reason) { %>
+    <ul class="selector colums">
+    <% _.each(reasons, function(reason, value) { %>
       <li>
-        <label for="reason-<%- reason %>">
-          <input id="reason-<%- reason %>" type="checkbox" name="reason" value="<%= reason %>"<%= model.reasons.indexOf(reason) >= 0 ? 'checked' : '' %>>
-          <%- description %></label>
+        <input id="reason-<%- value %>" type="checkbox" name="reason" value="<%= value %>"<%= model.reasons.indexOf(value) >= 0 ? 'checked' : '' %>>
+        <label for="reason-<%- value %>">
+          <span class="octicon octicon-<%= reason.octicon %>"></span>
+          <%- reason.description %>
         </label>
       </li>
     <% }); %>
