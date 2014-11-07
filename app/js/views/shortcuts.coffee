@@ -10,18 +10,6 @@ class App.Views.Shortcuts extends Backbone.View
       keys: ['k', 'up']
       action: 'prev'
 
-    'Go to Everything':
-      key: 'g e'
-      action: -> Backbone.history.navigate 'everything', trigger: true
-
-    'Go to Participating':
-      key: 'g p'
-      action: -> Backbone.history.navigate 'participating', trigger: true
-
-    'Go to Mentioned':
-      key: 'g m'
-      action: -> Backbone.history.navigate 'mentioned', trigger: true
-
     'Open help for keyboard shortcuts':
       key: '?'
       action: 'help'
@@ -43,6 +31,11 @@ class App.Views.Shortcuts extends Backbone.View
     'ctrl+`': 'toggleDevelopmentMode'
 
   initialize: (options) ->
+    options.filters.each (filter) =>
+      @shortcuts["Go to #{filter.get("name")}"] =
+        key: "g #{filter.id.substr(0, 1)}"
+        action: -> filter.select()
+
     @setElement document.body # otherwise it won't capture all the shortcuts
 
     @repositories = options.repositories
