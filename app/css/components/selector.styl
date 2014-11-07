@@ -1,0 +1,34 @@
+// Create a
+//
+//   <div class="selector">
+//     <input id="option-1" type="radio">
+//     <label for="option-1">Item</label>
+//   </div>
+.selector {
+  height: 6.5em;
+  line-height: 36px;
+  overflow: auto;
+
+  label {
+    margin: 0 5px 5px 0;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    display: block;
+    float: left;
+  }
+
+  input:checked + label {
+    background-color: brand-blue;
+    color: #fff;
+    border-color: transparent;
+  }
+
+  input[type=checkbox], input[type=radio] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+}

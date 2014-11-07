@@ -29,6 +29,8 @@ class App.Controllers.Filters
     @listenTo @repositories, 'unselected', (model) =>
       @vent.trigger 'repository:unselected', model
 
+    @listenTo @filters, 'add', @selectFilter
+
     @listenTo @vent, 'filter:select', @selectFilter
     @listenTo @vent, 'repository:select', @selectRepository
 

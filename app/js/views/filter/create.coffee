@@ -22,8 +22,11 @@ class App.Views.FiltersCreate extends Backbone.View
     'submit form': 'save'
     'click .close,.overlay': 'cancel'
 
+  initialize: ->
+    @listenTo @model, "invalid", @invalid
+
   render: ->
-    @$el.html @template(octicons: @octicons, reasons: @reasons, types: @types)
+    @$el.html @template(model: @model.toJSON(), octicons: @octicons, reasons: @reasons, types: @types)
     @
 
   save: (e) ->
@@ -34,8 +37,14 @@ class App.Views.FiltersCreate extends Backbone.View
       octicon: @$("input[name=octicon]:checked").val()
       reasons: (input.value for input in @$("input[name=reason]:checked").serializeArray())
 
-    @remove()
-    @collection.add @model
+    if @model.isValid()
+      @remove()
+      @collection.add @model
+
+  invalid: (_, errors) ->
+    @$(".invalid").removeClass("invalid")
+    @$("input[name=#{field}]").addClass("invalid") for field in errors
+    @$(".invalid:first").focus()
 
   cancel: (e) ->
     e.preventDefault()

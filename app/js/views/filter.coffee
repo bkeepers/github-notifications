@@ -6,6 +6,8 @@ class App.Views.Filter extends Backbone.View
   initialize: (options) ->
     @listenTo @model, 'unselected', @unselected
     @listenTo @model, 'selected', @selected
+    @listenTo @model, 'changed', @render
+
 
   render: =>
     @$el.html @template(@model.toJSON())
