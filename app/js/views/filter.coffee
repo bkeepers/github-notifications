@@ -1,5 +1,6 @@
 class App.Views.Filter extends Backbone.View
-  template: _.template('<a href="#filter/<%- id %>"><span class="octicon octicon-<%- octicon %>"></span> <%- name %></a>')
+  template: JST['app/templates/filters/list_item.us']
+
   className: 'list'
   tagName: 'li'
 

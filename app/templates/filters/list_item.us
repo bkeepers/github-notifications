@@ -1,0 +1,4 @@
+<a href="#filter/<%- id %>">
+  <span class="octicon octicon-<%- octicon %>"></span>
+  <%- name %>
+</a>
