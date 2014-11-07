@@ -5,6 +5,8 @@
   <ul id="filters" class="primary">
   </ul>
 
+  <a href="#filter/new">New Filter</a>
+
   <h2 class="title">Repositories</h2>
   <ul id="repositories">
   </ul>

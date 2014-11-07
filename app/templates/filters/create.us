@@ -1,0 +1,35 @@
+<div class="modal">
+  <a href="#" class="octicon octicon-remove-close close"></a>
+  <form>
+    <h2 class="header">New Filter</h2>
+
+    <p><input type="text" class="fullwidth" name="name" placeholder="Name"></p>
+
+    <h3>Icon</h3>
+    <div class="selector">
+      <% _.each(octicons, function(octicon) { %>
+        <input id="octicon-<%= octicon %>" type="radio" name="octicon" value="<%= octicon %>">
+        <label for="octicon-<%= octicon %>" class="selector-option">
+          <span class="octicon octicon-<%= octicon %>"></span>
+        </label>
+      <% }); %>
+    </div>
+
+    <h3>Reason</h3>
+    <ul>
+    <% _.each(reasons, function(description, reason) { %>
+      <li>
+        <label for="reason-<%- reason %>">
+          <input id="reason-<%- reason %>" type="checkbox" name="reason" value="<%= reason %>">
+          <%- description %></label>
+        </label>
+      </li>
+    <% }); %>
+    </ul>
+
+    <div class="form-actions">
+      <button class="button primary">Create Filter</button>
+    </div>
+  </form>
+</div>
+<div class="overlay"></div>
