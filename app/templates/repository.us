@@ -1,4 +1,4 @@
-<a href="#<%- full_name %>">
+<a href="#r/<%- full_name %>">
   <span class="list-name"><%- full_name %></span>
   <span class="list-unread-count"><%- unread_count %></span>
 </a>
