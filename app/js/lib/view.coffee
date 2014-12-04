@@ -3,20 +3,28 @@ class @View extends Backbone.View
     @subviews = []
     super
 
+  # Add a subview
   subview: (view) =>
     @subviews.push view
     view
 
+  # Remove this view and all subviews
   remove: ->
-    super
     view.remove() for view in @subviews
+    super
 
+  # Hide this view and all subviews
+  #
+  # Triggers a "hide" event.
   hide: ->
-    @unbindKeyboardEvents()
     view.hide?() for view in @subviews
-    @trigger('hide')
+    @unbindKeyboardEvents()
+    @trigger('hide', @)
 
+  # Show this view and all subviews
+  #
+  # Triggers a "show" event.
   show: ->
-    @bindKeyboardEvents()
     view.show?() for view in @subviews
-    @trigger('show')
+    @bindKeyboardEvents()
+    @trigger('show', @)
