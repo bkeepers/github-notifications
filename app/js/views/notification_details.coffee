@@ -1,5 +1,5 @@
 # Root view for all the details of a notification
-class App.Views.NotificationDetailsView extends Backbone.View
+class App.Views.NotificationDetailsView extends View
   template: JST['app/templates/notification_details.us']
   className: 'details pane'
 
@@ -17,9 +17,11 @@ class App.Views.NotificationDetailsView extends Backbone.View
   # model - a notification object
   initialize: ->
     view = App.Views.Subject.for(@model.subject)
-    @subject = new view(model: @model.subject, notification: @model)
-    @subscription = new App.Views.Subscription(model: @model.subscription)
+    @subview @subject = new view(model: @model.subject, notification: @model)
+    @subview @subscription = new App.Views.Subscription(model: @model.subscription)
     @render()
+    @on 'hide', -> @$el.removeClass('selected')
+    @on 'show', -> @$el.addClass('selected')
 
   render: ->
     @$el.html @template()
@@ -49,13 +51,3 @@ class App.Views.NotificationDetailsView extends Backbone.View
   reply:(e) ->
     e.preventDefault()
     @$('textarea').focus()
-
-  hide: ->
-    @unbindKeyboardEvents()
-    @subject.hide()
-    @$el.removeClass('selected')
-
-  show: ->
-    @bindKeyboardEvents()
-    @subject.show()
-    @$el.addClass('selected')
