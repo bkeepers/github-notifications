@@ -9,12 +9,10 @@ class App.Views.Threads extends View
   initialize: ->
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
-    @listenTo @collection, 'change:updated_at', @queueForSort
+    @listenTo @collection, 'sort', @sort
 
     @listenTo @collection, 'request', @startPaginating
     @listenTo @collection, 'sync error', @donePaginating
-
-    @views = {}
 
   render: ->
     @$el.html @template()
@@ -28,16 +26,13 @@ class App.Views.Threads extends View
     @
 
   add: (model) ->
-    # memoize view instances
-    view = @views[model.id] ||= new App.Views.Notification(model: model).render()
+    view = @subview new App.Views.Notification(model: model).render()
+    @$list.append(view.el)
 
-    # Maintain view order by inserting it the new element before the element
-    # that is currently in its place.
-    sibling = @$list.children().eq(@collection.indexOf(model))
-    if sibling.length
-      sibling.before(view.el)
-    else
-      @$list.append(view.el)
+  # Sort the subviews by their position in the collection and re-append them.
+  sort: ->
+    views = _.sortBy @subviews, (view) => @collection.indexOf(view.model)
+    _.each views, (view) => @$list.append(view.el)
 
   addAll: ->
     @$list.empty()
