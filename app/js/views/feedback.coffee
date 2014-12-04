@@ -1,4 +1,4 @@
-class App.Views.Feedback extends Backbone.View
+class App.Views.Feedback extends View
   template: JST['app/templates/feedback.us']
   confirmTemplate: JST['app/templates/feedback_confirm.us']
 

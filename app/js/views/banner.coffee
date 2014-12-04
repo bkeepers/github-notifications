@@ -1,5 +1,5 @@
 # A view displayed above all the comments for a Subject
-class App.Views.Banner extends App.Views.Comment
+class App.Views.Banner extends View
   className: 'conversation-banner conversation-item'
 
   # Initialize a banner view with the given template

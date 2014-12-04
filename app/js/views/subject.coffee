@@ -3,7 +3,7 @@
 # This view is responsible for showing most of the relevant details of the
 # thing that the notification is for, which should be an Issue, PullRequest,
 # or Commit.
-class App.Views.Subject extends Backbone.View
+class App.Views.Subject extends View
   template: JST['app/templates/subject.us']
   className: 'subject content loading'
 
@@ -17,8 +17,8 @@ class App.Views.Subject extends Backbone.View
   initialize: (options) ->
     @notification = options.notification
 
-    @bannerView = new App.Views.Banner(model: @model, template: @banner) if @banner
-    @timelineView = new App.Views.Timeline(collection: @model.timeline)
+    @subview @bannerView = new App.Views.Banner(model: @model, template: @banner) if @banner
+    @subview @timelineView = new App.Views.Timeline(collection: @model.timeline)
 
     @listenTo @model, 'change', => @model.timeline.fetch()
 
@@ -40,15 +40,10 @@ class App.Views.Subject extends Backbone.View
 
   loaded: =>
     if @model.comments.url
-      @$el.append new App.Views.CreateComment(collection: @model.comments).el
+      @subview createComment = new App.Views.CreateComment(collection: @model.comments)
+      @$el.append createComment.el
 
     @$el.removeClass('loading')
-
-  hide: ->
-    @timelineView.unbindKeyboardEvents()
-
-  show: ->
-    @timelineView.bindKeyboardEvents()
 
   url: ->
     if unread = @model.comments.detect((comment) -> comment.isUnread())

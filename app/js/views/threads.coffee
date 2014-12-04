@@ -1,4 +1,4 @@
-class App.Views.Threads extends Backbone.View
+class App.Views.Threads extends View
   template: JST['app/templates/threads.us']
   className: 'loading'
 

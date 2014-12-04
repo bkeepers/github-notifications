@@ -1,4 +1,4 @@
-class App.Views.Filter extends Backbone.View
+class App.Views.Filter extends View
   template: _.template('<a href="#<%- id %>"><span class="octicon octicon-<%- octicon %>"></span> <%- name %></a>')
   className: 'list'
   tagName: 'li'

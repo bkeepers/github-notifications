@@ -1,4 +1,4 @@
-class App.Views.TimelineEvent extends Backbone.View
+class App.Views.TimelineEvent extends View
   className: 'conversation-event conversation-item conversation-content'
 
   render: =>

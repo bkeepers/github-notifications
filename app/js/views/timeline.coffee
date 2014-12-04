@@ -1,4 +1,4 @@
-class App.Views.Timeline extends Backbone.View
+class App.Views.Timeline extends View
   keyboardEvents:
     'n': 'selectNext'
     'p': 'selectPrevious'
@@ -39,7 +39,7 @@ class App.Views.Timeline extends Backbone.View
     else if model.get('body_html')
       App.Views.Comment
 
-    new view(model: model) if view
+    @subview new view(model: model) if view
 
   selectNext: ->
     item = if @collection.selected

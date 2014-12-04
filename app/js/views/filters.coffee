@@ -1,11 +1,11 @@
-class App.Views.Filters extends Backbone.View
+class App.Views.Filters extends View
   el: '#filters'
 
   initialize: ->
     @addAll()
 
   add: (model) ->
-    view = new App.Views.Filter(model: model)
+    @subview view = new App.Views.Filter(model: model)
     @$el.append view.render().el
 
   addAll: ->

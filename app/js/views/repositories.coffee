@@ -1,4 +1,4 @@
-class App.Views.Repositories extends Backbone.View
+class App.Views.Repositories extends View
   el: '#repositories'
 
   initialize: =>
@@ -6,7 +6,7 @@ class App.Views.Repositories extends Backbone.View
     @listenTo @collection, 'reset', @addAll
 
   add: (repository) ->
-    view = new App.Views.Repository(model: repository)
+    @subview view = new App.Views.Repository(model: repository)
     @$el.append view.render().el
 
   addAll: ->

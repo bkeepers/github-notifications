@@ -1,5 +1,5 @@
 # Form to create a new comment
-class App.Views.CreateComment extends Backbone.View
+class App.Views.CreateComment extends View
   template: JST['app/templates/create_comment.us']
   className: 'write-content conversation-comment conversation-item write-selected'
 
@@ -34,7 +34,8 @@ class App.Views.CreateComment extends Backbone.View
 
   render: =>
     @$el.html @template(@collection.subject.toJSON())
-    @$('.form-actions').html(new Buttons(model: @collection.subject).el)
+    @subview buttons = new Buttons(model: @collection.subject)
+    @$('.form-actions').html(buttons.el)
     @form = @$('form')
     @previewContent = @$('.comment-body')
     @body = @$('[name=body]')
