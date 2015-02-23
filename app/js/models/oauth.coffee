@@ -9,7 +9,7 @@
 # Uses the code to complete OAuth and return a JSON object with a token
 class App.Models.OAuth
   location: window.location
-  
+
   url: ->
     app.endpoints.web + "login/oauth/authorize"
 
@@ -35,7 +35,7 @@ class App.Models.OAuth
     @location.assign "#{@url()}?client_id=#{options.client_id}&scope=#{options.scope}"
 
   getCode: ->
-    match = @location.href.match(/\?code=(.*)/)
+    match = @location.search.match(/code=(.*)/)
     match[1] if match
 
   getToken: (code) ->

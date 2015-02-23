@@ -5,7 +5,7 @@ describe 'App.Models.OAuth', ->
     # Test double for window.location
     @location =
       assign: jasmine.createSpy('assign')
-      href: '/foobar'
+      search: ''
       pathname: '/foobar'
 
     App.Models.OAuth.prototype.location = @location
@@ -24,5 +24,5 @@ describe 'App.Models.OAuth', ->
       expect(@oauth.getCode()).toBe(undefined)
 
     it 'returns code from window.location', ->
-      @location.href = '/foo?code=omg'
+      @location.search = 'foo=bar&code=omg'
       expect(@oauth.getCode()).toEqual('omg')
