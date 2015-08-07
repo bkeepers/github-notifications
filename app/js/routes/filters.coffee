@@ -2,7 +2,8 @@ class App.Routers.Filters extends Backbone.Router
   routes:
     'filter/new': -> @vent.trigger 'filter:new'
     'filter/:id': (id) -> @vent.trigger 'filter:select', id
-    'r/:id': (id) -> @vent.trigger 'repository:select', id
+    'r/:owner/:login': (owner, login) ->
+      @vent.trigger 'repository:select', "#{owner}/#{login}"
 
   initialize: (options) ->
     @vent = options.vent
