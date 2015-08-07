@@ -34,7 +34,7 @@ class App.Views.Comment extends Backbone.View
 
   # This comment was selected
   selected: (model, previous, options = {}) ->
-    @bindKeyboardEvents()
+    @bindKeyboardEvents(force = true)
     @$el.addClass('selected')
     @scrollIntoView(previous) if options.scroll
 
@@ -43,9 +43,9 @@ class App.Views.Comment extends Backbone.View
     @unbindKeyboardEvents()
     @$el.removeClass('selected')
 
-  # Only bind keyboard events if model is selected
-  bindKeyboardEvents: ->
-    super if @model.isSelected()
+  # Only bind keyboard events when forced to, such as when the model is selected.
+  bindKeyboardEvents: (force) ->
+    super() if force
 
   # Scroll the comment into view.
   #
