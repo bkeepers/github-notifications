@@ -11,4 +11,6 @@
 
   <a id="send-feedback" href="#feedback">Send Feedback</a>
 
+  <div id="tips"></div>
+
 </div>
