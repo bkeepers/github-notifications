@@ -3,5 +3,5 @@
 
   <p>Your super human strength gets you access to special features on GitHub, but it apparently isn't enough to fabricate API endpoints. Try using Jedi mind tricks on someone that can implement the API.</p>
 
-  <a class="minibutton" href="<%= url %>">View on GitHub.com</a>
+  <a class="minibutton" href="<%- url %>">View on GitHub.com</a>
 </div>

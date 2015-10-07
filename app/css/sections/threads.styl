@@ -1,48 +1,40 @@
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8) translateX(-100%);
-  }
-}
-
 #threads {
   background: #fff;
 
-  .content {
-    border-right: 1px solid #d9d9d9
-  }
-
   .notification {
-    animation: slideIn 0.2s ease-in;
-
     position: relative;
-    box-shadow: inset 0 1px 0 #ede8ea, 0 1px 0 #ede8ea;
-    transition: background .2s ease;
+    border: 1px solid transparent;
+    border-top-color: border-color;
 
-    &:hover {
-      background-color: desaturate(lighten(header-color, 95%), 50%);
+    &:first-child {
+      border-top-color: transparent;
     }
 
     &.selected {
-      background-color: desaturate(lighten(header-color, 85%), 50%);
+      background-color: selected-color;
+      border-color: border-color;
+      border-radius: 3px;
+    }
+
+    &.selected + .notification {
+      border-top-color: transparent;
     }
 
     a {
-      padding: 15px 15px 15px 34px;
+      padding: 12px 12px 12px 34px;
     }
 
     .octicon {
       position: absolute;
       left: 12px;
+      top: 50%;
+      margin-top: -8px;
     }
   }
 
   .repository {
     color: #818189;
     font-size: 0.9em;
-  }
-
-  .repository {
     float: left;
     clear: both;
   }
@@ -63,6 +55,7 @@
       font-weight: bold;
     }
   }
+
   .read {
     color: #818189;
   }

@@ -9,32 +9,45 @@ class App.Views.Threads extends Backbone.View
   initialize: ->
     @listenTo @collection, 'add', @add
     @listenTo @collection, 'reset', @addAll
+    @listenTo @collection, 'change:updated_at', @queueForSort
+
     @listenTo @collection, 'request', @startPaginating
-    @listenTo @collection, 'sync', @donePaginating
+    @listenTo @collection, 'sync error', @donePaginating
 
-    @listenToOnce @collection, 'sync', =>
-      # FIXME: this should be bound in #render, but for some reason the scroll
-      # event doesn't work when this is there.
-      @$content = @$('.content').on('scroll', _.debounce(@paginate, 50))
-
-      # FIXME: this belongs somewhere else
-      $('#toggle-lists').attr('checked', false) # Collapse the menu on mobile
-
-    @stateChange()
+    @views = {}
 
   render: ->
     @$el.html @template()
+
+    # Bind to scroll and non-standard mouse events to enable loading more when
+    # content is not scrollable, such as when there are no notifications.
+    @$content = @$('.content').on('scroll mousewheel DOMMouseScroll', _.debounce(@loadMore, 50))
+
     app.trigger 'render', @
     @$list = @$('.notification-list')
     @
 
-  add: (notification) ->
-    view = new App.Views.Notification(model: notification)
-    @$list.append(view.render().el)
+  add: (model) ->
+    # memoize view instances
+    view = @views[model.id] ||= new App.Views.Notification(model: model).render()
+
+    # Maintain view order by inserting it the new element before the element
+    # that is currently in its place.
+    sibling = @$list.children().eq(@collection.indexOf(model))
+    if sibling.length
+      sibling.before(view.el)
+    else
+      @$list.append(view.el)
 
   addAll: ->
     @$list.empty()
     @collection.each(@add, @)
+
+  # When the collection is updated, the "change" event is fired on existing
+  # models before the collection is sorted, so we wait for the "sort" event
+  # before attempting to sort the views.
+  queueForSort: (model) ->
+    @collection.once 'sort', => @add(model)
 
   read: (e) ->
     e.preventDefault()
@@ -47,24 +60,40 @@ class App.Views.Threads extends Backbone.View
   stateChange: ->
     @$el.addClass('loading')
     @collection.data.all = @shouldShowAll()
-    @collection.fetch(reset: true).then(@paginate)
+    @collection.fetch(reset: true).then(@loadMore)
 
-  paginate: =>
-    return if @isPaginating || @collection.donePaginating || !@shouldPaginate()
-    @collection.paginate().done(@paginate)
+  loadMore: =>
+    return if @isLoading
+
+    if @shouldPoll()
+      @collection.poll()
+    else if !@collection.donePaginating && @shouldPaginate()
+      @collection.paginate().done(@loadMore)
+
+  shouldPoll: ->
+    @$content.scrollTop() == 0
 
   shouldPaginate: ->
     @$content.children().height() - @$content.scrollTop() < @$content.height() + 300
 
   hide: ->
     @$el.detach()
+    @collection.stopPolling();
 
   show: ->
+    @collection.data.all = @shouldShowAll()
+    @collection.poll();
 
-  startPaginating: ->
-    @isPaginating = true
+  startPaginating: (object) ->
+    # Ignore model events
+    return unless object == @collection
+
+    @isLoading = true
     @$el.addClass('paginating')
 
-  donePaginating: ->
-    @isPaginating = false
+  donePaginating: (object) ->
+    # Ignore model events
+    return unless object == @collection
+
+    @isLoading = false
     @$el.removeClass('loading paginating')

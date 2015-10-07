@@ -1,5 +1,6 @@
 class App.Collections.Notifications extends Backbone.Collection
   model: App.Models.Notification
+  pollInterval: 60 * 1000
 
   url: ->
     app.endpoints.api + 'notifications'
@@ -11,6 +12,7 @@ class App.Collections.Notifications extends Backbone.Collection
     @filter = options.filter if options.filter
     @data = options.data || {}
     @on 'reset', -> @select(undefined)
+    @on 'sync', @savePollInterval
 
   # Default filter accepts all models
   filter: (model) -> true
@@ -18,6 +20,15 @@ class App.Collections.Notifications extends Backbone.Collection
   fetch: (options = {}) ->
     @oldestTimestamp = @donePaginating = null if options.reset
     options.data = _.extend({}, @data, options.data || {})
+    # Only report success if response is modified
+    options.ifModified = true
+
+    # API uses If-Modified-Since to determine which notifications to fetch. We
+    # want all of them if the collection is currently empty.
+    unless @oldestTimestamp
+      options.beforeSend = (xhr) =>
+        xhr.setRequestHeader('If-Modified-Since', '')
+
     super
 
   # Mark each notification as read
@@ -31,6 +42,16 @@ class App.Collections.Notifications extends Backbone.Collection
     return $.Deferred.reject() if @donePaginating
     data = before: @oldestTimestamp?.toISOString()
     @fetch(reset: false, remove: false, data: data).done(@checkIfPaginated)
+
+  # Check for new notifications
+  poll: =>
+    clearTimeout @pollTimer
+    @pollTimer = setTimeout @poll, @pollInterval
+
+    @fetch(remove: false, reset: false)
+
+  stopPolling: ->
+    clearTimeout @pollTimer if @pollTimer
 
   checkIfPaginated: (data, options, xhr) =>
     @donePaginating = data.length == 0
@@ -49,3 +70,8 @@ class App.Collections.Notifications extends Backbone.Collection
       @oldestTimestamp = updated_at
 
     model if @filter(model)
+
+  # Internal: Save the poll interval returned from the API
+  savePollInterval: (collection, _, options) ->
+    if interval = options.xhr.getResponseHeader('X-Poll-Interval')
+      @pollInterval = Number(interval) * 1000

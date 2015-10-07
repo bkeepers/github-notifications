@@ -12,18 +12,23 @@
     "company": "GitHub"
   },
   "engines": {
-    "node": "~>0.10.5",
-    "npm": "~>1.3.11"
+    "node": "0.10.x",
+    "npm": "1.3.x"
   },
   "dependencies": {
     "express": "~3.4.4"
   },
   "devDependencies": {
+    "bower": "~1.3.8",
+    "grunt-bower-task": "0.4.0",
     "lineman": ">=0.19.3",
     "grunt-concat-sourcemap": "~0.3.0",
     "grunt-contrib-stylus": "~0.9.0",
     "nib": "~1.0.1",
     "lineman-bower": "0.0.3",
     "grunt-manifest": "git+https://github.com/gunta/grunt-manifest.git#6b830e31"
+  },
+  "scripts": {
+    "postinstall": "lineman build"
   }
 }

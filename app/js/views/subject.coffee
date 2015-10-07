@@ -27,6 +27,11 @@ class App.Views.Subject extends Backbone.View
     @model.ready @loaded
     @model.fetch() if @model.url
 
+    # Show loader while timeline is loading
+    @listenTo @model.timeline, 'request', @startFetching
+    @listenTo @model.timeline, 'sync error', @doneFetching
+    @fetchCount = 0
+
   render: ->
     @$el.html @template(@model.toJSON())
     @$('.comments').append(@bannerView.el) if @banner
@@ -44,3 +49,23 @@ class App.Views.Subject extends Backbone.View
 
   show: ->
     @timelineView.bindKeyboardEvents()
+
+  url: ->
+    if unread = @model.comments.detect((comment) -> comment.isUnread())
+      unread.get('html_url')
+    else
+      @model.get('html_url')
+
+  startFetching: (object) ->
+    # We only care about requests for the collection
+    return unless object instanceof Backbone.Collection
+
+    @fetchCount += 1
+    @$el.addClass('paginating')
+
+  doneFetching: (object) ->
+    # We only care about requests for the collection
+    return unless object instanceof Backbone.Collection
+
+    @fetchCount -= 1
+    @$el.removeClass('paginating') if @fetchCount == 0

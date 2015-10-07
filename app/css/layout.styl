@@ -6,6 +6,12 @@ html, body {
   background-image: linear-gradient(to bottom, #fff 0%, #fff 100%); // For iOS 7 body while loading
 }
 
+#app {
+  @media screen and (min-width: 768px) {
+    margin: 0 18px;
+  }
+}
+
 .container {
   overflow: hidden;
   position: absolute;
@@ -26,26 +32,21 @@ html, body {
     top: 0;
     left: 0;
     right: 0;
-    height: 48px;
+    height: header-height;
     z-index: 4;
-
-    .standalone & {
-      padding-top: status-bar-height;
-      height: 48px + status-bar-height;
-      outline-top: 1px dotted red;
-    }
   }
 
   .content {
     position: absolute;
-    top: 48px;
+    top: header-height;
     left: 0;
     right: 0;
     bottom: 0;
-    overflow: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
-    .standalone & {
-      top: 48 + status-bar-height;
+    @media screen and (min-width: 768px) {
+      padding: 18px;
     }
   }
 }
@@ -58,12 +59,15 @@ html, body {
 
   #threads {
     left: 216px;
-    width: 300px;
+    width: 324px;
   }
 
-  #details {
-    left: 516px;
+  .details {
+    left: 540px;
     right: 0;
+    display: none;
+
+    &.selected, &.default { display: block; }
   }
 }
 
@@ -72,12 +76,8 @@ html, body {
     left: 0;
     right: 0;
 
-    & > header {
+    header {
       position: fixed;
-    }
-
-    & > .content {
-      -webkit-overflow-scrolling : touch;
     }
   }
 
@@ -89,12 +89,12 @@ html, body {
     z-index: 2;
   }
 
-  #details {
+  .details {
     z-index: 3;
     transition: transform 250ms ease;
     transform: translateX(105%); // 105 to push the shadow of the screen
 
-    &.focused {
+    &.selected {
       transform: translateX(0);
     }
   }

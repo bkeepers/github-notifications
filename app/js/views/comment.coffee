@@ -20,7 +20,7 @@ class App.Views.Comment extends Backbone.View
     @listenTo @model, 'unselected', @unselected
 
   render: =>
-    @$el.html @template(@model.toJSON())
+    @$el.html @template(App.Views.Helpers.extend(@model.toJSON()))
     @$el.addClass if @model.isUnread() then 'expanded' else 'collapsed'
     @$el.attr('tabindex', 0) # Make it focusable
     app.trigger 'render', @
@@ -28,12 +28,13 @@ class App.Views.Comment extends Backbone.View
 
   # Toggle the expanded or collapsed state of the comment
   toggle: (e) ->
+    return if $(e.target).is('a')
     e.preventDefault()
     @$el.toggleClass('collapsed expanded')
 
   # This comment was selected
   selected: (model, previous, options = {}) ->
-    @bindKeyboardEvents()
+    @bindKeyboardEvents(force = true)
     @$el.addClass('selected')
     @scrollIntoView(previous) if options.scroll
 
@@ -42,9 +43,9 @@ class App.Views.Comment extends Backbone.View
     @unbindKeyboardEvents()
     @$el.removeClass('selected')
 
-  # Only bind keyboard events if model is selected
-  bindKeyboardEvents: ->
-    super if @model.isSelected()
+  # Only bind keyboard events when forced to, such as when the model is selected.
+  bindKeyboardEvents: (force) ->
+    super() if force
 
   # Scroll the comment into view.
   #

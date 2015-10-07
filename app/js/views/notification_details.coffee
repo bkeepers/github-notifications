@@ -1,6 +1,7 @@
 # Root view for all the details of a notification
 class App.Views.NotificationDetailsView extends Backbone.View
   template: JST['app/templates/notification_details.us']
+  className: 'details pane'
 
   keyboardEvents:
     'm': -> @model.subscription.toggle()
@@ -41,10 +42,8 @@ class App.Views.NotificationDetailsView extends Backbone.View
 
   # Go to the page on GitHub for this notification
   open: (e) ->
-    if unread = @model.subject.comments.detect((comment) -> comment.isUnread())
-      window.open unread.get('html_url'), '_blank'
-    else
-      window.open @model.subject.get('html_url'), '_blank'
+    e.preventDefault()
+    window.open @subject.url(), '_blank'
 
   # Focus the reply textarea
   reply:(e) ->
@@ -53,14 +52,10 @@ class App.Views.NotificationDetailsView extends Backbone.View
 
   hide: ->
     @unbindKeyboardEvents()
-    # FIXME: find a better way to give animation time to finish. This can leave
-    # the view in an inconsistent state if this model is selected again before
-    # the timeout fires.
-    setTimeout =>
-      @$el.detach()
-      @subject.hide()
-    , 300
+    @subject.hide()
+    @$el.removeClass('selected')
 
   show: ->
     @bindKeyboardEvents()
     @subject.show()
+    @$el.addClass('selected')
