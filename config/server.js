@@ -1,3 +1,7 @@
+var dotenv = require("dotenv")
+dotenv.load({path: ".env.local", silent: true}) // Load .env.local if it exists
+dotenv.load()                                   // Get defaults from .env
+
 module.exports = {
   drawRoutes: function(app) {
     if(process.env.NODE_ENV == 'production') {
@@ -6,10 +10,10 @@ module.exports = {
 
     app.get('/config', function(req, res) {
       res.json({
-        api_url: config.api_url,
-        web_url: config.web_url,
-        client_id: config.oauth_client_id,
-        scope: config.oauth_scope,
+        api_url: process.env.API_URL,
+        web_url: process.env.WEB_URL,
+        client_id: process.env.OAUTH_CLIENT_ID,
+        scope: process.env.OAUTH_SCOPE,
       });
     });
 
@@ -40,37 +44,21 @@ function requireHTTPS(req, res, next) {
 
 var fs = require('fs');
 
-// Load config defaults from JSON file.
-// Environment variables override defaults.
-function loadConfig() {
-  var local = __dirname + '/local.json',
-      defaults = __dirname + '/defaults.json',
-      path = fs.existsSync(local) ? local : defaults,
-      config = JSON.parse(fs.readFileSync(path, 'utf-8'));
-
-  for (var i in config) {
-    config[i] = process.env[i.toUpperCase()] || config[i];
-  }
-  return config;
-}
-
-var config = loadConfig();
-
-var https = config.oauth_port == 443 ? require('https') : require('http'),
+var https = process.env.OAUTH_PORT == 443 ? require('https') : require('http'),
     qs = require('querystring');
 
 function authenticate(code, cb) {
   var data = qs.stringify({
-    client_id: config.oauth_client_id,
-    client_secret: config.oauth_client_secret,
+    client_id: process.env.OAUTH_CLIENT_ID,
+    client_secret: process.env.OAUTH_CLIENT_SECRET,
     code: code
   });
 
   var reqOptions = {
-    host: config.oauth_host,
-    port: config.oauth_port,
-    path: config.oauth_path,
-    method: config.oauth_method,
+    host: process.env.OAUTH_HOST,
+    port: process.env.OAUTH_PORT,
+    path: process.env.OAUTH_PATH,
+    method: process.env.OAUTH_METHOD,
     headers: {
       'content-length': data.length
     }

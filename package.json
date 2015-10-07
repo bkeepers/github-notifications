@@ -16,6 +16,7 @@
     "npm": "1.3.x"
   },
   "dependencies": {
+    "dotenv": "^1.2.0",
     "express": "~3.4.4"
   },
   "devDependencies": {
