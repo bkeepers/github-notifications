@@ -27,5 +27,8 @@
     "nib": "~1.0.1",
     "lineman-bower": "0.0.3",
     "grunt-manifest": "git+https://github.com/gunta/grunt-manifest.git#6b830e31"
+  },
+  "scripts": {
+    "postinstall": "lineman build"
   }
 }
