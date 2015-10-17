@@ -16,6 +16,6 @@
   <span class="conversation-summary nowrap">
     <a href="<%- user.html_url %>" class="author"><%- user.login %></a>
     opened this issue
-    <time class="js-relative-time" datetime="<%- created_at %>"><%- created_at %></time>
+    <time is="relative-time" datetime="<%- created_at %>"><%- created_at %></time>
   </span>
 </div>

@@ -3,8 +3,8 @@
     <img class="avatar" src="<%- user.avatar_url %>">
     <%- user.login %>
   </a>
-
-  <time class="js-relative-time" datetime="<%- created_at %>"><%- created_at %></time>
+  commented
+  <time is="relative-time" datetime="<%- created_at %>"><%- created_at %></time>
 </div>
 
 <div class="conversation-content markdown-body"><%= body_html %></div>

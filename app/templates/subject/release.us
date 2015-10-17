@@ -12,8 +12,7 @@
       <%- author.login %>
     </a>
     released this
-
-    <time class="js-relative-time" datetime="<%- published_at %>"><%- published_at %></time>
+    <time is="relative-time" datetime="<%- published_at %>"><%- published_at %></time>
   </span>
 </div>
 
