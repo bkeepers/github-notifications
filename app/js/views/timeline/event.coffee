@@ -10,6 +10,7 @@ class App.Views.TimelineEvent extends Backbone.View
     data.subject = @model.collection.subject.toJSON()
     # FIXME: YUCK
     data.repository_html_url = @model.collection.subject.notification.get('repository').html_url
+    data.html_url ?= "#{data.subject.html_url}#event-#{data.id}"
     @$el.html template(data)
     app.trigger 'render', @
     @
