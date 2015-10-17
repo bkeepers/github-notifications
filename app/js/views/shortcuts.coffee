@@ -38,6 +38,10 @@ class App.Views.Shortcuts extends Backbone.View
       key: '!'
       action: -> Backbone.history.navigate 'feedback', trigger: true
 
+  events:
+    'click .close': 'help'
+    'click .overlay': 'closeIfClickedOutside'
+
   # Put undocumented shortcuts here
   keyboardEvents:
     'ctrl+`': 'toggleDevelopmentMode'
@@ -83,6 +87,9 @@ class App.Views.Shortcuts extends Backbone.View
 
   help: ->
     @$('#shortcuts').toggle()
+
+  closeIfClickedOutside: (e) =>
+    @help() if $(e.target).is('.overlay')
 
   toggleDevelopmentMode: ->
     app.toggleDevelopment()
