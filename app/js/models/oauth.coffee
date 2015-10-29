@@ -18,20 +18,15 @@ class App.Models.OAuth
     if code = @getCode()
       @getToken(code).done(@done)
     else
-      @initiate()
+      @redirect()
 
-  # Get OAuth configration (client_id and scope) from the server and then
-  # redirect to GitHub to initiate the OAuth dance.
-  initiate: ->
-    app.ajax url: "/authenticate", success: @redirect
-
-  # Perform the redirect to GitHub
+  # Redirect to GitHub to initiate the OAuth dance.
   #
   # options:
   # client_id - The client ID from https://github.com/settings/applications
   # scope     - The OAuth scope needed by the application.
   #             See: http://developer.github.com/v3/oauth/#scopes
-  redirect: (options) =>
+  redirect: (options = app.config) ->
     @location.assign "#{@url()}?client_id=#{options.client_id}&scope=#{options.scope}"
 
   getCode: ->

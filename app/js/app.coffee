@@ -7,11 +7,6 @@ class @App
 
   ajax: $.ajax
 
-  # FIXME: move to config
-  endpoints:
-    api: 'https://api.github.com/'
-    web: 'https://github.com/'
-
   constructor: ->
     _.extend @, Backbone.Events
 
@@ -25,10 +20,16 @@ class @App
   # DOM is ready, initialize the App
   ready: =>
     $(document.body).addClass('standalone') if window.navigator.standalone
-    @authenticate() unless window.jasmine?
+    app.ajax(url: "/config").done(@configure).done(@authenticate) unless window.jasmine?
+
+  configure: (@config) =>
+    @endpoints = {
+      api: @config.api_url
+      web: @config.web_url
+    }
 
   # Kick off authentication
-  authenticate: ->
+  authenticate: =>
     new App.Models.Authentication @start
 
   # User is authenticated, start the main app.

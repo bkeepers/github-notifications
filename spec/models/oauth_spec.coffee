@@ -1,6 +1,7 @@
 describe 'App.Models.OAuth', ->
   beforeEach ->
     spyOn app, 'ajax'
+    app.configure web_url: 'https://github.com/'
 
     # Test double for window.location
     @location =

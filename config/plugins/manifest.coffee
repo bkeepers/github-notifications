@@ -13,5 +13,6 @@ module.exports = (lineman) ->
           verbose: false
           timestamp: false
           master: ['index.html']
+          cache: ['config']
         src: ["**/*.*"]
         dest: 'dist/manifest.appcache'
