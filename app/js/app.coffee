@@ -55,13 +55,16 @@ class @App
     new App.Routers.Notifications(@vent)
     new App.Controllers.Notification(@vent)
 
-    new App.Views.Shortcuts(vent: @vent, repositories: @repositories)
+    new App.Views.Shortcuts
+      vent: @vent
+      repositories: @repositories
+      filters: @filters
 
     new App.Routers.Misc
 
     Backbone.history.start() unless Backbone.History.started
 
-    Backbone.history.navigate 'everything', trigger: true
+    app.filters.first().select()
 
   # Notifictions do not get marked as read when in development mode.
   isDevelopment: ->

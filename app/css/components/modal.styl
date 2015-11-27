@@ -1,4 +1,4 @@
-.overlay {
+.overlay, .modal {
   position: absolute;
   left: 0;
   right: 0;
@@ -8,9 +8,12 @@
   z-index: 100;
 }
 
-.modal {
-  width: 450px;
+.dialog {
+  z-index: 101;
+  width: 416px;
   margin: 10% auto;
+  max-height: 80%;
+  overflow: auto;
   background: #fff;
   border-radius: 3px;
   padding: 20px;

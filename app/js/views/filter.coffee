@@ -1,11 +1,14 @@
 class App.Views.Filter extends Backbone.View
-  template: _.template('<a href="#<%- id %>"><span class="octicon octicon-<%- octicon %>"></span> <%- name %></a>')
+  template: JST['app/templates/filters/list_item.us']
+
   className: 'list'
   tagName: 'li'
 
   initialize: (options) ->
     @listenTo @model, 'unselected', @unselected
     @listenTo @model, 'selected', @selected
+    @listenTo @model, 'changed', @render
+
 
   render: =>
     @$el.html @template(@model.toJSON())

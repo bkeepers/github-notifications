@@ -2,6 +2,7 @@ class App.Views.Filters extends Backbone.View
   el: '#filters'
 
   initialize: ->
+    @listenTo @collection, 'add', @add
     @addAll()
 
   add: (model) ->

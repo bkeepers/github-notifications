@@ -29,11 +29,15 @@ class App.Controllers.Filters
     @listenTo @repositories, 'unselected', (model) =>
       @vent.trigger 'repository:unselected', model
 
+    @listenTo @filters, 'add', @selectFilter
+
     @listenTo @vent, 'filter:select', @selectFilter
     @listenTo @vent, 'repository:select', @selectRepository
 
     @listenTo @vent, 'filter:selected repository:selected', @show
     @listenTo @vent, 'filter:unselected repository:unselected', @hide
+
+    @listenTo @vent, 'filter:new', @new
 
     @repositories.fetch()
     @repositories.startPolling()
@@ -61,3 +65,10 @@ class App.Controllers.Filters
 
   hide: (model) ->
     @cache.get(model.cid)?.hide()
+
+  new: ->
+    view = new App.Views.FiltersCreate
+      collection: @filters
+      model: new App.Models.Filter()
+
+    $(document.body).append view.render().el

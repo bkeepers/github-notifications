@@ -1,0 +1,64 @@
+// Create a
+//
+//   <div class="selector">
+//     <input id="option-1" type="radio">
+//     <label for="option-1">Item</label>
+//   </div>
+.selector {
+  &, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    clearfix();
+  }
+
+  label {
+    margin: 0 4px 4px 0;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    display: block;
+
+    .octicon {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      text-align: center;
+      line-height: 34px;
+    }
+  }
+
+  &.row {
+    height: 48px;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    li {
+      display: inline-block;
+    }
+  }
+
+  &.colums {
+    li {
+      float: left;
+      width: 50%;
+
+      &:nth-child(2n) label {
+        margin-right: 0;
+      }
+    }
+  }
+
+  input:checked + label {
+    background-color: brand-blue;
+    color: #fff;
+    border-color: transparent;
+  }
+
+  input[type=checkbox], input[type=radio] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+}
