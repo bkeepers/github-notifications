@@ -38,7 +38,8 @@ class @App
     @filters = new App.Collections.Filters([
       {id: 'everything', name: 'Everything', data: {}, octicon: 'inbox'},
       {id: 'participating', name: 'Participating', data: {participating: true}, reasons: ['mention', 'author', 'comment', 'state_change', 'assign'], octicon: 'comment-discussion'}
-      {id: 'mentioned', name: 'Mentioned', data: {participating: true}, reasons: ['team_mention'], octicon: 'jersey'},
+      {id: 'mentioned', name: 'Team Mentions', data: {participating: true}, reasons: ['team_mention'], octicon: 'jersey'},
+      {id: 'direct', name: 'Direct Mentions', data: {participating: true}, reasons: ['mention', 'author'], octicon: 'mention'},
     ])
 
     @repositories = new App.Collections.Repositories()
