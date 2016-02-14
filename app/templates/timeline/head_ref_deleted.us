@@ -2,4 +2,6 @@
 <img class="avatar" src="<%- actor.avatar_url %>">
 <a class="author" href="<%- actor.html_url %>"><%- actor.login %></a>
 deleted the <span class="git-ref"><%- subject.head.ref %></span> branch
-<time class="js-relative-time" datetime="<%- created_at %>"><%- created_at %></time>
+<a href="<%- html_url %>" class="timestamp">
+  <time is="relative-time" datetime="<%- created_at %>"><%- created_at %></time>
+</a>

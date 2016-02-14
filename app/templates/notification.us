@@ -2,5 +2,5 @@
   <span class="octicon octicon-<%- subject.octicon %>"></span>
   <span class="title"><%- subject.title %></span>
   <span class="repository"><%- repository.owner.login %> / <%- repository.name %></span>
-  <time class="js-relative-time" datetime="<%- updated_at %>"><%- updated_at %></time>
+  <time is="relative-time" datetime="<%- updated_at %>"><%- updated_at %></time>
 </a>

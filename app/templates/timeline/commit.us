@@ -4,10 +4,10 @@
     <%- author.login %>
   </a>
   committed
-
   <a href="<%- html_url %>" class="git-sha"><%- shortSha(sha) %></a>
-
-  <time class="js-relative-time" datetime="<%- commit.committer.date %>"><%- commit.committer.date %></time>
+  <a href="<%- html_url %>" class="timestamp">
+    <time is="relative-time" datetime="<%- commit.committer.date %>"><%- commit.committer.date %></time>
+  </a>
 </div>
 
 <div class="conversation-content">

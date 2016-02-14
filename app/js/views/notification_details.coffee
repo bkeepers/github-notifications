@@ -29,8 +29,9 @@ class App.Views.NotificationDetailsView extends Backbone.View
 
   # Set target=_blank if it is an external link
   clickLink: (e) ->
-    href = e.target.getAttribute('href')
-    e.target.target = '_blank' if href && href.hostname != window.location.hostname
+    target = $(e.target).closest('a').get(0)
+    href = target.getAttribute('href')
+    target.target = '_blank' if href && href.hostname != window.location.hostname
 
   unfocus: (e) ->
     e.preventDefault()
