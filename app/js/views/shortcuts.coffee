@@ -22,6 +22,10 @@ class App.Views.Shortcuts extends Backbone.View
       key: 'g m'
       action: -> Backbone.history.navigate 'mentioned', trigger: true
 
+    'Mute/Unmute notifications for this item':
+      key: 'm'
+      action: -> @model.mute()
+
     'Open help for keyboard shortcuts':
       key: '?'
       action: 'help'
