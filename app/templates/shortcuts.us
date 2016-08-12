@@ -1,12 +1,8 @@
-<div class="overlay">
-  <div class="modal">
-    <a href="#" class="octicon octicon-remove-close close"></a>
-    <h2>Keyboard Shortcuts</h2>
-    <dl>
-      <% for(var description in shortcuts) { %>
-        <dt><%- shortcuts[description].keys.join(' or ') %></dt>
-        <dd><%- description %></dd>
-      <% } %>
-    </dl>
-  </div>
-</div>
+<h2>Keyboard Shortcuts</h2>
+
+<dl>
+  <% for(var description in shortcuts) { %>
+    <dt><%- shortcuts[description].keys.join(' or ') %></dt>
+    <dd><%- description %></dd>
+  <% } %>
+</dl>
